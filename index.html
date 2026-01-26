@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandy Krush - Luxury Balloon Artistry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Gistesy';
+            src: url('fonts/Gistesy.woff2') format('woff2'),
+                url('fonts/Gistesy.woff') format('woff'),
+                url('fonts/Gistesy.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #d4c9c3, #e8e8e0, #a8b5a8, #c8bdb5);
+        }
+
+        .heading-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .gistesy-font {
+            font-family: 'Gistesy', cursive;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.2s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            animation: slideUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Background Animation */
+        .hero-background {
+            position: absolute;
+            inset: 0;
+            background-image: url('Images/Screenshot 2026-01-21 at 13.08.10.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: kenBurns 20s cubic-bezier(0.6, 0, 0.4, 1) infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            30% {
+                transform: scale(1.08) translate(-1.5%, 0.5%);
+            }
+
+            60% {
+                transform: scale(1.1) translate(-2%, 1%);
+            }
+
+            100% {
+                transform: scale(1.1) translate(1%, -1%);
+            }
+        }
+
+        /* Initial Sparkle Burst */
+        .sparkle-container {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+        }
+
+        .sparkle.initial {
+            animation: initialBurst 2.5s ease-out forwards;
+        }
+
+        @keyframes initialBurst {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            20% {
+                opacity: 1;
+                transform: scale(1.5) rotate(180deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.5) rotate(360deg);
+            }
+        }
+
+        .sparkle.ongoing {
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Star-shaped sparkles */
+        .sparkle::before,
+        .sparkle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .sparkle::before {
+            transform: translate(-50%, -50%) rotate(45deg) scaleX(0.3);
+        }
+
+        .sparkle::after {
+            transform: translate(-50%, -50%) rotate(-45deg) scaleX(0.3);
+        }
+
+        /* Parallax Text Animations */
+        .hero-text-top {
+            animation: fadeInDown 1.5s ease-out forwards;
+            opacity: 0;
+            animation-delay: 0.3s;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            animation: scaleIn 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            animation-delay: 0.6s;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            60% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 1.5s ease-out forwards;
+            opacity: 0;
+            animation-delay: 1s;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-cta {
+            animation: fadeInScale 1.2s ease-out forwards;
+            opacity: 0;
+            animation-delay: 1.4s;
+            transition: transform 0.1s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Floating gradient blobs */
+        .gradient-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .gradient-blob-1 {
+            top: 10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: #8a9490;
+            animation-delay: 0s;
+        }
+
+        .gradient-blob-2 {
+            bottom: 10%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: #a8b5a8;
+            animation-delay: 2s;
+        }
+
+        .gradient-blob-3 {
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 350px;
+            background: #c8bdb5;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            75% {
+                transform: translate(20px, 30px) scale(1.05);
+            }
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #b0a8a0 0%, #c8bdb5 30%, #d4c9c3 60%, #a8b5a8 100%);
+        }
+
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #8a9490, #b0a8a0, #a8b5a8, #c8bdb5);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Enhanced Navigation Hover States */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Book Now Button Hover Enhancement */
+        .book-now-btn {
+            transition: all 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .parallax {
+            transition: transform 0.3s ease-out;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Split Screen Styles */
+        .split-container {
+            min-height: 70vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Scroll offset for fixed navbar */
+        section,
+        div[id] {
+            scroll-margin-top: 80px;
+        }
+
+        .image-side {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .image-side:hover {
+            transform: scale(1.02);
+        }
+
+        .content-side {
+            display: flex;
+            align-items: center;
+            padding: 5rem;
+            background: #fafaf9;
+        }
+
+        .divider-vertical {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(212, 201, 195, 0.5);
+        }
+
+        /* Gallery Carousel Styles */
+        .gallery-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .gallery-image {
+            height: 75vh;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #8a9490;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-nav-btn:hover {
+            background: #a8b5a8;
+            border-color: #a8b5a8;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-nav-btn:hover svg {
+            stroke: white;
+        }
+
+        .gallery-nav-btn.prev {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-nav-btn.next {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .gallery-nav-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: #8a9490;
+            transition: stroke 0.3s ease;
+        }
+
+        .gallery-category {
+            position: absolute;
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            color: #8a9490;
+            font-weight: 300;
+            white-space: nowrap;
+        }
+
+        .gallery-title {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: #8a9490;
+            font-weight: 300;
+            text-align: right;
+        }
+
+        /* CTA Card Styles */
+        .cta-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cta-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Service Item Hover */
+        .service-item {
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            background: rgba(168, 181, 168, 0.05);
+        }
+
+        .service-item button {
+            transition: all 0.3s ease;
+        }
+
+        .service-item button:hover {
+            color: #8a9490;
+        }
+
+        /* Testimonial Card */
+        .testimonial-card {
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .split-container {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .content-side {
+                padding: 3rem 2rem;
+            }
+
+            .image-side {
+                min-height: 50vh;
+            }
+
+            .gallery-slide {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .gallery-image {
+                height: 50vh;
+            }
+
+            .gallery-nav-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            .gallery-nav-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .gallery-category,
+            .gallery-title {
+                display: none;
+            }
+
+            @keyframes kenBurns {
+                0% {
+                    transform: scale(1.2) translate(0, 0);
+                }
+
+                100% {
+                    transform: scale(1.3) translate(-2%, 1%);
+                }
+            }
+        }
+
+        .slide-fade-in {
+            animation: slideFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes slideFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Service Dropdown Styles */
+        .service-content {
+            transition: all 0.3s ease-out;
+        }
+
+        /* Gallery Indicator Enhanced */
+        .gallery-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(138, 148, 144, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-indicator.active {
+            background: #8a9490;
+            transform: scale(1.3);
+        }
+
+        .gallery-indicator:hover {
+            background: rgba(138, 148, 144, 0.6);
+            transform: scale(1.15);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md shadow-sm" style="background: rgba(168, 181, 168, 0.95);">
+        <div class="w-full px-8 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <img src="Images/WhatsApp Image 2026-01-15 at 19.29.51.jpeg" alt="Kandy Krush Logo"
+                        class="h-16 w-auto">
+                    <div class="heading-font text-3xl font-bold text-white">Kandy Krush</div>
+                </div>
+                <div class="hidden md:flex space-x-10 text-sm font-light tracking-wider">
+                    <a href="#weddings" class="nav-link text-white hover:text-white/80">WEDDINGS</a>
+                    <a href="#corporate" class="nav-link text-white hover:text-white/80">CORPORATE</a>
+                    <a href="#birthdays" class="nav-link text-white hover:text-white/80">BIRTHDAYS</a>
+                    <a href="#about" class="nav-link text-white hover:text-white/80">SERVICES</a>
+                    <a href="#gallery" class="nav-link text-white hover:text-white/80">GALLERY</a>
+                    <a href="#contact" class="nav-link text-white hover:text-white/80">CONTACT</a>
+                </div>
+                <a href="#contact"
+                    class="book-now-btn text-gray-800 bg-white px-6 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen flex items-center justify-center relative overflow-hidden" id="heroSection">
+        <!-- Animated Background -->
+        <div class="hero-background"></div>
+
+        <!-- Animated Gradient Overlay -->
+        <div class="absolute inset-0">
+            <div class="gradient-blob gradient-blob-1"></div>
+            <div class="gradient-blob gradient-blob-2"></div>
+            <div class="gradient-blob gradient-blob-3"></div>
+        </div>
+
+        <!-- Sparkles Container -->
+        <div class="sparkle-container" id="sparkleContainer"></div>
+
+        <!-- Hero Content - Streamlined -->
+        <div class="text-center z-10 px-6" id="heroContent">
+            <h1 class="gistesy-font text-7xl md:text-9xl font-light text-white drop-shadow-2xl hero-title mb-6"
+                data-speed="0.5">
+                Kandy Krush
+            </h1>
+            <p class="text-xl md:text-2xl font-light text-white tracking-widest drop-shadow-lg hero-subtitle mb-4"
+                data-speed="0.7">
+                LUXURY BALLOON ARTISTRY & EVENT DESIGN
+            </p>
+            <div class="hero-cta mt-12" data-speed="0.6">
+                <a href="#services"
+                    class="inline-block bg-white text-gray-700 px-10 py-4 rounded-full text-sm font-medium tracking-widest hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                    EXPLORE OUR SERVICES
+                </a>
+            </div>
+        </div>
+
+        <!-- Animated Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- CORPORATE & WEDDINGS - SPLIT SCREEN -->
+    <section id="services">
+
+        <!-- Weddings Section -->
+        <div id="weddings" class="split-container section-reveal">
+            <div class="content-side order-2 md:order-1">
+                <div class="max-w-xl">
+                    <p class="text-xs tracking-[0.3em] mb-4 font-light" style="color: #8a9490;">WEDDINGS</p>
+                    <h2 class="heading-font text-5xl font-light text-gray-800 mb-6 leading-tight">
+                        Designed for Your Forever
+                    </h2>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        Your wedding deserves details that feel intentional, romantic, and effortlessly beautiful. We
+                        craft elegant balloon décor that enhances the atmosphere without overpowering it — soft,
+                        timeless, and perfectly tailored to your theme.
+                    </p>
+                    <p class="text-gray-600 font-light leading-relaxed mb-8">
+                        From ceremony backdrops to dreamy reception features, every piece is designed to photograph
+                        beautifully and elevate the space with warmth, charm, and sophistication.
+                    </p>
+                    <!-- Early CTA -->
+                    <a href="#contact"
+                        class="inline-block text-white px-8 py-3 rounded-full text-sm font-medium tracking-wider transition-all duration-300 hover:shadow-xl hover:scale-105"
+                        style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
+                        START PLANNING
+                    </a>
+                </div>
+            </div>
+            <div class="image-side order-1 md:order-2"
+                style="background-image: url('Images/Screenshot 2026-01-21 at 13.08.28.jpg');">
+                <div class="divider-vertical"></div>
+            </div>
+        </div>
+
+        <!-- Corporate Section -->
+        <div id="corporate" class="split-container section-reveal">
+            <div class="image-side" style="background-image: url('Images/Screenshot 2026-01-16 at 21.06.00 copy.jpg');">
+                <div class="divider-vertical"></div>
+            </div>
+            <div class="content-side">
+                <div class="max-w-xl">
+                    <p class="text-xs tracking-[0.3em] mb-4 font-light" style="color: #8a9490;">CORPORATE</p>
+                    <h2 class="heading-font text-5xl font-light text-gray-800 mb-6 leading-tight">
+                        Elevate Every Brand Moment
+                    </h2>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4">
+                        From product launches to team celebrations, we create balloon installations that feel polished,
+                        modern, and unforgettable. Our designs bring energy to your space while staying aligned with
+                        your brand, your audience, and your vision.
+                    </p>
+                    <p class="text-gray-600 font-light leading-relaxed mb-8">
+                        Whether it's a statement entrance, stage backdrop, or full-room transformation, we deliver
+                        sleek, high-impact styling with seamless setup and professional execution.
+                    </p>
+                    <!-- Early CTA -->
+                    <a href="#contact"
+                        class="inline-block text-white px-8 py-3 rounded-full text-sm font-medium tracking-wider transition-all duration-300 hover:shadow-xl hover:scale-105"
+                        style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
+                        DISCUSS YOUR EVENT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIRTHDAY - SIMPLE THREE-COLUMN LAYOUT -->
+    <section id="birthdays" class="py-20 px-6 relative overflow-hidden" style="background: #fafaf9;">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-8 items-center" style="min-height: 500px;">
+
+                <!-- Left Image -->
+                <div class="lg:col-span-4 section-reveal flex items-center justify-center h-full">
+                    <img src="Images/Birthday/1.png" alt="Birthday Balloon Numbers"
+                        class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105">
+                </div>
+
+                <!-- Center Text Content -->
+                <div class="lg:col-span-4 section-reveal flex flex-col justify-center text-center">
+                    <p class="text-sm tracking-widest mb-4 font-light" style="color: #8a9490;">BIRTHDAYS</p>
+                    <h2 class="heading-font text-5xl md:text-5xl font-light text-gray-800 mb-6 leading-tight">
+                        Make It a Moment to Remember
+                    </h2>
+                    <p class="text-gray-600 font-light leading-relaxed mb-4 text-sm">
+                        Big milestone or small gathering — birthdays are meant to feel special. We design balloon
+                        displays that bring excitement, personality, and wow-factor to your celebration, creating a
+                        perfect backdrop for photos and memories.
+                    </p>
+                    <p class="text-gray-600 font-light leading-relaxed text-sm mb-8">
+                        From playful themes to luxury colour palettes, we create custom styling that feels unique to you
+                        — bold, joyful, and full of magic.
+                    </p>
+                    <!-- Early CTA -->
+                    <a href="#contact"
+                        class="inline-block text-white px-8 py-3 rounded-full text-sm font-medium tracking-wider transition-all duration-300 hover:shadow-xl hover:scale-105 mx-auto"
+                        style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
+                        BOOK YOUR CELEBRATION
+                    </a>
+                </div>
+
+                <!-- Right Image -->
+                <div class="lg:col-span-4 section-reveal flex items-center justify-center h-full">
+                    <img src="Images/Birthday/2.png" alt="Birthday Balloon Display"
+                        class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF SECTION -->
+    <section class="py-16 px-6" style="background: linear-gradient(135deg, #e8ddd8, #d4c9c3);">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 section-reveal">
+                <p class="text-xs tracking-[0.3em] mb-3 font-light" style="color: #8a9490;">TRUSTED BY THE BEST</p>
+                <h2 class="heading-font text-4xl md:text-5xl font-light text-gray-800 mb-4">Creating Unforgettable
+                    Moments</h2>
+                <p class="text-gray-600 font-light max-w-2xl mx-auto">
+                    We've had the privilege of bringing luxury balloon artistry to premium venues, boutique hotels,
+                    corporate headquarters, and private estates throughout the region.
+                </p>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-8 section-reveal">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+                    <div class="mb-4">
+                        <svg class="w-10 h-10" style="color: #a8b5a8;" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6 italic">
+                        "The attention to detail was extraordinary. Our corporate launch felt elevated and professional
+                        while still being fun and memorable."
+                    </p>
+                    <div class="border-t pt-4" style="border-color: rgba(138, 148, 144, 0.2);">
+                        <p class="font-medium text-gray-800">Sarah M.</p>
+                        <p class="text-sm text-gray-600 font-light">Event Director</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+                    <div class="mb-4">
+                        <svg class="w-10 h-10" style="color: #a8b5a8;" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6 italic">
+                        "Our wedding photos are stunning thanks to the balloon installations. They were exactly what we
+                        envisioned — romantic, elegant, and timeless."
+                    </p>
+                    <div class="border-t pt-4" style="border-color: rgba(138, 148, 144, 0.2);">
+                        <p class="font-medium text-gray-800">Emma & James</p>
+                        <p class="text-sm text-gray-600 font-light">Newlyweds</p>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
+                    <div class="mb-4">
+                        <svg class="w-10 h-10" style="color: #a8b5a8;" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-700 font-light leading-relaxed mb-6 italic">
+                        "Professional, creative, and seamless execution. The birthday setup exceeded expectations and
+                        our guests are still talking about it!"
+                    </p>
+                    <div class="border-t pt-4" style="border-color: rgba(138, 148, 144, 0.2);">
+                        <p class="font-medium text-gray-800">Michael R.</p>
+                        <p class="text-sm text-gray-600 font-light">Private Client</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADDITIONAL SERVICES - IMPROVED SPACING -->
+    <section id="about" class="py-20 px-6" style="background: #fafaf9;">
+        <div class="max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16 section-reveal">
+                <p class="text-xs tracking-[0.3em] mb-3 font-light" style="color: #8a9490;">ADDITIONAL SERVICES</p>
+                <h2 class="heading-font text-4xl md:text-5xl font-light text-gray-800">Elevate Your Event</h2>
+            </div>
+
+            <!-- Two Column Layout with Better Spacing -->
+            <div class="grid md:grid-cols-2 gap-16 section-reveal relative">
+
+                <!-- Left Column -->
+                <div class="space-y-2">
+                    <!-- Service 1: Hotel Vacay -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(1)"
+                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
+                            <h3 class="text-lg font-light text-gray-800">Hotel Vacay</h3>
+                            <span id="icon-1" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                        </button>
+                        <div id="service-1" class="service-content hidden pb-6">
+                            <img src="Images/Hotel Vacay.jpeg" alt="Hotel Vacay"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed">
+                                Bring luxury vacation vibes to any event with our hotel-inspired balloon installations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Shimmer Walls -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(2)"
+                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
+                            <h3 class="text-lg font-light text-gray-800">Shimmer Walls</h3>
+                            <span id="icon-2" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                        </button>
+                        <div id="service-2" class="service-content hidden pb-6">
+                            <img src="Images/Shimmer Walls.jpg" alt="Shimmer Walls"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed">
+                                The ultimate statement backdrop — glamorous, eye-catching, and perfect for making any
+                                event feel premium.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Baby Shower -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(3)"
+                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
+                            <h3 class="text-lg font-light text-gray-800">Baby Shower</h3>
+                            <span id="icon-3" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                        </button>
+                        <div id="service-3" class="service-content hidden pb-6">
+                            <img src="Images/Newborn.jpg" alt="Baby Shower"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed">
+                                Celebrate new beginnings with soft, elegant balloon designs perfect for welcoming your
+                                little one.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Christening -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(4)"
+                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
+                            <h3 class="text-lg font-light text-gray-800">Christening</h3>
+                            <span id="icon-4" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                        </button>
+                        <div id="service-4" class="service-content hidden pb-6">
+                            <img src="Images/Christening.jpg" alt="Christening"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed">
+                                Beautiful, thoughtful décor for this special milestone, creating a serene atmosphere for
+                                your celebration.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="space-y-2">
+                    <!-- Service 5: Luxury Table Settings -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(5)"
+                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
+                            <span id="icon-5" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                            <h3 class="text-lg font-light text-gray-800">Luxury Table Settings</h3>
+                        </button>
+                        <div id="service-5" class="service-content hidden pb-6">
+                            <img src="Images/Luxury Table Setting.jpg" alt="Luxury Table Settings"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
+                                Elevate your dining experience with curated table décor that ties perfectly into your
+                                event's aesthetic.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Service 6: Photo Booth Styling -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(6)"
+                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
+                            <span id="icon-6" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                            <h3 class="text-lg font-light text-gray-800">Photo Booth Styling</h3>
+                        </button>
+                        <div id="service-6" class="service-content hidden pb-6">
+                            <img src="Images/Services/photo-booth.jpg" alt="Photo Booth Styling"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
+                                Create picture-perfect moments with custom-designed photo booth backdrops that match
+                                your theme.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Service 7: Event Lighting -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(7)"
+                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
+                            <span id="icon-7" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                            <h3 class="text-lg font-light text-gray-800">Event Lighting</h3>
+                        </button>
+                        <div id="service-7" class="service-content hidden pb-6">
+                            <img src="Images/Services/lighting.jpg" alt="Event Lighting"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
+                                Transform your venue with professional lighting design that sets the perfect mood for
+                                your celebration.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Service 8: LED Sign -->
+                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
+                        <button onclick="toggleService(8)"
+                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
+                            <span id="icon-8" class="text-2xl font-light transition-transform duration-300"
+                                style="color: #8a9490;">+</span>
+                            <h3 class="text-lg font-light text-gray-800">LED Sign</h3>
+                        </button>
+                        <div id="service-8" class="service-content hidden pb-6">
+                            <img src="Images/LED Sign.jpg" alt="LED Sign"
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
+                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
+                                Add a modern, personalized touch with custom LED neon signs perfect for creating
+                                memorable moments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - Enhanced -->
+    <section id="gallery" class="py-20 px-6" style="background: linear-gradient(to bottom, #e8ddd8, #a8b5a8, #c8bdb5);">
+        <div class="w-full mx-auto">
+            <div class="text-center mb-12 section-reveal">
+                <p class="text-sm tracking-widest mb-4 font-light" style="color: #8a9490;">PORTFOLIO</p>
+                <h2 class="heading-font text-6xl md:text-7xl font-light text-gray-800">Our Gallery</h2>
+
+                </p>
+            </div>
+
+            <div class="gallery-container relative" style="padding: px 0px;">
+                <!-- Category Label -->
+                <div class="gallery-category hidden md:block">BALLOON ARTISTRY</div>
+
+                <!-- Gallery Track -->
+                <div class="gallery-track" id="galleryTrack">
+                    <!-- Slide 1 -->
+                    <div class="gallery-slide">
+                        <div class="gallery-title hidden md:block">ELEGANT WEDDING DESIGNS</div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-21 at 13.09.16.jpg" alt="Wedding Balloon Design"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-16 at 21.06.00.jpg" alt="Wedding Balloon Design"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="gallery-slide">
+                        <div class="gallery-title hidden md:block">BIRTHDAY CELEBRATIONS</div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-16 at 21.20.07.jpg" alt="Birthday Balloon Design"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-21 at 13.07.33.jpg" alt="Birthday Party Setup"
+                                class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="gallery-slide">
+                        <div class="gallery-title hidden md:block">CORPORATE EVENTS</div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-21 at 13.05.00.jpg" alt="Wedding board">
+                        </div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-21 at 13.08.28.jpg" alt="wedding Arch">
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="gallery-slide">
+                        <div class="gallery-title hidden md:block">LUXURY INSTALLATIONS</div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-21 at 13.10.16.jpg" alt="Engagement Party Board">
+                        </div>
+                        <div class="gallery-image">
+                            <img src="Images/Screenshot 2026-01-21 at 13.08.10.jpg" alt="Baby Shower">
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button class="gallery-nav-btn prev" id="prevBtn" onclick="moveGallery(-1)"
+                    aria-label="Previous images">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                        </path>
+                    </svg>
+                </button>
+                <button class="gallery-nav-btn next" id="nextBtn" onclick="moveGallery(1)" aria-label="Next images">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Gallery Indicators -->
+            <div class="flex justify-center mt-8 space-x-3">
+                <div class="gallery-indicator active" data-slide="0" role="button" aria-label="View slide 1"></div>
+                <div class="gallery-indicator" data-slide="1" role="button" aria-label="View slide 2"></div>
+                <div class="gallery-indicator" data-slide="2" role="button" aria-label="View slide 3"></div>
+                <div class="gallery-indicator" data-slide="3" role="button" aria-label="View slide 4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6"
+        style="background: linear-gradient(to bottom right, #d4c9c3, #e8ddd8, #c8bdb5, #a8b5a8);">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <p class="text-sm tracking-widest mb-4 font-light" style="color: #8a9490;">GET IN TOUCH</p>
+                <h2 class="heading-font text-6xl md:text-7xl font-light text-gray-800 mb-8">Let's Create Magic Together
+                </h2>
+                <p class="text-xl text-gray-700 font-light mb-8 max-w-2xl mx-auto">
+                    Ready to transform your event into an unforgettable experience? Fill out the form below and we'll
+                    get back to you soon.
+                </p>
+            </div>
+
+            <div class="section-reveal">
+                <form class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12"
+                    style="border: 2px solid #c8bdb5;">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="firstName"
+                                class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">FIRST NAME *</label>
+                            <input type="text" id="firstName" name="firstName" required
+                                class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-all duration-300"
+                                style="border-color: #d4c9c3;">
+                        </div>
+                        <div>
+                            <label for="lastName"
+                                class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">LAST NAME *</label>
+                            <input type="text" id="lastName" name="lastName" required
+                                class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-all duration-300"
+                                style="border-color: #d4c9c3;">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">EMAIL
+                                ADDRESS *</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-all duration-300"
+                                style="border-color: #d4c9c3;">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">PHONE
+                                NUMBER</label>
+                            <input type="tel" id="phone" name="phone"
+                                class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-all duration-300"
+                                style="border-color: #d4c9c3;">
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-6">
+                        <label for="eventDate" class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">EVENT
+                            DATE</label>
+                        <input type="date" id="eventDate" name="eventDate"
+                            class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-all duration-300"
+                            style="border-color: #d4c9c3;">
+                    </div>
+
+                    <div class="mb-8">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">TELL US
+                            ABOUT YOUR VISION *</label>
+                        <textarea id="message" name="message" rows="5" required
+                            class="w-full px-4 py-3 rounded-lg border-2 focus:outline-none transition-all duration-300 resize-none"
+                            style="border-color: #d4c9c3;"
+                            placeholder="Share details about your event, theme, color preferences, and any special requests..."></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit"
+                            class="text-white px-12 py-4 rounded-full text-sm font-medium tracking-widest transition-all duration-300 hover:shadow-2xl hover:scale-105"
+                            style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
+                            SEND INQUIRY
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="heading-font text-3xl font-bold mb-4" style="color: #b0a8a0;">Kandy Krush</h3>
+                    <p class="text-gray-400 font-light text-sm">Luxury balloon artistry for unforgettable celebrations.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">SERVICES</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="#weddings" class="transition-colors hover:text-[#b0a8a0]">Weddings</a></li>
+                        <li><a href="#corporate" class="transition-colors hover:text-[#b0a8a0]">Corporate Events</a>
+                        </li>
+                        <li><a href="#birthdays" class="transition-colors hover:text-[#b0a8a0]">Birthday Parties</a>
+                        </li>
+                        <li><a href="#about" class="transition-colors hover:text-[#b0a8a0]">Additional Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">COMPANY</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="#services" class="transition-colors hover:text-[#b0a8a0]">About Us</a></li>
+                        <li><a href="#gallery" class="transition-colors hover:text-[#b0a8a0]">Gallery</a></li>
+                        <li><a href="#contact" class="transition-colors hover:text-[#b0a8a0]">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">CONNECT</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li>
+                            <a href="https://www.instagram.com/balloonsbykandykrush/" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/balloonsbykandyKrush" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:hello@kandykrush.co.uk" class="transition-colors hover:text-[#b0a8a0]">
+                                Email Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm font-light text-gray-500">
+                <p>© 2024 Kandy Krush. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // INITIAL SPARKLE BURST + ONGOING SPARKLES
+        // ========================================
+        const sparkleContainer = document.getElementById('sparkleContainer');
+
+        function createSparkle(isInitial = false) {
+            const sparkle = document.createElement('div');
+            sparkle.className = isInitial ? 'sparkle initial' : 'sparkle ongoing';
+
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            const delay = isInitial ? Math.random() * 0.5 : Math.random() * 3;
+            const duration = isInitial ? 2.5 : (Math.random() * 2 + 2);
+            const size = isInitial ? (Math.random() * 8 + 4) : (Math.random() * 4 + 2);
+
+            sparkle.style.left = `${left}%`;
+            sparkle.style.top = `${top}%`;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.animationDelay = `${delay}s`;
+            sparkle.style.animationDuration = `${duration}s`;
+
+            sparkleContainer.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Create initial burst
+        for (let i = 0; i < 100; i++) {
+            setTimeout(() => createSparkle(true), i * 20);
+        }
+
+        // Create ongoing sparkles
+        setInterval(() => createSparkle(false), 500);
+
+        for (let i = 0; i < 15; i++) {
+            setTimeout(() => createSparkle(false), i * 200);
+        }
+
+        // ========================================
+        // PARALLAX TEXT EFFECT
+        // ========================================
+        const heroSection = document.getElementById('heroSection');
+        const heroContent = document.getElementById('heroContent');
+        let scrollY = 0;
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+
+            if (scrollY < window.innerHeight) {
+                const elements = heroContent.querySelectorAll('[data-speed]');
+                elements.forEach(element => {
+                    const speed = parseFloat(element.dataset.speed);
+                    const yPos = -(scrollY * speed);
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
+            }
+        });
+
+        // ========================================
+        // GALLERY CAROUSEL
+        // ========================================
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const totalSlides = slides.length;
+        const track = document.getElementById('galleryTrack');
+        const indicators = document.querySelectorAll('.gallery-indicator');
+
+        function moveGallery(direction) {
+            currentSlide += direction;
+
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const offset = -currentSlide * 100;
+            track.style.transform = `translateX(${offset}%)`;
+
+            indicators.forEach((indicator, index) => {
+                if (index === currentSlide) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentSlide = index;
+                updateGallery();
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                moveGallery(-1);
+            } else if (e.key === 'ArrowRight') {
+                moveGallery(1);
+            }
+        });
+
+        // ========================================
+        // INTERSECTION OBSERVER
+        // ========================================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+
+        // ========================================
+        // SMOOTH SCROLLING
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ========================================
+        // FORM SUBMISSION
+        // ========================================
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+
+                const formContainer = this.parentElement;
+                formContainer.innerHTML = `
+                    <div class="text-center py-16">
+                        <div class="mb-6">
+                            <svg class="w-20 h-20 mx-auto" style="color: #a8b5a8;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="heading-font text-4xl font-light text-gray-800 mb-4">Thank You!</h3>
+                        <p class="text-lg text-gray-600 font-light mb-8">We've received your inquiry and will be in touch soon.</p>
+                        <button onclick="location.reload()" class="text-white px-8 py-3 rounded-full text-sm font-medium tracking-widest transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
+                            SEND ANOTHER INQUIRY
+                        </button>
+                    </div>
+                `;
+
+                console.log('Form submitted:', data);
+            });
+        }
+
+        // ========================================
+        // FORM INPUT FOCUS STYLES
+        // ========================================
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                this.style.borderColor = '#8a9490';
+                this.style.boxShadow = '0 0 0 3px rgba(138, 148, 144, 0.1)';
+            });
+            input.addEventListener('blur', function () {
+                this.style.borderColor = '#d4c9c3';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        // ========================================
+        // SERVICE DROPDOWN TOGGLE
+        // ========================================
+        function toggleService(id) {
+            const content = document.getElementById(`service-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.classList.add('slide-fade-in');
+                icon.textContent = '−';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                content.classList.remove('slide-fade-in');
+                icon.textContent = '+';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+
+</html>
