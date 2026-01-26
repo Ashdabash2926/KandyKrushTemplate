@@ -1,10 +1,11 @@
 @font-face {
     font-family: "Gistesy";
-    src: url("Fonts/Gistesy.ttf") format("truetype");
-    font-weight: normal;
+    src: url("./Fonts/Gistesy.ttf") format("truetype");
+    font-weight: 400;
     font-style: normal;
+    font-display: swap;
 }
 
 .gistesy-font {
-    font-family: "Gistesy", cursive;
+    font-family: "Gistesy", cursive !important;
 }
