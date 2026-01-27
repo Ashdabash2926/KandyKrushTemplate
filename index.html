@@ -76,24 +76,52 @@
             background-image: url('Images/Screenshot 2026-01-21 at 13.08.10.jpg');
             background-size: cover;
             background-position: center;
+            -webkit-animation: kenBurns 20s cubic-bezier(0.6, 0, 0.4, 1) infinite alternate;
             animation: kenBurns 20s cubic-bezier(0.6, 0, 0.4, 1) infinite alternate;
+            will-change: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         @keyframes kenBurns {
             0% {
                 transform: scale(1) translate(0, 0);
+                -webkit-transform: scale(1) translate(0, 0);
             }
 
             30% {
                 transform: scale(1.08) translate(-1.5%, 0.5%);
+                -webkit-transform: scale(1.08) translate(-1.5%, 0.5%);
             }
 
             60% {
                 transform: scale(1.1) translate(-2%, 1%);
+                -webkit-transform: scale(1.1) translate(-2%, 1%);
             }
 
             100% {
                 transform: scale(1.1) translate(1%, -1%);
+                -webkit-transform: scale(1.1) translate(1%, -1%);
+            }
+        }
+
+        @-webkit-keyframes kenBurns {
+            0% {
+                -webkit-transform: scale(1) translate(0, 0);
+            }
+
+            30% {
+                -webkit-transform: scale(1.08) translate(-1.5%, 0.5%);
+            }
+
+            60% {
+                -webkit-transform: scale(1.1) translate(-2%, 1%);
+            }
+
+            100% {
+                -webkit-transform: scale(1.1) translate(1%, -1%);
             }
         }
 
@@ -620,10 +648,22 @@
             @keyframes kenBurns {
                 0% {
                     transform: scale(1.2) translate(0, 0);
+                    -webkit-transform: scale(1.2) translate(0, 0);
                 }
 
                 100% {
                     transform: scale(1.3) translate(-2%, 1%);
+                    -webkit-transform: scale(1.3) translate(-2%, 1%);
+                }
+            }
+
+            @-webkit-keyframes kenBurns {
+                0% {
+                    -webkit-transform: scale(1.2) translate(0, 0);
+                }
+
+                100% {
+                    -webkit-transform: scale(1.3) translate(-2%, 1%);
                 }
             }
         }
