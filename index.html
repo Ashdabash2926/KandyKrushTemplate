@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--test update 27 jan-->
 
 <head>
     <meta charset="UTF-8">
@@ -34,6 +33,8 @@
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             background: linear-gradient(to bottom, #d4c9c3, #e8e8e0, #a8b5a8, #c8bdb5);
+            min-height: 100vh;
+            background-attachment: fixed;
         }
 
         .heading-font {
@@ -1550,6 +1551,16 @@
             }
         }
 
+        // Limit images on mobile for performance
+        function getImagesToLoad(images) {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile && images.length > 15) {
+                // On mobile, only load first 15 images for faster performance
+                return images.slice(0, 15);
+            }
+            return images;
+        }
+
         // Initialize all galleries
         function initializeGalleries() {
             // Initialize each gallery
@@ -1564,8 +1575,11 @@
 
             if (!track) return;
 
+            // Limit images on mobile for faster loading
+            const imagesToUse = getImagesToLoad(images);
+
             // Shuffle and store images
-            const shuffledImages = shuffleArray(images);
+            const shuffledImages = shuffleArray(imagesToUse);
             galleryStates[galleryNum].images = shuffledImages;
             galleryStates[galleryNum].totalSlides = shuffledImages.length;
             galleryStates[galleryNum].slidesPerView = getSlidesPerView();
