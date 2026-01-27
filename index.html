@@ -428,55 +428,45 @@
             background: rgba(212, 201, 195, 0.5);
         }
 
-        /* Gallery Carousel Styles */
-        .gallery-container {
+        /* NEW: Single Gallery Carousel Styles */
+        .single-gallery-container {
             position: relative;
             overflow: hidden;
         }
 
-        .gallery-track {
+        .single-gallery-track {
             display: flex;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .gallery-slide {
-            min-width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
             padding: 0 1rem;
         }
 
-        .gallery-image {
-            height: 75vh;
-            border-radius: 1rem;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        .single-gallery-slide {
+            min-width: calc((100% - (2 * 1.5rem)) / 3);
+            max-width: calc((100% - (2 * 1.5rem)) / 3);
+            flex-shrink: 0;
         }
 
-        .gallery-image:hover {
-            transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .gallery-image img {
+        .single-gallery-slide img {
             width: 100%;
-            height: 100%;
+            height: 35vh;
             object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             transition: transform 0.4s ease;
+            cursor: pointer;
         }
 
-        .gallery-image:hover img {
-            transform: scale(1.05);
+        .single-gallery-slide img:hover {
+            transform: scale(1.02);
         }
 
-        .gallery-nav-btn {
+        .single-gallery-nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: white;
             border: 2px solid #8a9490;
@@ -489,55 +479,50 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .gallery-nav-btn:hover {
+        .single-gallery-nav-btn:hover {
             background: #a8b5a8;
             border-color: #a8b5a8;
             transform: translateY(-50%) scale(1.1);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .gallery-nav-btn:hover svg {
+        .single-gallery-nav-btn:hover svg {
             stroke: white;
         }
 
-        .gallery-nav-btn.prev {
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .single-gallery-nav-btn.prev {
+            left: 20px;
         }
 
-        .gallery-nav-btn.next {
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .single-gallery-nav-btn.next {
+            right: 20px;
         }
 
-        .gallery-nav-btn svg {
-            width: 28px;
-            height: 28px;
+        .single-gallery-nav-btn svg {
+            width: 24px;
+            height: 24px;
             stroke: #8a9490;
             transition: stroke 0.3s ease;
         }
 
-        .gallery-category {
-            position: absolute;
-            left: -60px;
-            top: 50%;
-            transform: translateY(-50%) rotate(-90deg);
-            font-size: 0.9rem;
-            letter-spacing: 0.2em;
-            color: #8a9490;
-            font-weight: 300;
-            white-space: nowrap;
+        /* Gallery Indicator Styles */
+        .gallery-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(138, 148, 144, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .gallery-title {
-            position: absolute;
-            top: -60px;
-            right: 0;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            color: #8a9490;
-            font-weight: 300;
-            text-align: right;
+        .gallery-indicator.active {
+            background: #8a9490;
+            transform: scale(1.3);
+        }
+
+        .gallery-indicator:hover {
+            background: rgba(138, 148, 144, 0.6);
+            transform: scale(1.15);
         }
 
         /* CTA Card Styles */
@@ -577,6 +562,13 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .single-gallery-slide {
+                min-width: calc((100% - 1.5rem) / 2);
+                max-width: calc((100% - 1.5rem) / 2);
+            }
+        }
+
         @media (max-width: 768px) {
             .split-container {
                 grid-template-columns: 1fr;
@@ -591,28 +583,36 @@
                 min-height: 50vh;
             }
 
-            .gallery-slide {
-                grid-template-columns: 1fr;
+            .single-gallery-slide {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .single-gallery-slide img {
+                height: 30vh;
+            }
+
+            .single-gallery-track {
                 gap: 1rem;
+                padding: 0 1rem;
             }
 
-            .gallery-image {
-                height: 50vh;
+            .single-gallery-nav-btn {
+                width: 45px;
+                height: 45px;
             }
 
-            .gallery-nav-btn {
-                width: 50px;
-                height: 50px;
+            .single-gallery-nav-btn svg {
+                width: 18px;
+                height: 18px;
             }
 
-            .gallery-nav-btn svg {
-                width: 20px;
-                height: 20px;
+            .single-gallery-nav-btn.prev {
+                left: 10px;
             }
 
-            .gallery-category,
-            .gallery-title {
-                display: none;
+            .single-gallery-nav-btn.next {
+                right: 10px;
             }
 
             @keyframes kenBurns {
@@ -647,24 +647,136 @@
             transition: all 0.3s ease-out;
         }
 
-        /* Gallery Indicator Enhanced */
-        .gallery-indicator {
-            width: 12px;
-            height: 12px;
+        /* Lightbox Styles */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: rgba(138, 148, 144, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            z-index: 10001;
         }
 
-        .gallery-indicator.active {
-            background: #8a9490;
-            transform: scale(1.3);
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: rotate(90deg);
         }
 
-        .gallery-indicator:hover {
-            background: rgba(138, 148, 144, 0.6);
-            transform: scale(1.15);
+        .lightbox-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-nav.prev {
+            left: 40px;
+        }
+
+        .lightbox-nav.next {
+            right: 40px;
+        }
+
+        .lightbox-nav svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-nav {
+                width: 45px;
+                height: 45px;
+            }
+
+            .lightbox-nav.prev {
+                left: 10px;
+            }
+
+            .lightbox-nav.next {
+                right: 10px;
+            }
+
+            .lightbox-nav svg {
+                width: 20px;
+                height: 20px;
+            }
         }
     </style>
 </head>
@@ -712,6 +824,9 @@
 
         <!-- Hero Content - Streamlined -->
         <div class="text-center z-10 px-6" id="heroContent">
+            <p class="text-xl md:text-2xl font-light text-white tracking-widest drop-shadow-lg hero-subtitle mb-4"
+                data-speed="0.7">
+                BALLOONS BY
             <h1 class="gistesy-font text-7xl md:text-9xl font-light text-white drop-shadow-2xl hero-title mb-6"
                 data-speed="0.5">
                 Kandy Krush
@@ -1083,93 +1198,90 @@
         </div>
     </section>
 
-    <!-- Gallery Section - Enhanced -->
-    <section id="gallery" class="py-20 px-6" style="background: linear-gradient(to bottom, #e8ddd8, #a8b5a8, #c8bdb5);">
+    <!-- Gallery Section - 3 Independent Carousels -->
+    <section id="gallery" class="py-20 px-0" style="background: linear-gradient(to bottom, #e8ddd8, #a8b5a8, #c8bdb5);">
         <div class="w-full mx-auto">
-            <div class="text-center mb-12 section-reveal">
+            <div class="text-center mb-12 section-reveal px-6">
                 <p class="text-sm tracking-widest mb-4 font-light" style="color: #8a9490;">PORTFOLIO</p>
-                <h2 class="heading-font text-6xl md:text-7xl font-light text-gray-800">Our Gallery</h2>
-
-                </p>
+                <h2 class="heading-font text-6xl md:text-7xl font-light text-gray-800 mb-4">Our Gallery</h2>
+                <p class="text-gray-600 font-light max-w-2xl mx-auto">Explore our collection of luxury balloon artistry
+                    and event design</p>
             </div>
 
-            <div class="gallery-container relative" style="padding: px 0px;">
-                <!-- Category Label -->
-                <div class="gallery-category hidden md:block">BALLOON ARTISTRY</div>
-
-                <!-- Gallery Track -->
-                <div class="gallery-track" id="galleryTrack">
-                    <!-- Slide 1 -->
-                    <div class="gallery-slide">
-                        <div class="gallery-title hidden md:block">ELEGANT WEDDING DESIGNS</div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-21 at 13.09.16.jpg" alt="Wedding Balloon Design"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-16 at 21.06.00.jpg" alt="Wedding Balloon Design"
-                                class="w-full h-full object-cover">
-                        </div>
+            <!-- Gallery 1: Weddings -->
+            <div class="single-gallery-container mb-8 section-reveal">
+                <h3 class="heading-font text-3xl font-light text-gray-800 mb-6 text-center px-6">Weddings</h3>
+                <div class="relative overflow-hidden rounded-2xl">
+                    <div class="single-gallery-track" id="gallery1Track">
+                        <!-- Images will be loaded here by JavaScript -->
                     </div>
-
-                    <!-- Slide 2 -->
-                    <div class="gallery-slide">
-                        <div class="gallery-title hidden md:block">BIRTHDAY CELEBRATIONS</div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-16 at 21.20.07.jpg" alt="Birthday Balloon Design"
-                                class="w-full h-full object-cover">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-21 at 13.07.33.jpg" alt="Birthday Party Setup"
-                                class="w-full h-full object-cover">
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="gallery-slide">
-                        <div class="gallery-title hidden md:block">CORPORATE EVENTS</div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-21 at 13.05.00.jpg" alt="Wedding board">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-21 at 13.08.28.jpg" alt="wedding Arch">
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="gallery-slide">
-                        <div class="gallery-title hidden md:block">LUXURY INSTALLATIONS</div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-21 at 13.10.16.jpg" alt="Engagement Party Board">
-                        </div>
-                        <div class="gallery-image">
-                            <img src="Images/Screenshot 2026-01-21 at 13.08.10.jpg" alt="Baby Shower">
-
-                        </div>
-                    </div>
+                    <button class="single-gallery-nav-btn prev" onclick="moveSingleGallery(1, -1)"
+                        aria-label="Previous image">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="single-gallery-nav-btn next" onclick="moveSingleGallery(1, 1)"
+                        aria-label="Next image">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
                 </div>
-
-                <!-- Navigation Buttons -->
-                <button class="gallery-nav-btn prev" id="prevBtn" onclick="moveGallery(-1)"
-                    aria-label="Previous images">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
-                        </path>
-                    </svg>
-                </button>
-                <button class="gallery-nav-btn next" id="nextBtn" onclick="moveGallery(1)" aria-label="Next images">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </button>
+                <div class="flex justify-center mt-6 space-x-2" id="gallery1Indicators"></div>
             </div>
 
-            <!-- Gallery Indicators -->
-            <div class="flex justify-center mt-8 space-x-3">
-                <div class="gallery-indicator active" data-slide="0" role="button" aria-label="View slide 1"></div>
-                <div class="gallery-indicator" data-slide="1" role="button" aria-label="View slide 2"></div>
-                <div class="gallery-indicator" data-slide="2" role="button" aria-label="View slide 3"></div>
-                <div class="gallery-indicator" data-slide="3" role="button" aria-label="View slide 4"></div>
+            <!-- Gallery 2: Corporate -->
+            <div class="single-gallery-container mb-8 section-reveal">
+                <h3 class="heading-font text-3xl font-light text-gray-800 mb-6 text-center px-6">Easel Hire</h3>
+                <div class="relative overflow-hidden rounded-2xl">
+                    <div class="single-gallery-track" id="gallery2Track">
+                        <!-- Images will be loaded here by JavaScript -->
+                    </div>
+                    <button class="single-gallery-nav-btn prev" onclick="moveSingleGallery(2, -1)"
+                        aria-label="Previous image">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="single-gallery-nav-btn next" onclick="moveSingleGallery(2, 1)"
+                        aria-label="Next image">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex justify-center mt-6 space-x-2" id="gallery2Indicators"></div>
+            </div>
+
+            <!-- Gallery 3: Birthdays -->
+            <div class="single-gallery-container section-reveal">
+                <h3 class="heading-font text-3xl font-light text-gray-800 mb-6 text-center px-6">Birthday Celebrations
+                </h3>
+                <div class="relative overflow-hidden rounded-2xl">
+                    <div class="single-gallery-track" id="gallery3Track">
+                        <!-- Images will be loaded here by JavaScript -->
+                    </div>
+                    <button class="single-gallery-nav-btn prev" onclick="moveSingleGallery(3, -1)"
+                        aria-label="Previous image">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <button class="single-gallery-nav-btn next" onclick="moveSingleGallery(3, 1)"
+                        aria-label="Next image">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex justify-center mt-6 space-x-2" id="gallery3Indicators"></div>
             </div>
         </div>
     </section>
@@ -1225,8 +1337,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="mb-6">
                         <label for="eventDate" class="block text-sm font-medium text-gray-700 mb-2 tracking-wide">EVENT
                             DATE</label>
@@ -1255,6 +1365,31 @@
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <button class="lightbox-nav prev" onclick="navigateLightbox(-1)" aria-label="Previous image">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+
+        <div class="lightbox-content">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Fullscreen gallery image">
+        </div>
+
+        <button class="lightbox-nav next" onclick="navigateLightbox(1)" aria-label="Next image">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16 px-6">
@@ -1300,7 +1435,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:hello@kandykrush.co.uk" class="transition-colors hover:text-[#b0a8a0]">
+                            <a href="/cdn-cgi/l/email-protection#7018151c1c1f301b111e14091b020503185e131f5e051b"
+                                class="transition-colors hover:text-[#b0a8a0]">
                                 Email Us
                             </a>
                         </li>
@@ -1313,7 +1449,282 @@
         </div>
     </footer>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
+        // ========================================
+        // GALLERY IMAGE CONFIGURATION
+        // ========================================
+        // ADD YOUR IMAGE FILENAMES HERE
+        // To update: Just add or remove image filenames from these arrays
+        // The script will automatically randomize them and create the carousels
+
+        const galleryImages = {
+            // Gallery 1: Weddings - Add your wedding image filenames here
+            gallery1: [
+                'Images/weddings/20230304_125226.jpg',
+                'Images/weddings/20230304_125235.jpg',
+                'Images/weddings/20230304_125258.jpg',
+                'Images/weddings/20230304_125328.jpg',
+                'Images/weddings/20230304_125332.jpg',
+                'Images/weddings/20230728_134748.jpg',
+                'Images/weddings/20230728_134850.jpg',
+                'Images/weddings/20231014_112114.jpg',
+                'Images/weddings/20231014_112133.jpg',
+                'Images/weddings/20231014_112231.jpg',
+                'Images/weddings/20231014_112405.jpg',
+                'Images/weddings/20231029_135444.jpg',
+                'Images/weddings/20231029_135642.jpg',
+                'Images/weddings/20231029_135648.jpg',
+                'Images/weddings/20231029_135658.jpg',
+                'Images/weddings/20231217_202428.jpg',
+                'Images/weddings/20231217_202429.jpg',
+                'Images/weddings/20231217_202438.jpg',
+                'Images/weddings/20231217_202445.jpg',
+                'Images/weddings/20231217_204004.jpg',
+                'Images/weddings/20240218_101924.jpg',
+                'Images/weddings/20240218_102454.jpg',
+                'Images/weddings/20240816_153939.jpg',
+                'Images/weddings/20240816_154128.jpg',
+                'Images/weddings/20240816_154204.jpg',
+                'Images/weddings/20241122_103447.jpg',
+                'Images/weddings/20241122_103800.jpg',
+                'Images/weddings/20241122_104127.jpg',
+                'Images/weddings/20241122_104205.jpg',
+            ],
+
+            // Gallery 2: Easel Hire - Add your easel hire image filenames here
+            gallery2: [
+                'Images/easel-hire/20250518_094559.jpg',
+                'Images/easel-hire/20250518_094747.jpg',
+                'Images/easel-hire/20251011_160845.jpg',
+                'Images/easel-hire/20251011_160943.jpg',
+                'Images/easel-hire/20251017_154404(0).jpg',
+                'Images/easel-hire/20251205_101217.jpg',
+                'Images/easel-hire/20251206_115947(1).jpg',
+                'Images/easel-hire/20260103_110021.jpg',
+                'Images/easel-hire/20260103_110345.jpg',
+                'Images/easel-hire/20260103_110346.jpg',
+                'Images/easel-hire/20260103_110513.jpg',
+            ],
+
+            // Gallery 3: Birthdays - Add your birthday image filenames here
+            gallery3: [
+                'Images/gallery 3/image1.jpg',
+                'Images/gallery 3/image2.jpg',
+                'Images/gallery 3/image3.jpg',
+                'Images/gallery 3/image4.jpg',
+                'Images/gallery 3/image5.jpg',
+                'Images/gallery 3/image6.jpg',
+                // Add more images as needed
+            ]
+        };
+
+        // ========================================
+        // GALLERY INITIALIZATION
+        // ========================================
+        const galleryStates = {
+            1: { currentSlide: 0, images: [], totalSlides: 0, slidesPerView: 3 },
+            2: { currentSlide: 0, images: [], totalSlides: 0, slidesPerView: 3 },
+            3: { currentSlide: 0, images: [], totalSlides: 0, slidesPerView: 3 }
+        };
+
+        // Shuffle function for randomizing images
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Get slides per view based on screen size
+        function getSlidesPerView() {
+            if (window.innerWidth <= 768) {
+                return 1;
+            } else if (window.innerWidth <= 1024) {
+                return 2;
+            } else {
+                return 3;
+            }
+        }
+
+        // Initialize all galleries
+        function initializeGalleries() {
+            // Initialize each gallery
+            initializeGallery(1, galleryImages.gallery1);
+            initializeGallery(2, galleryImages.gallery2);
+            initializeGallery(3, galleryImages.gallery3);
+        }
+
+        function initializeGallery(galleryNum, images) {
+            const track = document.getElementById(`gallery${galleryNum}Track`);
+            const indicatorsContainer = document.getElementById(`gallery${galleryNum}Indicators`);
+
+            if (!track) return;
+
+            // Shuffle and store images
+            const shuffledImages = shuffleArray(images);
+            galleryStates[galleryNum].images = shuffledImages;
+            galleryStates[galleryNum].totalSlides = shuffledImages.length;
+            galleryStates[galleryNum].slidesPerView = getSlidesPerView();
+
+            // Create slides
+            track.innerHTML = '';
+            shuffledImages.forEach((imageSrc, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'single-gallery-slide';
+                const img = document.createElement('img');
+                img.src = imageSrc;
+                img.alt = `Gallery Image ${index + 1}`;
+                img.loading = 'lazy';
+                img.onclick = () => openLightbox(galleryNum, index);
+                slide.appendChild(img);
+                track.appendChild(slide);
+            });
+
+            // Hide indicators for continuous scroll
+            if (indicatorsContainer) {
+                indicatorsContainer.style.display = 'none';
+            }
+
+            // Set initial position
+            updateGalleryPosition(galleryNum);
+        }
+
+        function moveSingleGallery(galleryNum, direction) {
+            const state = galleryStates[galleryNum];
+            const maxSlide = Math.max(0, state.totalSlides - state.slidesPerView);
+
+            state.currentSlide += direction;
+
+            // Loop infinitely - wrap around at both ends
+            if (state.currentSlide < 0) {
+                state.currentSlide = maxSlide;
+            } else if (state.currentSlide > maxSlide) {
+                state.currentSlide = 0;
+            }
+
+            updateGalleryPosition(galleryNum);
+        }
+
+        function updateGalleryPosition(galleryNum) {
+            const state = galleryStates[galleryNum];
+            const track = document.getElementById(`gallery${galleryNum}Track`);
+
+            if (!track) return;
+
+            // Get first slide to calculate actual width including gap
+            const firstSlide = track.querySelector('.single-gallery-slide');
+            if (!firstSlide) return;
+
+            // Get computed style to find gap value
+            const trackStyles = window.getComputedStyle(track);
+            const gap = parseFloat(trackStyles.gap) || 0;
+
+            // Calculate offset in pixels
+            const slideWidth = firstSlide.offsetWidth;
+            const offset = -(state.currentSlide * (slideWidth + gap));
+
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newSlidesPerView = getSlidesPerView();
+
+                // Update all galleries if slides per view changed
+                [1, 2, 3].forEach(galleryNum => {
+                    if (galleryStates[galleryNum].slidesPerView !== newSlidesPerView) {
+                        galleryStates[galleryNum].slidesPerView = newSlidesPerView;
+                        galleryStates[galleryNum].currentSlide = 0; // Reset position on resize
+                        updateGalleryPosition(galleryNum);
+                    }
+                });
+            }, 250);
+        });
+
+        // Keyboard navigation removed for multi-image carousels
+        // Use on-screen navigation buttons instead
+
+        // ========================================
+        // LIGHTBOX FUNCTIONALITY
+        // ========================================
+        let lightboxState = {
+            isOpen: false,
+            currentGallery: null,
+            currentIndex: 0
+        };
+
+        function openLightbox(galleryNum, imageIndex) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const images = galleryStates[galleryNum].images;
+
+            lightboxState.isOpen = true;
+            lightboxState.currentGallery = galleryNum;
+            lightboxState.currentIndex = imageIndex;
+
+            lightboxImage.src = images[imageIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+
+            lightboxState.isOpen = false;
+            lightboxState.currentGallery = null;
+            lightboxState.currentIndex = 0;
+
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            if (!lightboxState.isOpen || lightboxState.currentGallery === null) return;
+
+            const images = galleryStates[lightboxState.currentGallery].images;
+            const totalImages = images.length;
+
+            lightboxState.currentIndex = (lightboxState.currentIndex + direction + totalImages) % totalImages;
+
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = images[lightboxState.currentIndex];
+        }
+
+        // Close lightbox when clicking outside the image
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('lightbox');
+
+            lightbox.addEventListener('click', (e) => {
+                // Close if clicking directly on the overlay (not on buttons or image)
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxState.isOpen) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    navigateLightbox(-1);
+                    break;
+                case 'ArrowRight':
+                    navigateLightbox(1);
+                    break;
+            }
+        });
+
         // ========================================
         // INITIAL SPARKLE BURST + ONGOING SPARKLES
         // ========================================
@@ -1372,55 +1783,6 @@
                     const yPos = -(scrollY * speed);
                     element.style.transform = `translateY(${yPos}px)`;
                 });
-            }
-        });
-
-        // ========================================
-        // GALLERY CAROUSEL
-        // ========================================
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.gallery-slide');
-        const totalSlides = slides.length;
-        const track = document.getElementById('galleryTrack');
-        const indicators = document.querySelectorAll('.gallery-indicator');
-
-        function moveGallery(direction) {
-            currentSlide += direction;
-
-            if (currentSlide < 0) {
-                currentSlide = totalSlides - 1;
-            } else if (currentSlide >= totalSlides) {
-                currentSlide = 0;
-            }
-
-            updateGallery();
-        }
-
-        function updateGallery() {
-            const offset = -currentSlide * 100;
-            track.style.transform = `translateX(${offset}%)`;
-
-            indicators.forEach((indicator, index) => {
-                if (index === currentSlide) {
-                    indicator.classList.add('active');
-                } else {
-                    indicator.classList.remove('active');
-                }
-            });
-        }
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentSlide = index;
-                updateGallery();
-            });
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                moveGallery(-1);
-            } else if (e.key === 'ArrowRight') {
-                moveGallery(1);
             }
         });
 
@@ -1520,6 +1882,16 @@
                 icon.style.transform = 'rotate(0deg)';
             }
         }
+
+        // ========================================
+        // INITIALIZE EVERYTHING ON PAGE LOAD
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Small delay to ensure DOM is fully rendered
+            setTimeout(() => {
+                initializeGalleries();
+            }, 100);
+        });
     </script>
 </body>
 
