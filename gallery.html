@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Kandy Krush Luxury Balloon Artistry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #d4c9c3, #e8e8e0, #a8b5a8, #c8bdb5);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .heading-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Enhanced Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .book-now-btn {
+            transition: all 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stacked Card Album Styles */
+        .album-card {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .album-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .album-stack {
+            position: relative;
+            height: 350px;
+            perspective: 1000px;
+        }
+
+        .stack-image {
+            position: absolute;
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            object-fit: cover;
+        }
+
+        .stack-image:nth-child(1) {
+            z-index: 3;
+            top: 0;
+            left: 0;
+            transform: translateY(0) rotate(0deg);
+        }
+
+        .stack-image:nth-child(2) {
+            z-index: 2;
+            top: 8px;
+            left: -8px;
+            transform: translateY(0) rotate(-3deg);
+            opacity: 0.9;
+        }
+
+        .stack-image:nth-child(3) {
+            z-index: 1;
+            top: 16px;
+            left: -16px;
+            transform: translateY(0) rotate(-6deg);
+            opacity: 0.8;
+        }
+
+        .album-card:hover .stack-image:nth-child(1) {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .album-card:hover .stack-image:nth-child(2) {
+            transform: translateY(-5px) rotate(-4deg);
+            left: -12px;
+        }
+
+        .album-card:hover .stack-image:nth-child(3) {
+            transform: translateY(0) rotate(-7deg);
+            left: -20px;
+        }
+
+        .album-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            border-radius: 0 0 12px 12px;
+            z-index: 4;
+        }
+
+        .album-count {
+            display: inline-block;
+            background: rgba(168, 181, 168, 0.9);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Album Modal/Overlay */
+        .album-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .album-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-header {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: rotate(90deg);
+        }
+
+        .modal-gallery {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .modal-image {
+            max-width: 90%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal-nav-btn.prev {
+            left: 40px;
+        }
+
+        .modal-nav-btn.next {
+            right: 40px;
+        }
+
+        .modal-nav-btn svg {
+            width: 28px;
+            height: 28px;
+            stroke: white;
+        }
+
+        .modal-thumbnails {
+            padding: 1rem 2rem 2rem;
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(168, 181, 168, 0.5) transparent;
+        }
+
+        .modal-thumbnails::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .modal-thumbnails::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .modal-thumbnails::-webkit-scrollbar-thumb {
+            background: rgba(168, 181, 168, 0.5);
+            border-radius: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: #a8b5a8;
+        }
+
+        @media (max-width: 768px) {
+            .album-stack {
+                height: 300px;
+            }
+
+            .stack-image {
+                height: 250px;
+            }
+
+            .modal-nav-btn {
+                width: 45px;
+                height: 45px;
+            }
+
+            .modal-nav-btn.prev {
+                left: 10px;
+            }
+
+            .modal-nav-btn.next {
+                right: 10px;
+            }
+
+            .modal-nav-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+
+            .modal-close {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md shadow-sm" style="background: rgba(168, 181, 168, 0.95);">
+        <div class="w-full px-8 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="Images/WhatsApp Image 2026-01-15 at 19.29.51.jpeg" alt="Kandy Krush Logo"
+                            class="h-16 w-auto">
+                        <div class="heading-font text-3xl font-bold text-white">Kandy Krush</div>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-10 text-sm font-light tracking-wider">
+                    <a href="index.html#weddings" class="nav-link text-white hover:text-white/80">WEDDINGS</a>
+                    <a href="index.html#corporate" class="nav-link text-white hover:text-white/80">CORPORATE</a>
+                    <a href="index.html#birthdays" class="nav-link text-white hover:text-white/80">BIRTHDAYS</a>
+                    <a href="index.html#about" class="nav-link text-white hover:text-white/80">SERVICES</a>
+                    <a href="gallery.html" class="nav-link text-white hover:text-white/80">GALLERY</a>
+                    <a href="index.html#contact" class="nav-link text-white hover:text-white/80">CONTACT</a>
+                </div>
+                <a href="index.html#contact"
+                    class="book-now-btn text-gray-800 bg-white px-6 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section class="py-32 px-6"
+        style="background: linear-gradient(to bottom, #e8ddd8, #a8b5a8, #c8bdb5); min-height: 100vh;">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+
+                <h1 class="heading-font text-6xl md:text-7xl font-light text-gray-800 mb-4">Our Gallery</h1>
+
+            </div>
+
+            <!-- Albums Grid (3x2) -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Album 1: Weddings -->
+                <div class="album-card section-reveal" onclick="openAlbum(1)">
+                    <div class="album-stack">
+                        <img src="Images/weddings/20230304_125226.jpg" alt="Wedding 1" class="stack-image">
+                        <img src="Images/weddings/20230304_125235.jpg" alt="Wedding 2" class="stack-image">
+                        <img src="Images/weddings/20230304_125258.jpg" alt="Wedding 3" class="stack-image">
+                        <div class="album-title">
+                            <h3 class="heading-font text-2xl font-light text-white">Weddings</h3>
+                            <span class="album-count text-white text-xs">29 Photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 2: Corporate Events -->
+                <div class="album-card section-reveal" onclick="openAlbum(2)">
+                    <div class="album-stack">
+                        <img src="Images/Screenshot 2026-01-16 at 21.06.00 copy.jpg" alt="Corporate 1"
+                            class="stack-image">
+                        <img src="Images/Screenshot 2026-01-21 at 13.08.10.jpg" alt="Corporate 2" class="stack-image">
+                        <img src="Images/Screenshot 2026-01-21 at 13.08.28.jpg" alt="Corporate 3" class="stack-image">
+                        <div class="album-title">
+                            <h3 class="heading-font text-2xl font-light text-white">Corporate Events</h3>
+                            <span class="album-count text-white text-xs">8 Photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 3: Birthday Celebrations -->
+                <div class="album-card section-reveal" onclick="openAlbum(3)">
+                    <div class="album-stack">
+                        <img src="Images/Childrens/20250814_105423.jpg" alt="Birthday 1" class="stack-image">
+                        <img src="Images/Childrens/20250307_093122.jpg" alt="Birthday 2" class="stack-image">
+                        <img src="Images/Childrens/20241223_162914.jpg" alt="Birthday 3" class="stack-image">
+                        <div class="album-title">
+                            <h3 class="heading-font text-2xl font-light text-white">Birthday Celebrations</h3>
+                            <span class="album-count text-white text-xs">34 Photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 4: Easel Hire -->
+                <div class="album-card section-reveal" onclick="openAlbum(4)">
+                    <div class="album-stack">
+                        <img src="Images/easel-hire/20250518_094559.jpg" alt="Easel 1" class="stack-image">
+                        <img src="Images/easel-hire/20250518_094747.jpg" alt="Easel 2" class="stack-image">
+                        <img src="Images/easel-hire/20251011_160845.jpg" alt="Easel 3" class="stack-image">
+                        <div class="album-title">
+                            <h3 class="heading-font text-2xl font-light text-white">Easel Hire</h3>
+                            <span class="album-count text-white text-xs">11 Photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 5: Baby Showers & Christenings -->
+                <div class="album-card section-reveal" onclick="openAlbum(5)">
+                    <div class="album-stack">
+                        <img src="Images/Newborn.jpg" alt="Baby Shower 1" class="stack-image">
+                        <img src="Images/Christening.jpg" alt="Christening 1" class="stack-image">
+                        <img src="Images/Newborn.jpg" alt="Baby Shower 2" class="stack-image">
+                        <div class="album-title">
+                            <h3 class="heading-font text-2xl font-light text-white">Baby Showers & Christenings</h3>
+                            <span class="album-count text-white text-xs">2 Photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Album 6: Special Events -->
+                <div class="album-card section-reveal" onclick="openAlbum(6)">
+                    <div class="album-stack">
+                        <img src="Images/Hotel Vacay.jpeg" alt="Special 1" class="stack-image">
+                        <img src="Images/Shimmer Walls.jpg" alt="Special 2" class="stack-image">
+                        <img src="Images/Luxury Table Setting.jpg" alt="Special 3" class="stack-image">
+                        <div class="album-title">
+                            <h3 class="heading-font text-2xl font-light text-white">Special Events</h3>
+                            <span class="album-count text-white text-xs">4 Photos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Album Modal -->
+    <div class="album-modal" id="albumModal">
+        <div class="modal-header">
+            <div>
+                <h2 class="heading-font text-3xl font-light text-white" id="modalTitle">Album Title</h2>
+                <p class="text-white text-sm mt-1 opacity-70"><span id="modalCounter">1 / 10</span></p>
+            </div>
+            <button class="modal-close" onclick="closeAlbum()" aria-label="Close album">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="modal-gallery">
+            <img id="modalImage" class="modal-image" src="" alt="Gallery image">
+            <button class="modal-nav-btn prev" onclick="navigateAlbum(-1)" aria-label="Previous image">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <button class="modal-nav-btn next" onclick="navigateAlbum(1)" aria-label="Next image">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="modal-thumbnails" id="modalThumbnails">
+            <!-- Thumbnails will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="heading-font text-3xl font-bold mb-4" style="color: #b0a8a0;">Kandy Krush</h3>
+                    <p class="text-gray-400 font-light text-sm">Luxury balloon artistry for unforgettable celebrations.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">SERVICES</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="index.html#weddings" class="transition-colors hover:text-[#b0a8a0]">Weddings</a>
+                        </li>
+                        <li><a href="index.html#corporate" class="transition-colors hover:text-[#b0a8a0]">Corporate
+                                Events</a>
+                        </li>
+                        <li><a href="index.html#birthdays" class="transition-colors hover:text-[#b0a8a0]">Birthday
+                                Parties</a>
+                        </li>
+                        <li><a href="index.html#about" class="transition-colors hover:text-[#b0a8a0]">Additional
+                                Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">COMPANY</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="index.html#services" class="transition-colors hover:text-[#b0a8a0]">About Us</a>
+                        </li>
+                        <li><a href="gallery.html" class="transition-colors hover:text-[#b0a8a0]">Gallery</a></li>
+                        <li><a href="index.html#contact" class="transition-colors hover:text-[#b0a8a0]">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">CONNECT</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li>
+                            <a href="https://www.instagram.com/balloonsbykandykrush/" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/balloonsbykandyKrush" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@kandykrush.com" class="transition-colors hover:text-[#b0a8a0]">
+                                Email Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm font-light text-gray-500">
+                <p>© 2024 Kandy Krush. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Album data with images
+        const albums = {
+            1: {
+                title: 'Weddings',
+                images: [
+                    'Images/weddings/20230304_125226.jpg',
+                    'Images/weddings/20230304_125235.jpg',
+                    'Images/weddings/20230304_125258.jpg',
+                    'Images/weddings/20230304_125328.jpg',
+                    'Images/weddings/20230304_125332.jpg',
+                    'Images/weddings/20230728_134748.jpg',
+                    'Images/weddings/20230728_134850.jpg',
+                    'Images/weddings/20231014_112114.jpg',
+                    'Images/weddings/20231014_112133.jpg',
+                    'Images/weddings/20231014_112231.jpg',
+                    'Images/weddings/20231014_112405.jpg',
+                    'Images/weddings/20231029_135444.jpg',
+                    'Images/weddings/20231029_135642.jpg',
+                    'Images/weddings/20231029_135648.jpg',
+                    'Images/weddings/20231029_135658.jpg',
+                    'Images/weddings/20231217_202428.jpg',
+                    'Images/weddings/20231217_202429.jpg',
+                    'Images/weddings/20231217_202438.jpg',
+                    'Images/weddings/20231217_202445.jpg',
+                    'Images/weddings/20231217_204004.jpg',
+                    'Images/weddings/20240218_101924.jpg',
+                    'Images/weddings/20240218_102454.jpg',
+                    'Images/weddings/20240816_153939.jpg',
+                    'Images/weddings/20240816_154128.jpg',
+                    'Images/weddings/20240816_154204.jpg',
+                    'Images/weddings/20241122_103447.jpg',
+                    'Images/weddings/20241122_103800.jpg',
+                    'Images/weddings/20241122_104127.jpg',
+                    'Images/weddings/20241122_104205.jpg',
+                ]
+            },
+            2: {
+                title: 'Corporate Events',
+                images: [
+                    'Images/Screenshot 2026-01-16 at 21.06.00 copy.jpg',
+                    'Images/Screenshot 2026-01-21 at 13.08.10.jpg',
+                    'Images/Screenshot 2026-01-21 at 13.08.28.jpg',
+                    'Images/Birthday/1.png',
+                    'Images/Birthday/2.png',
+                    'Images/Hotel Vacay.jpeg',
+                    'Images/Shimmer Walls.jpg',
+                    'Images/LED Sign.jpg'
+                ]
+            },
+            3: {
+                title: 'Birthday Celebrations',
+                images: [
+                    'Images/Childrens/20250814_105423.jpg',
+                    'Images/Childrens/20250307_093122.jpg',
+                    'Images/Childrens/20241223_162914.jpg',
+                    'Images/Childrens/20250731_184636.jpg',
+                    'Images/Childrens/20250321_091501.jpg',
+                    'Images/Childrens/20230323_093432.jpg',
+                    'Images/Childrens/20250122_094406.jpg',
+                    'Images/Childrens/20250627_220946.jpg',
+                    'Images/Childrens/20250613_205504.jpg',
+                    'Images/Childrens/20250329_083552.jpg',
+                    'Images/Childrens/20250422_102806.jpg',
+                    'Images/Childrens/20250321_104316.jpg',
+                    'Images/Childrens/20250409_160405.jpg',
+                    'Images/Childrens/20241230_155308.jpg',
+                    'Images/Childrens/20250620_165600.jpg',
+                    'Images/Childrens/20250517_090116.jpg',
+                    'Images/Childrens/20250526_102436.jpg',
+                    'Images/Childrens/20250321_090712.jpg',
+                    'Images/Childrens/20250313_140828.jpg',
+                    'Images/Childrens/20250313_122843.jpg',
+                    'Images/Childrens/20250425_111053.jpg',
+                    'Images/Childrens/20250307_134733.jpg',
+                    'Images/Childrens/20250522_190554.jpg',
+                    'Images/Childrens/20250222_185806.jpg',
+                    'Images/Childrens/20250412_175936.jpg',
+                    'Images/Childrens/20250409_160622.jpg',
+                    'Images/Childrens/20250617_205259.jpg',
+                    'Images/Childrens/20250321_091608.jpg',
+                    'Images/Childrens/20230427_171443.jpg',
+                    'Images/Childrens/20250321_122108.jpg',
+                    'Images/Childrens/20250307_135026.jpg',
+                    'Images/Childrens/20250916_171326.jpg',
+                    'Images/Childrens/20250915_125044.jpg',
+                    'Images/Childrens/20250222_185845.jpg'
+                ]
+            },
+            4: {
+                title: 'Easel Hire',
+                images: [
+                    'Images/easel-hire/20250518_094559.jpg',
+                    'Images/easel-hire/20250518_094747.jpg',
+                    'Images/easel-hire/20251011_160845.jpg',
+                    'Images/easel-hire/20251011_160943.jpg',
+                    'Images/easel-hire/20251017_154404(0).jpg',
+                    'Images/easel-hire/20251205_101217.jpg',
+                    'Images/easel-hire/20251206_115947(1).jpg',
+                    'Images/easel-hire/20260103_110021.jpg',
+                    'Images/easel-hire/20260103_110345.jpg',
+                    'Images/easel-hire/20260103_110346.jpg',
+                    'Images/easel-hire/20260103_110513.jpg',
+                ]
+            },
+            5: {
+                title: 'Baby Showers & Christenings',
+                images: [
+                    'Images/Newborn.jpg',
+                    'Images/Christening.jpg'
+                ]
+            },
+            6: {
+                title: 'Special Events',
+                images: [
+                    'Images/Hotel Vacay.jpeg',
+                    'Images/Shimmer Walls.jpg',
+                    'Images/Luxury Table Setting.jpg',
+                    'Images/LED Sign.jpg'
+                ]
+            }
+        };
+
+        let currentAlbum = null;
+        let currentImageIndex = 0;
+
+        // Open album modal
+        function openAlbum(albumId) {
+            currentAlbum = albumId;
+            currentImageIndex = 0;
+
+            const album = albums[albumId];
+            const modal = document.getElementById('albumModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalImage = document.getElementById('modalImage');
+            const thumbnailsContainer = document.getElementById('modalThumbnails');
+
+            // Set title
+            modalTitle.textContent = album.title;
+
+            // Set first image
+            modalImage.src = album.images[0];
+
+            // Generate thumbnails
+            thumbnailsContainer.innerHTML = '';
+            album.images.forEach((image, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = image;
+                thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                thumb.onclick = () => goToImage(index);
+                thumbnailsContainer.appendChild(thumb);
+            });
+
+            // Update counter
+            updateCounter();
+
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close album modal
+        function closeAlbum() {
+            const modal = document.getElementById('albumModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            currentAlbum = null;
+            currentImageIndex = 0;
+        }
+
+        // Navigate through album
+        function navigateAlbum(direction) {
+            if (!currentAlbum) return;
+
+            const album = albums[currentAlbum];
+            currentImageIndex = (currentImageIndex + direction + album.images.length) % album.images.length;
+
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = album.images[currentImageIndex];
+
+            // Update thumbnails
+            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentImageIndex);
+            });
+
+            // Scroll thumbnail into view
+            const activeThumbnail = document.querySelector('.thumbnail.active');
+            if (activeThumbnail) {
+                activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+
+            updateCounter();
+        }
+
+        // Go to specific image
+        function goToImage(index) {
+            currentImageIndex = index;
+            const album = albums[currentAlbum];
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = album.images[currentImageIndex];
+
+            // Update thumbnails
+            document.querySelectorAll('.thumbnail').forEach((thumb, idx) => {
+                thumb.classList.toggle('active', idx === currentImageIndex);
+            });
+
+            updateCounter();
+        }
+
+        // Update image counter
+        function updateCounter() {
+            if (!currentAlbum) return;
+            const album = albums[currentAlbum];
+            const counter = document.getElementById('modalCounter');
+            counter.textContent = `${currentImageIndex + 1} / ${album.images.length}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!currentAlbum) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeAlbum();
+                    break;
+                case 'ArrowLeft':
+                    navigateAlbum(-1);
+                    break;
+                case 'ArrowRight':
+                    navigateAlbum(1);
+                    break;
+            }
+        });
+
+        // Close modal when clicking outside image
+        document.getElementById('albumModal').addEventListener('click', (e) => {
+            if (e.target.id === 'albumModal') {
+                closeAlbum();
+            }
+        });
+
+        // Reveal animations on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
