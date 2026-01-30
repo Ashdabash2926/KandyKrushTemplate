@@ -14,10 +14,10 @@
         rel="stylesheet">
     <style>
         @font-face {
-            font-family: 'Gistesy';
-            src: url('fonts/Gistesy.woff2') format('woff2'),
-                url('fonts/Gistesy.woff') format('woff'),
-                url('fonts/Gistesy.ttf') format('truetype');
+            font-family: 'Ghisella';
+            src: url('fonts/Ghisella.woff2') format('woff2'),
+                url('fonts/Ghisella.woff') format('woff'),
+                url('fonts/Ghisella.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
             font-display: swap;
@@ -41,8 +41,8 @@
             font-family: 'Cormorant Garamond', serif;
         }
 
-        .gistesy-font {
-            font-family: 'Gistesy', cursive;
+        .Ghisella-font {
+            font-family: 'Ghisella', cursive;
         }
 
         .fade-in {
@@ -94,6 +94,184 @@
 
             100% {
                 transform: scale(1.1) translate(1%, -1%);
+            }
+        }
+
+        /* Gallery Hero Background */
+        .gallery-hero-background {
+            position: absolute;
+            inset: 0;
+            background-image: url('Images/Screenshot 2026-01-21 at 13.08.28.jpg');
+            background-size: cover;
+            background-position: center;
+            animation: galleryKenBurns 25s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+        }
+
+        @keyframes galleryKenBurns {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            25% {
+                transform: scale(1.06) translate(-1%, 0.5%);
+            }
+
+            50% {
+                transform: scale(1.08) translate(1%, -0.5%);
+            }
+
+            75% {
+                transform: scale(1.1) translate(-0.5%, 1%);
+            }
+
+            100% {
+                transform: scale(1.08) translate(0.5%, -0.5%);
+            }
+        }
+
+        /* Gallery Floating Blobs */
+        .gallery-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            animation: galleryFloat 10s ease-in-out infinite;
+        }
+
+        .gallery-blob-1 {
+            top: 20%;
+            left: 15%;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #a8b5a8, #8a9490);
+            animation-delay: 0s;
+        }
+
+        .gallery-blob-2 {
+            bottom: 20%;
+            right: 15%;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #c8bdb5, #d4c9c3);
+            animation-delay: 3s;
+        }
+
+        @keyframes galleryFloat {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            33% {
+                transform: translate(40px, -40px) scale(1.1) rotate(120deg);
+            }
+
+            66% {
+                transform: translate(-30px, 30px) scale(0.95) rotate(240deg);
+            }
+        }
+
+        /* Gallery Text Animations */
+        .gallery-label {
+            animation: galleryFadeSlideUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .gallery-title {
+            animation: galleryScaleIn 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        .gallery-subtitle {
+            animation: galleryFadeSlideUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.9s;
+        }
+
+        .gallery-cta {
+            animation: galleryButtonPop 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 1.3s;
+        }
+
+        .gallery-scroll {
+            animation: galleryFadeIn 1s ease-out forwards;
+            animation-delay: 1.7s;
+        }
+
+        @keyframes galleryFadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes galleryScaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            60% {
+                transform: scale(1.03);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes galleryButtonPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            70% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes galleryFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Gallery Sparkles */
+        .gallery-sparkles .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            animation: galleryTwinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes galleryTwinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: scale(1.2) rotate(180deg);
             }
         }
 
@@ -626,6 +804,21 @@
                     transform: scale(1.3) translate(-2%, 1%);
                 }
             }
+
+            @keyframes galleryKenBurns {
+                0% {
+                    transform: scale(1.15) translate(0, 0);
+                }
+
+                100% {
+                    transform: scale(1.25) translate(-1%, 0.5%);
+                }
+            }
+
+            .gallery-title {
+                font-size: 3.5rem;
+                line-height: 1.1;
+            }
         }
 
         .slide-fade-in {
@@ -829,7 +1022,7 @@
             <p class="text-xl md:text-2xl font-light text-white tracking-widest drop-shadow-lg hero-subtitle mb-4"
                 data-speed="0.7">
                 BALLOONS BY
-            <h1 class="gistesy-font text-7xl md:text-9xl font-light text-white drop-shadow-2xl hero-title mb-6"
+            <h1 class="Ghisella-font text-7xl md:text-9xl font-light text-white drop-shadow-2xl hero-title mb-6"
                 data-speed="0.5">
                 Kandy Krush
             </h1>
@@ -1195,18 +1388,56 @@
         </div>
     </section>
 
-    <!-- Gallery Section - 3 Independent Carousels -->
-    <section id="gallery" class="py-20 px-0" style="background: linear-gradient(to bottom, #e8ddd8, #a8b5a8, #c8bdb5);">
-        <div class="w-full mx-auto">
-            <div class="text-center mb-12 section-reveal px-6">
-                <p class="text-sm tracking-widest mb-4 font-light" style="color: #8a9490;">PORTFOLIO</p>
-                <h2 class="heading-font text-6xl md:text-7xl font-light text-gray-800 mb-4">Our Gallery</h2>
-                <p class="text-gray-600 font-light max-w-2xl mx-auto">Explore our collection of luxury balloon artistry
-                    and event design</p>
+    <!-- Gallery Hero Section -->
+    <section id="gallery" class="relative overflow-hidden" style="min-height: 85vh;">
+        <!-- Animated Background Image -->
+        <div class="gallery-hero-background"></div>
 
-            </div>
-            ]
+        <!-- Gradient Overlay for Text Readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+
+        <!-- Floating Gradient Blobs -->
+        <div class="absolute inset-0">
+            <div class="gallery-blob gallery-blob-1"></div>
+            <div class="gallery-blob gallery-blob-2"></div>
         </div>
+
+        <!-- Sparkle Effects -->
+        <div class="sparkle-container gallery-sparkles" id="gallerySparkles"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 h-full flex items-center justify-center px-6" style="min-height: 85vh;">
+            <div class="text-center max-w-4xl mx-auto">
+                <p
+                    class="gallery-label text-sm md:text-base tracking-[0.4em] mb-6 font-light text-white/90 uppercase opacity-0">
+                    Our Portfolio
+                </p>
+                <h2
+                    class="gallery-title heading-font text-6xl md:text-8xl lg:text-9xl font-light text-white mb-6 leading-tight opacity-0">
+                    Moments Made<br>Magnificent
+                </h2>
+                <p
+                    class="gallery-subtitle text-lg md:text-xl lg:text-2xl text-white/90 font-light leading-relaxed mb-10 max-w-3xl mx-auto opacity-0">
+                    Step inside our world of luxury balloon artistry. Each creation tells a story of elegance,
+                    creativity, and unforgettable celebrations.
+                </p>
+                <a href="gallery.html"
+                    class="gallery-cta inline-block text-gray-900 bg-white px-10 py-4 rounded-full text-sm md:text-base font-medium tracking-widest transition-all duration-500 hover:shadow-2xl hover:scale-105 opacity-0"
+                    style="box-shadow: 0 10px 40px rgba(255, 255, 255, 0.3);">
+                    EXPLORE THE GALLERY
+                </a>
+            </div>
+        </div>
+
+        <!-- Animated Scroll Indicator -->
+        <div class="gallery-scroll absolute bottom-10 left-1/2 transform -translate-x-1/2 opacity-0">
+            <div class="flex flex-col items-center animate-bounce">
+                <span class="text-white/70 text-xs tracking-widest mb-2 uppercase">Discover More</span>
+                <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
         </div>
     </section>
 
@@ -1375,322 +1606,7 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // ========================================
-        // GALLERY IMAGE CONFIGURATION
-        // ========================================
-        // ADD YOUR IMAGE FILENAMES HERE
-        // To update: Just add or remove image filenames from these arrays
-        // The script will automatically randomize them and create the carousels
-
-        const galleryImages = {
-            // Gallery 1: Weddings - Add your wedding image filenames here
-            gallery1: [
-                'Images/weddings/20230304_125226.jpg',
-                'Images/weddings/20230304_125235.jpg',
-                'Images/weddings/20230304_125258.jpg',
-                'Images/weddings/20230304_125328.jpg',
-                'Images/weddings/20230304_125332.jpg',
-                'Images/weddings/20230728_134748.jpg',
-                'Images/weddings/20230728_134850.jpg',
-                'Images/weddings/20231014_112114.jpg',
-                'Images/weddings/20231014_112133.jpg',
-                'Images/weddings/20231014_112231.jpg',
-                'Images/weddings/20231014_112405.jpg',
-                'Images/weddings/20231029_135444.jpg',
-                'Images/weddings/20231029_135642.jpg',
-                'Images/weddings/20231029_135648.jpg',
-                'Images/weddings/20231029_135658.jpg',
-                'Images/weddings/20231217_202428.jpg',
-                'Images/weddings/20231217_202429.jpg',
-                'Images/weddings/20231217_202438.jpg',
-                'Images/weddings/20231217_202445.jpg',
-                'Images/weddings/20231217_204004.jpg',
-                'Images/weddings/20240218_101924.jpg',
-                'Images/weddings/20240218_102454.jpg',
-                'Images/weddings/20240816_153939.jpg',
-                'Images/weddings/20240816_154128.jpg',
-                'Images/weddings/20240816_154204.jpg',
-                'Images/weddings/20241122_103447.jpg',
-                'Images/weddings/20241122_103800.jpg',
-                'Images/weddings/20241122_104127.jpg',
-                'Images/weddings/20241122_104205.jpg',
-            ],
-
-            // Gallery 2: Easel Hire - Add your easel hire image filenames here
-            gallery2: [
-                'Images/easel-hire/20250518_094559.jpg',
-                'Images/easel-hire/20250518_094747.jpg',
-                'Images/easel-hire/20251011_160845.jpg',
-                'Images/easel-hire/20251011_160943.jpg',
-                'Images/easel-hire/20251017_154404(0).jpg',
-                'Images/easel-hire/20251205_101217.jpg',
-                'Images/easel-hire/20251206_115947(1).jpg',
-                'Images/easel-hire/20260103_110021.jpg',
-                'Images/easel-hire/20260103_110345.jpg',
-                'Images/easel-hire/20260103_110346.jpg',
-                'Images/easel-hire/20260103_110513.jpg',
-            ],
-
-            // Gallery 3: Birthdays - Add your birthday image filenames here
-            gallery3: [
-                'Images/Childrens/20250814_105423.jpg',
-                'Images/Childrens/20250307_093122.jpg',
-                'Images/Childrens/20241223_162914.jpg',
-                'Images/Childrens/20250731_184636.jpg',
-                'Images/Childrens/20250321_091501.jpg',
-                'Images/Childrens/20230323_093432.jpg',
-                'Images/Childrens/20250122_094406.jpg',
-                'Images/Childrens/20250627_220946.jpg',
-                'Images/Childrens/20250613_205504.jpg',
-                'Images/Childrens/20250329_083552.jpg',
-                'Images/Childrens/20250422_102806.jpg',
-                'Images/Childrens/20250321_104316.jpg',
-                'Images/Childrens/20250409_160405.jpg',
-                'Images/Childrens/20241230_155308.jpg',
-                'Images/Childrens/20250620_165600.jpg',
-                'Images/Childrens/20250517_090116.jpg',
-                'Images/Childrens/20250526_102436.jpg',
-                'Images/Childrens/20250321_090712.jpg',
-                'Images/Childrens/20250313_140828.jpg',
-                'Images/Childrens/20250313_122843.jpg',
-                'Images/Childrens/20250425_111053.jpg',
-                'Images/Childrens/20250307_134733.jpg',
-                'Images/Childrens/20250522_190554.jpg',
-                'Images/Childrens/20250222_185806.jpg',
-                'Images/Childrens/20250412_175936.jpg',
-                'Images/Childrens/20250409_160622.jpg',
-                'Images/Childrens/20250617_205259.jpg',
-                'Images/Childrens/20250321_091608.jpg',
-                'Images/Childrens/20230427_171443.jpg',
-                'Images/Childrens/20250321_122108.jpg',
-                'Images/Childrens/20250307_135026.jpg',
-                'Images/Childrens/20250916_171326.jpg',
-                'Images/Childrens/20250915_125044.jpg',
-                'Images/Childrens/20250222_185845.jpg'
-                // Add more images as needed
-            ]
-        };
-
-        // ========================================
-        // GALLERY INITIALIZATION
-        // ========================================
-        const galleryStates = {
-            1: { currentSlide: 0, images: [], totalSlides: 0, slidesPerView: 3 },
-            2: { currentSlide: 0, images: [], totalSlides: 0, slidesPerView: 3 },
-            3: { currentSlide: 0, images: [], totalSlides: 0, slidesPerView: 3 }
-        };
-
-        // Shuffle function for randomizing images
-        function shuffleArray(array) {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-            }
-            return newArray;
-        }
-
-        // Get slides per view based on screen size
-        function getSlidesPerView() {
-            if (window.innerWidth <= 768) {
-                return 1;
-            } else if (window.innerWidth <= 1024) {
-                return 2;
-            } else {
-                return 3;
-            }
-        }
-
-        // Limit images on mobile for performance
-        function getImagesToLoad(images) {
-            const isMobile = window.innerWidth <= 768;
-            if (isMobile && images.length > 15) {
-                // On mobile, only load first 15 images for faster performance
-                return images.slice(0, 15);
-            }
-            return images;
-        }
-
-        // Initialize all galleries
-        function initializeGalleries() {
-            // Initialize each gallery
-            initializeGallery(1, galleryImages.gallery1);
-            initializeGallery(2, galleryImages.gallery2);
-            initializeGallery(3, galleryImages.gallery3);
-        }
-
-        function initializeGallery(galleryNum, images) {
-            const track = document.getElementById(`gallery${galleryNum}Track`);
-            const indicatorsContainer = document.getElementById(`gallery${galleryNum}Indicators`);
-
-            if (!track) return;
-
-            // Limit images on mobile for faster loading
-            const imagesToUse = getImagesToLoad(images);
-
-            // Shuffle and store images
-            const shuffledImages = shuffleArray(imagesToUse);
-            galleryStates[galleryNum].images = shuffledImages;
-            galleryStates[galleryNum].totalSlides = shuffledImages.length;
-            galleryStates[galleryNum].slidesPerView = getSlidesPerView();
-
-            // Create slides
-            track.innerHTML = '';
-            shuffledImages.forEach((imageSrc, index) => {
-                const slide = document.createElement('div');
-                slide.className = 'single-gallery-slide';
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.alt = `Gallery Image ${index + 1}`;
-                img.loading = 'lazy';
-                img.onclick = () => openLightbox(galleryNum, index);
-                slide.appendChild(img);
-                track.appendChild(slide);
-            });
-
-            // Hide indicators for continuous scroll
-            if (indicatorsContainer) {
-                indicatorsContainer.style.display = 'none';
-            }
-
-            // Set initial position
-            updateGalleryPosition(galleryNum);
-        }
-
-        function moveSingleGallery(galleryNum, direction) {
-            const state = galleryStates[galleryNum];
-            const maxSlide = Math.max(0, state.totalSlides - state.slidesPerView);
-
-            state.currentSlide += direction;
-
-            // Loop infinitely - wrap around at both ends
-            if (state.currentSlide < 0) {
-                state.currentSlide = maxSlide;
-            } else if (state.currentSlide > maxSlide) {
-                state.currentSlide = 0;
-            }
-
-            updateGalleryPosition(galleryNum);
-        }
-
-        function updateGalleryPosition(galleryNum) {
-            const state = galleryStates[galleryNum];
-            const track = document.getElementById(`gallery${galleryNum}Track`);
-
-            if (!track) return;
-
-            // Get first slide to calculate actual width including gap
-            const firstSlide = track.querySelector('.single-gallery-slide');
-            if (!firstSlide) return;
-
-            // Get computed style to find gap value
-            const trackStyles = window.getComputedStyle(track);
-            const gap = parseFloat(trackStyles.gap) || 0;
-
-            // Calculate offset in pixels
-            const slideWidth = firstSlide.offsetWidth;
-            const offset = -(state.currentSlide * (slideWidth + gap));
-
-            track.style.transform = `translateX(${offset}px)`;
-        }
-
-        // Handle window resize
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                const newSlidesPerView = getSlidesPerView();
-
-                // Update all galleries if slides per view changed
-                [1, 2, 3].forEach(galleryNum => {
-                    if (galleryStates[galleryNum].slidesPerView !== newSlidesPerView) {
-                        galleryStates[galleryNum].slidesPerView = newSlidesPerView;
-                        galleryStates[galleryNum].currentSlide = 0; // Reset position on resize
-                        updateGalleryPosition(galleryNum);
-                    }
-                });
-            }, 250);
-        });
-
-        // Keyboard navigation removed for multi-image carousels
-        // Use on-screen navigation buttons instead
-
-        // ========================================
-        // LIGHTBOX FUNCTIONALITY
-        // ========================================
-        let lightboxState = {
-            isOpen: false,
-            currentGallery: null,
-            currentIndex: 0
-        };
-
-        function openLightbox(galleryNum, imageIndex) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const images = galleryStates[galleryNum].images;
-
-            lightboxState.isOpen = true;
-            lightboxState.currentGallery = galleryNum;
-            lightboxState.currentIndex = imageIndex;
-
-            lightboxImage.src = images[imageIndex];
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-
-            lightboxState.isOpen = false;
-            lightboxState.currentGallery = null;
-            lightboxState.currentIndex = 0;
-
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function navigateLightbox(direction) {
-            if (!lightboxState.isOpen || lightboxState.currentGallery === null) return;
-
-            const images = galleryStates[lightboxState.currentGallery].images;
-            const totalImages = images.length;
-
-            lightboxState.currentIndex = (lightboxState.currentIndex + direction + totalImages) % totalImages;
-
-            const lightboxImage = document.getElementById('lightboxImage');
-            lightboxImage.src = images[lightboxState.currentIndex];
-        }
-
-        // Close lightbox when clicking outside the image
-        document.addEventListener('DOMContentLoaded', () => {
-            const lightbox = document.getElementById('lightbox');
-
-            lightbox.addEventListener('click', (e) => {
-                // Close if clicking directly on the overlay (not on buttons or image)
-                if (e.target === lightbox) {
-                    closeLightbox();
-                }
-            });
-        });
-
-        // Keyboard navigation for lightbox
-        document.addEventListener('keydown', (e) => {
-            if (!lightboxState.isOpen) return;
-
-            switch (e.key) {
-                case 'Escape':
-                    closeLightbox();
-                    break;
-                case 'ArrowLeft':
-                    navigateLightbox(-1);
-                    break;
-                case 'ArrowRight':
-                    navigateLightbox(1);
-                    break;
-            }
-        });
-
-        // ========================================
-        // INITIAL SPARKLE BURST + ONGOING SPARKLES
+        // INITIAL SPARKLE BURST + ONGOING SPARKLES (MAIN HERO)
         // ========================================
         const sparkleContainer = document.getElementById('sparkleContainer');
 
@@ -1718,12 +1634,12 @@
             }, (duration + delay) * 1000);
         }
 
-        // Create initial burst
+        // Create initial burst for main hero
         for (let i = 0; i < 100; i++) {
             setTimeout(() => createSparkle(true), i * 20);
         }
 
-        // Create ongoing sparkles
+        // Create ongoing sparkles for main hero
         setInterval(() => createSparkle(false), 500);
 
         for (let i = 0; i < 15; i++) {
@@ -1731,7 +1647,43 @@
         }
 
         // ========================================
-        // PARALLAX TEXT EFFECT
+        // GALLERY HERO SPARKLES
+        // ========================================
+        const gallerySparklesContainer = document.getElementById('gallerySparkles');
+
+        function createGallerySparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            const delay = Math.random() * 4;
+            const duration = Math.random() * 3 + 3;
+            const size = Math.random() * 5 + 3;
+
+            sparkle.style.left = `${left}%`;
+            sparkle.style.top = `${top}%`;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.animationDelay = `${delay}s`;
+            sparkle.style.animationDuration = `${duration}s`;
+
+            gallerySparklesContainer.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, (duration + delay) * 1000);
+        }
+
+        // Create ongoing sparkles for gallery hero
+        setInterval(() => createGallerySparkle(), 600);
+
+        for (let i = 0; i < 20; i++) {
+            setTimeout(() => createGallerySparkle(), i * 250);
+        }
+
+        // ========================================
+        // PARALLAX TEXT EFFECT (MAIN HERO)
         // ========================================
         const heroSection = document.getElementById('heroSection');
         const heroContent = document.getElementById('heroContent');
@@ -1848,13 +1800,62 @@
         }
 
         // ========================================
-        // INITIALIZE EVERYTHING ON PAGE LOAD
+        // LIGHTBOX FUNCTIONALITY
         // ========================================
+        let lightboxState = {
+            isOpen: false,
+            currentGallery: null,
+            currentIndex: 0
+        };
+
+        function openLightbox(galleryNum, imageIndex) {
+            // This function is a placeholder for potential future gallery integration
+            console.log('Lightbox opened for gallery', galleryNum, 'image', imageIndex);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+
+            lightboxState.isOpen = false;
+            lightboxState.currentGallery = null;
+            lightboxState.currentIndex = 0;
+
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            // Placeholder for lightbox navigation
+            console.log('Navigate lightbox:', direction);
+        }
+
+        // Close lightbox when clicking outside the image
         document.addEventListener('DOMContentLoaded', () => {
-            // Small delay to ensure DOM is fully rendered
-            setTimeout(() => {
-                initializeGalleries();
-            }, 100);
+            const lightbox = document.getElementById('lightbox');
+
+            lightbox.addEventListener('click', (e) => {
+                // Close if clicking directly on the overlay (not on buttons or image)
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxState.isOpen) return;
+
+            switch (e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowLeft':
+                    navigateLightbox(-1);
+                    break;
+                case 'ArrowRight':
+                    navigateLightbox(1);
+                    break;
+            }
         });
     </script>
 </body>
