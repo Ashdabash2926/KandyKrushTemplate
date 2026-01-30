@@ -985,6 +985,8 @@
                         class="h-16 w-auto">
                     <div class="heading-font text-3xl font-bold text-white">Kandy Krush</div>
                 </div>
+
+                <!-- Desktop Navigation -->
                 <div class="hidden md:flex space-x-10 text-sm font-light tracking-wider">
                     <a href="#weddings" class="nav-link text-white hover:text-white/80">WEDDINGS</a>
                     <a href="#corporate" class="nav-link text-white hover:text-white/80">CORPORATE</a>
@@ -993,8 +995,46 @@
                     <a href="gallery.html" class="nav-link text-white hover:text-white/80">GALLERY</a>
                     <a href="#contact" class="nav-link text-white hover:text-white/80">CONTACT</a>
                 </div>
+
+                <!-- Desktop Book Now Button -->
                 <a href="#contact"
-                    class="book-now-btn text-gray-800 bg-white px-6 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    class="hidden md:block book-now-btn text-gray-800 bg-white px-6 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
+                    <svg id="hamburgerIcon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="closeIcon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu"
+            class="md:hidden fixed top-20 left-0 w-full backdrop-blur-md shadow-lg opacity-0 invisible transition-all duration-300"
+            style="background: rgba(168, 181, 168, 0.98);">
+            <div class="flex flex-col space-y-1 px-8 py-6">
+                <a href="#weddings"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">WEDDINGS</a>
+                <a href="#corporate"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">CORPORATE</a>
+                <a href="#birthdays"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">BIRTHDAYS</a>
+                <a href="#about"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">SERVICES</a>
+                <a href="gallery.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">GALLERY</a>
+                <a href="#contact"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">CONTACT</a>
+                <a href="#contact"
+                    class="mt-4 text-center text-gray-800 bg-white px-6 py-3 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
                     BOOK NOW
                 </a>
             </div>
@@ -1222,170 +1262,7 @@
         </div>
     </section>
 
-    <!-- ADDITIONAL SERVICES - IMPROVED SPACING -->
-    <section id="about" class="py-20 px-6" style="background: #fafaf9;">
-        <div class="max-w-6xl mx-auto">
-            <!-- Section Header -->
-            <div class="text-center mb-16 section-reveal">
-                <p class="text-xs tracking-[0.3em] mb-3 font-light" style="color: #8a9490;">ADDITIONAL SERVICES</p>
-                <h2 class="heading-font text-4xl md:text-5xl font-light text-gray-800">Elevate Your Event</h2>
-            </div>
 
-            <!-- Two Column Layout with Better Spacing -->
-            <div class="grid md:grid-cols-2 gap-16 section-reveal relative">
-
-                <!-- Left Column -->
-                <div class="space-y-2">
-                    <!-- Service 1: Hotel Vacay -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(1)"
-                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
-                            <h3 class="text-lg font-light text-gray-800">Hotel Vacay</h3>
-                            <span id="icon-1" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                        </button>
-                        <div id="service-1" class="service-content hidden pb-6">
-                            <img src="Images/Hotel Vacay.jpeg" alt="Hotel Vacay"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed">
-                                Bring luxury vacation vibes to any event with our hotel-inspired balloon installations.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 2: Shimmer Walls -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(2)"
-                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
-                            <h3 class="text-lg font-light text-gray-800">Shimmer Walls</h3>
-                            <span id="icon-2" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                        </button>
-                        <div id="service-2" class="service-content hidden pb-6">
-                            <img src="Images/Shimmer Walls.jpg" alt="Shimmer Walls"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed">
-                                The ultimate statement backdrop — glamorous, eye-catching, and perfect for making any
-                                event feel premium.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 3: Baby Shower -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(3)"
-                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
-                            <h3 class="text-lg font-light text-gray-800">Baby Shower</h3>
-                            <span id="icon-3" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                        </button>
-                        <div id="service-3" class="service-content hidden pb-6">
-                            <img src="Images/Newborn.jpg" alt="Baby Shower"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed">
-                                Celebrate new beginnings with soft, elegant balloon designs perfect for welcoming your
-                                little one.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 4: Christening -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(4)"
-                            class="w-full flex items-center justify-between py-5 text-left transition-all duration-300">
-                            <h3 class="text-lg font-light text-gray-800">Christening</h3>
-                            <span id="icon-4" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                        </button>
-                        <div id="service-4" class="service-content hidden pb-6">
-                            <img src="Images/Christening.jpg" alt="Christening"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed">
-                                Beautiful, thoughtful décor for this special milestone, creating a serene atmosphere for
-                                your celebration.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column -->
-                <div class="space-y-2">
-                    <!-- Service 5: Luxury Table Settings -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(5)"
-                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
-                            <span id="icon-5" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                            <h3 class="text-lg font-light text-gray-800">Luxury Table Settings</h3>
-                        </button>
-                        <div id="service-5" class="service-content hidden pb-6">
-                            <img src="Images/Luxury Table Setting.jpg" alt="Luxury Table Settings"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
-                                Elevate your dining experience with curated table décor that ties perfectly into your
-                                event's aesthetic.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 6: Photo Booth Styling -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(6)"
-                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
-                            <span id="icon-6" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                            <h3 class="text-lg font-light text-gray-800">Photo Booth Styling</h3>
-                        </button>
-                        <div id="service-6" class="service-content hidden pb-6">
-                            <img src="Images/Services/photo-booth.jpg" alt="Photo Booth Styling"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
-                                Create picture-perfect moments with custom-designed photo booth backdrops that match
-                                your theme.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 7: Event Lighting -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(7)"
-                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
-                            <span id="icon-7" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                            <h3 class="text-lg font-light text-gray-800">Event Lighting</h3>
-                        </button>
-                        <div id="service-7" class="service-content hidden pb-6">
-                            <img src="Images/Services/lighting.jpg" alt="Event Lighting"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
-                                Transform your venue with professional lighting design that sets the perfect mood for
-                                your celebration.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Service 8: LED Sign -->
-                    <div class="service-item border-b py-1" style="border-color: rgba(138, 148, 144, 0.3);">
-                        <button onclick="toggleService(8)"
-                            class="w-full flex items-center justify-between py-5 text-right transition-all duration-300">
-                            <span id="icon-8" class="text-2xl font-light transition-transform duration-300"
-                                style="color: #8a9490;">+</span>
-                            <h3 class="text-lg font-light text-gray-800">LED Sign</h3>
-                        </button>
-                        <div id="service-8" class="service-content hidden pb-6">
-                            <img src="Images/LED Sign.jpg" alt="LED Sign"
-                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md transition-transform duration-300 hover:scale-105">
-                            <p class="text-sm text-gray-600 font-light leading-relaxed text-right">
-                                Add a modern, personalized touch with custom LED neon signs perfect for creating
-                                memorable moments.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
     <!-- Gallery Hero Section -->
     <section id="gallery" class="relative overflow-hidden" style="min-height: 85vh;">
@@ -1604,6 +1481,40 @@
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
+        // ========================================
+        // MOBILE MENU TOGGLE
+        // ========================================
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('invisible');
+
+            if (isOpen) {
+                // Close menu
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                // Open menu
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+                hamburgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
         // ========================================
         // INITIAL SPARKLE BURST + ONGOING SPARKLES (MAIN HERO)
         // ========================================
