@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hire Agreement - Kandy Krush</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Ghisella';
+            src: url('Fonts/Ghisella.otf') format('opentype'),
+                url('Fonts/Ghisella.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #d4c9c3, #e8e8e0, #a8b5a8, #c8bdb5);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .heading-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .Ghisella-font {
+            font-family: 'Ghisella', cursive;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .form-input {
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(168, 181, 168, 0.3);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #a8b5a8, #8a9490);
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(138, 148, 144, 0.4);
+        }
+
+        .loading {
+            display: none;
+        }
+
+        .loading.active {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md shadow-sm" style="background: rgba(168, 181, 168, 0.95);">
+        <div class="w-full px-8 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <img src="Images/WhatsApp Image 2026-01-15 at 19.29.51.jpeg" alt="Kandy Krush Logo"
+                        class="h-16 w-auto">
+                    <div class="heading-font text-3xl font-bold text-white">Kandy Krush</div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-10 text-sm font-light tracking-wider">
+                    <a href="index.html" class="nav-link text-white hover:text-white/80">HOME</a>
+                    <a href="index.html#weddings" class="nav-link text-white hover:text-white/80">WEDDINGS</a>
+                    <a href="index.html#corporate" class="nav-link text-white hover:text-white/80">CORPORATE</a>
+                    <a href="index.html#birthdays" class="nav-link text-white hover:text-white/80">BIRTHDAYS</a>
+                    <a href="about.html" class="nav-link text-white hover:text-white/80">ABOUT</a>
+                    <a href="gallery.html" class="nav-link text-white hover:text-white/80">GALLERY</a>
+                    <a href="index.html#contact" class="nav-link text-white hover:text-white/80">CONTACT</a>
+                </div>
+
+                <!-- Desktop Book Now Button -->
+                <a href="index.html#contact"
+                    class="hidden md:block text-gray-800 bg-white px-6 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
+                    <svg id="hamburgerIcon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="closeIcon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu"
+            class="md:hidden fixed top-20 left-0 w-full backdrop-blur-md shadow-lg opacity-0 invisible transition-all duration-300"
+            style="background: rgba(168, 181, 168, 0.98);">
+            <div class="flex flex-col space-y-1 px-8 py-6">
+                <a href="index.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">HOME</a>
+                <a href="index.html#weddings"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">WEDDINGS</a>
+                <a href="index.html#corporate"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">CORPORATE</a>
+                <a href="index.html#birthdays"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">BIRTHDAYS</a>
+                <a href="about.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">ABOUT</a>
+                <a href="gallery.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">GALLERY</a>
+                <a href="index.html#contact"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">CONTACT</a>
+                <a href="index.html#contact"
+                    class="mt-4 text-center text-gray-800 bg-white px-6 py-3 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <p class="text-sm tracking-[0.3em] mb-4 font-light" style="color: #8a9490;">HIRE AGREEMENT</p>
+                <h1 class="heading-font text-5xl md:text-6xl font-light text-gray-800 mb-4">Generate Your Contract</h1>
+                <p class="text-gray-700 font-light">
+                    Fill in your event details to generate a professional hire agreement PDF
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form id="contractForm" class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 md:p-12">
+                <!-- Client Details -->
+                <div class="mb-10">
+                    <h2 class="heading-font text-3xl font-medium text-gray-800 mb-6">Your Details</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="clientName" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="clientEmail" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+                            <input type="tel" id="clientPhone" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Address *</label>
+                            <input type="text" id="clientAddress" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Details -->
+                <div class="mb-10">
+                    <h2 class="heading-font text-3xl font-medium text-gray-800 mb-6">Event Details</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Event Type *</label>
+                            <select id="eventType" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                                <option value="">Select event type</option>
+                                <option value="Wedding">Wedding</option>
+                                <option value="Corporate Event">Corporate Event</option>
+                                <option value="Birthday Party">Birthday Party</option>
+                                <option value="Baby Shower">Baby Shower</option>
+                                <option value="Christening">Christening</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Event Date *</label>
+                            <input type="date" id="eventDate" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Event Venue/Location *</label>
+                            <input type="text" id="eventLocation" required
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Details -->
+                <div class="mb-10">
+                    <h2 class="heading-font text-3xl font-medium text-gray-800 mb-6">Service Details</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Description of Services
+                                *</label>
+                            <textarea id="serviceDescription" rows="4" required
+                                placeholder="E.g., Balloon garland, balloon arch, table centrepieces..."
+                                class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]"></textarea>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Total Price (£) *</label>
+                                <input type="number" id="totalPrice" step="0.01" required
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Deposit Amount (£) *</label>
+                                <input type="number" id="depositAmount" step="0.01" required
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery/Collection -->
+                <div class="mb-10">
+                    <h2 class="heading-font text-3xl font-medium text-gray-800 mb-6">Delivery & Collection</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="radio" name="deliveryOption" value="delivery" class="form-radio" checked>
+                                <span class="text-gray-700 font-light">Delivery & Setup</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label class="flex items-center space-x-3">
+                                <input type="radio" name="deliveryOption" value="collection" class="form-radio">
+                                <span class="text-gray-700 font-light">Client Collection</span>
+                            </label>
+                        </div>
+                        <div id="deliveryTimeSection" class="ml-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Time</label>
+                            <input type="time" id="deliveryTime"
+                                class="form-input w-full md:w-1/2 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#a8b5a8]">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Acknowledgment -->
+                <div class="mb-10 bg-gray-50 p-6 rounded-lg">
+                    <label class="flex items-start space-x-3">
+                        <input type="checkbox" id="termsAccept" required class="mt-1">
+                        <span class="text-sm text-gray-700 font-light leading-relaxed">
+                            I acknowledge that I have read and agree to the terms and conditions outlined in this hire
+                            agreement, including the cancellation policy, payment terms, and liability clauses. *
+                        </span>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit"
+                        class="generate-btn text-white px-12 py-4 rounded-full text-sm font-medium tracking-wider inline-flex items-center space-x-3">
+                        <span>GENERATE PDF CONTRACT</span>
+                        <svg class="loading w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                    </button>
+                    <p class="text-xs text-gray-500 mt-4 font-light">
+                        Your contract will be generated as a PDF. Please print, sign, and return to us.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-6 mt-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="heading-font text-3xl font-bold mb-4" style="color: #b0a8a0;">Kandy Krush</h3>
+                    <p class="text-gray-400 font-light text-sm">Luxury balloon artistry for unforgettable celebrations.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">SERVICES</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="index.html#weddings" class="transition-colors hover:text-[#b0a8a0]">Weddings</a>
+                        </li>
+                        <li><a href="index.html#corporate" class="transition-colors hover:text-[#b0a8a0]">Corporate
+                                Events</a></li>
+                        <li><a href="index.html#birthdays" class="transition-colors hover:text-[#b0a8a0]">Birthday
+                                Parties</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">COMPANY</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="about.html" class="transition-colors hover:text-[#b0a8a0]">About Us</a></li>
+                        <li><a href="gallery.html" class="transition-colors hover:text-[#b0a8a0]">Gallery</a></li>
+                        <li><a href="contract.html" class="transition-colors hover:text-[#b0a8a0]">Hire Agreement</a>
+                        </li>
+                        <li><a href="index.html#contact" class="transition-colors hover:text-[#b0a8a0]">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">CONNECT</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li>
+                            <a href="https://www.instagram.com/balloonsbykandykrush/" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/balloonsbykandyKrush" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@kandykrush.com" class="transition-colors hover:text-[#b0a8a0]">
+                                Email Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm font-light text-gray-500">
+                <p>© 2024 Kandy Krush. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('invisible');
+
+            if (isOpen) {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+                hamburgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        });
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Toggle delivery time visibility
+        document.querySelectorAll('input[name="deliveryOption"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const deliveryTimeSection = document.getElementById('deliveryTimeSection');
+                if (this.value === 'delivery') {
+                    deliveryTimeSection.classList.remove('hidden');
+                } else {
+                    deliveryTimeSection.classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submission and PDF generation
+        document.getElementById('contractForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const loadingSpinner = document.querySelector('.loading');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+
+            loadingSpinner.classList.add('active');
+            submitBtn.disabled = true;
+
+            // Get form values
+            const formData = {
+                clientName: document.getElementById('clientName').value,
+                clientEmail: document.getElementById('clientEmail').value,
+                clientPhone: document.getElementById('clientPhone').value,
+                clientAddress: document.getElementById('clientAddress').value,
+                eventType: document.getElementById('eventType').value,
+                eventDate: document.getElementById('eventDate').value,
+                eventLocation: document.getElementById('eventLocation').value,
+                serviceDescription: document.getElementById('serviceDescription').value,
+                totalPrice: document.getElementById('totalPrice').value,
+                depositAmount: document.getElementById('depositAmount').value,
+                deliveryOption: document.querySelector('input[name="deliveryOption"]:checked').value,
+                deliveryTime: document.getElementById('deliveryTime').value
+            };
+
+            // Generate PDF
+            setTimeout(() => generatePDF(formData, loadingSpinner, submitBtn), 500);
+        });
+
+        function generatePDF(data, loadingSpinner, submitBtn) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const margin = 20;
+            const contentWidth = pageWidth - (2 * margin);
+            let yPos = 20;
+
+            // Header
+            doc.setFontSize(24);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144); // #8a9490
+            doc.text('KANDY KRUSH', margin, yPos);
+
+            yPos += 8;
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(100, 100, 100);
+            doc.text('Luxury Balloon Artistry', margin, yPos);
+
+            yPos += 15;
+            doc.setFontSize(18);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(60, 60, 60);
+            doc.text('HIRE AGREEMENT', margin, yPos);
+
+            yPos += 3;
+            doc.setLineWidth(0.5);
+            doc.setDrawColor(168, 181, 168);
+            doc.line(margin, yPos, pageWidth - margin, yPos);
+
+            yPos += 10;
+
+            // Date
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(100, 100, 100);
+            doc.text(`Agreement Date: ${new Date().toLocaleDateString('en-GB')}`, margin, yPos);
+
+            yPos += 10;
+
+            // Client Details
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144);
+            doc.text('CLIENT DETAILS', margin, yPos);
+            yPos += 6;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            doc.text(`Name: ${data.clientName}`, margin, yPos);
+            yPos += 6;
+            doc.text(`Email: ${data.clientEmail}`, margin, yPos);
+            yPos += 6;
+            doc.text(`Phone: ${data.clientPhone}`, margin, yPos);
+            yPos += 6;
+            const addressLines = doc.splitTextToSize(`Address: ${data.clientAddress}`, contentWidth);
+            doc.text(addressLines, margin, yPos);
+            yPos += (addressLines.length * 6) + 4;
+
+            // Event Details
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144);
+            doc.text('EVENT DETAILS', margin, yPos);
+            yPos += 6;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            doc.text(`Event Type: ${data.eventType}`, margin, yPos);
+            yPos += 6;
+            doc.text(`Event Date: ${new Date(data.eventDate).toLocaleDateString('en-GB')}`, margin, yPos);
+            yPos += 6;
+            const locationLines = doc.splitTextToSize(`Venue: ${data.eventLocation}`, contentWidth);
+            doc.text(locationLines, margin, yPos);
+            yPos += (locationLines.length * 6) + 4;
+
+            // Service Details
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144);
+            doc.text('SERVICE DETAILS', margin, yPos);
+            yPos += 6;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            const serviceLines = doc.splitTextToSize(data.serviceDescription, contentWidth);
+            doc.text(serviceLines, margin, yPos);
+            yPos += (serviceLines.length * 6) + 4;
+
+            doc.text(`Total Price: £${parseFloat(data.totalPrice).toFixed(2)}`, margin, yPos);
+            yPos += 6;
+            doc.text(`Deposit Required: £${parseFloat(data.depositAmount).toFixed(2)}`, margin, yPos);
+            yPos += 6;
+            doc.text(`Balance Due: £${(parseFloat(data.totalPrice) - parseFloat(data.depositAmount)).toFixed(2)}`, margin, yPos);
+            yPos += 8;
+
+            // Delivery/Collection
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144);
+            doc.text('DELIVERY & SETUP', margin, yPos);
+            yPos += 6;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            if (data.deliveryOption === 'delivery') {
+                doc.text(`Delivery & Setup - Time: ${data.deliveryTime || 'TBC'}`, margin, yPos);
+            } else {
+                doc.text('Client Collection', margin, yPos);
+            }
+            yPos += 10;
+
+            // Check if new page is needed
+            if (yPos > 230) {
+                doc.addPage();
+                yPos = 20;
+            }
+
+            // Terms & Conditions
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144);
+            doc.text('TERMS & CONDITIONS', margin, yPos);
+            yPos += 6;
+
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+
+            const terms = [
+                '1. PAYMENT TERMS: A non-refundable deposit is required to secure your booking. The remaining balance must be paid 7 days before the event date.',
+                '',
+                '2. CANCELLATIONS: Cancellations made more than 14 days before the event will receive a refund minus the deposit. Cancellations within 14 days are non-refundable.',
+                '',
+                '3. CHANGES: Any changes to the booking must be requested at least 7 days before the event date and are subject to availability.',
+                '',
+                '4. SETUP & ACCESS: Client must ensure suitable access to the venue for delivery and setup. Kandy Krush must be informed of any access restrictions.',
+                '',
+                '5. DAMAGE & LOSS: Client is responsible for the care of hired items. Any damage or loss will be charged at replacement cost.',
+                '',
+                '6. LIABILITY: Kandy Krush is fully insured. We are not liable for damage caused by third parties or weather conditions after installation.',
+                '',
+                '7. HELIUM BALLOONS: Float time varies by balloon type and environmental conditions. We guarantee appropriate float time for your event.',
+                '',
+                '8. COLLECTION: If collection is arranged, balloons must be collected within 24 hours unless otherwise agreed.'
+            ];
+
+            terms.forEach(term => {
+                if (yPos > 270) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+                const termLines = doc.splitTextToSize(term, contentWidth);
+                doc.text(termLines, margin, yPos);
+                yPos += (termLines.length * 5);
+            });
+
+            // Add new page for signatures
+            doc.addPage();
+            yPos = 20;
+
+            // Signature Section
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(138, 148, 144);
+            doc.text('SIGNATURES', margin, yPos);
+            yPos += 15;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+
+            // Client Signature
+            doc.text('Client Signature:', margin, yPos);
+            yPos += 2;
+            doc.line(margin + 40, yPos, margin + 120, yPos);
+            yPos += 8;
+            doc.text(`Print Name: ${data.clientName}`, margin, yPos);
+            yPos += 8;
+            doc.text('Date: _________________', margin, yPos);
+            yPos += 20;
+
+            // Kandy Krush Signature
+            doc.text('Kandy Krush Representative:', margin, yPos);
+            yPos += 2;
+            doc.line(margin + 60, yPos, margin + 140, yPos);
+            yPos += 8;
+            doc.text('Date: _________________', margin, yPos);
+            yPos += 15;
+
+            // Footer
+            doc.setFontSize(8);
+            doc.setTextColor(120, 120, 120);
+            doc.text('Please sign both copies of this agreement. Return one signed copy to Kandy Krush.', margin, yPos);
+            yPos += 5;
+            doc.text('Contact: 07845 288 496 | info@kandykrush.com | www.kandykrush.com', margin, yPos);
+
+            // Save PDF
+            doc.save(`Kandy_Krush_Contract_${data.clientName.replace(/\s+/g, '_')}.pdf`);
+
+            // Reset button
+            loadingSpinner.classList.remove('active');
+            submitBtn.disabled = false;
+
+            // Show success message
+            alert('Your contract has been generated! Please print, sign, and return to us via email or post.');
+        }
+    </script>
+</body>
+
+</html>

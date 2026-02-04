@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Kandy Krush | Luxury Balloon Artistry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Ghisella';
+            src: url('Fonts/Ghisella.otf') format('opentype'),
+                url('Fonts/Ghisella.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #d4c9c3, #e8e8e0, #a8b5a8, #c8bdb5);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .heading-font {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .Ghisella-font {
+            font-family: 'Ghisella', cursive;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .book-now-btn {
+            transition: all 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .qual-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .qual-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .icon-circle {
+            transition: all 0.3s ease;
+        }
+
+        .qual-card:hover .icon-circle {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #8a9490, #a8b5a8);
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 backdrop-blur-md shadow-sm" style="background: rgba(168, 181, 168, 0.95);">
+        <div class="w-full px-8 lg:px-12">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <img src="Images/WhatsApp Image 2026-01-15 at 19.29.51.jpeg" alt="Kandy Krush Logo"
+                        class="h-16 w-auto">
+                    <div class="heading-font text-3xl font-bold text-white">Kandy Krush</div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-10 text-sm font-light tracking-wider">
+                    <a href="index.html" class="nav-link text-white hover:text-white/80">HOME</a>
+                    <a href="index.html#weddings" class="nav-link text-white hover:text-white/80">WEDDINGS</a>
+                    <a href="index.html#corporate" class="nav-link text-white hover:text-white/80">CORPORATE</a>
+                    <a href="index.html#birthdays" class="nav-link text-white hover:text-white/80">BIRTHDAYS</a>
+                    <a href="about.html" class="nav-link text-white hover:text-white/80">ABOUT</a>
+                    <a href="gallery.html" class="nav-link text-white hover:text-white/80">GALLERY</a>
+                    <a href="index.html#contact" class="nav-link text-white hover:text-white/80">CONTACT</a>
+                </div>
+
+                <!-- Desktop Book Now Button -->
+                <a href="index.html#contact"
+                    class="hidden md:block book-now-btn text-gray-800 bg-white px-6 py-2 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-white p-2 focus:outline-none" aria-label="Toggle menu">
+                    <svg id="hamburgerIcon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="closeIcon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu"
+            class="md:hidden fixed top-20 left-0 w-full backdrop-blur-md shadow-lg opacity-0 invisible transition-all duration-300"
+            style="background: rgba(168, 181, 168, 0.98);">
+            <div class="flex flex-col space-y-1 px-8 py-6">
+                <a href="index.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">HOME</a>
+                <a href="index.html#weddings"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">WEDDINGS</a>
+                <a href="index.html#corporate"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">CORPORATE</a>
+                <a href="index.html#birthdays"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">BIRTHDAYS</a>
+                <a href="about.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">ABOUT</a>
+                <a href="gallery.html"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">GALLERY</a>
+                <a href="index.html#contact"
+                    class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">CONTACT</a>
+                <a href="index.html#contact"
+                    class="mt-4 text-center text-gray-800 bg-white px-6 py-3 rounded-full text-sm font-light tracking-wider transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-white/90">
+                    BOOK NOW
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- CTA Section - At Top -->
+    <section class="pt-32 pb-20 px-6 bg-white/80 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 section-reveal">
+
+                <p class="text-xl text-gray-700 font-light mb-8">
+                    ABOUT US
+                </p>
+
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 section-reveal">
+                <!-- Initial Inquiry CTA -->
+                <div class="bg-gradient-to-br from-[#d4c9c3] to-[#c8bdb5] p-8 rounded-2xl shadow-lg text-center">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-3xl font-medium text-gray-800 mb-4">Initial Enquiry</h3>
+                    <p class="text-gray-700 font-light mb-6">
+                        Tell us about your event and we'll get back to you with ideas and a quote
+                    </p>
+                    <a href="https://form.fillout.com/t/YOUR_FORM_ID" target="_blank"
+                        class="inline-block bg-white text-gray-800 px-8 py-3 rounded-full text-sm font-medium tracking-wider transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        START YOUR ENQUIRY
+                    </a>
+                    <p class="text-xs text-gray-600 mt-4 font-light">Quick and easy online form</p>
+                </div>
+
+                <!-- Contract CTA -->
+                <div class="bg-gradient-to-br from-[#a8b5a8] to-[#8a9490] p-8 rounded-2xl shadow-lg text-center">
+                    <div class="mb-6">
+                        <svg class="w-16 h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-3xl font-medium text-white mb-4">Hire Agreement</h3>
+                    <p class="text-white/90 font-light mb-6">
+                        Already discussed your event? Generate and sign your hire agreement
+                    </p>
+                    <a href="contract.html"
+                        class="inline-block bg-white text-gray-800 px-8 py-3 rounded-full text-sm font-medium tracking-wider transition-all duration-300 hover:shadow-xl hover:scale-105">
+                        GENERATE CONTRACT
+                    </a>
+                    <p class="text-xs text-white/80 mt-4 font-light">For confirmed bookings</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 section-reveal">
+                <p class="text-gray-600 font-light mb-4">Prefer to speak directly?</p>
+                <a href="tel:07845288496" class="text-2xl heading-font text-gray-800 hover:text-[#8a9490] transition">
+                    07845 288 496
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 px-6" style="background: linear-gradient(135deg, #e8ddd8, #d4c9c3, #c8bdb5);">
+        <div class="max-w-4xl mx-auto">
+            <div class="section-reveal text-center mb-16">
+                <p class="text-xs tracking-[0.3em] mb-3 font-light" style="color: #8a9490;">OUR STORY</p>
+                <h2 class="heading-font text-5xl font-light text-gray-800 mb-6">From Passion to Profession</h2>
+            </div>
+
+            <div class="section-reveal space-y-6 text-gray-700 font-light leading-relaxed">
+                <p>
+                    What started as a creative passion has blossomed into a thriving business serving clients across
+                    North Yorkshire and beyond. With over five years of experience and hundreds of successful events,
+                    we've perfected the art of balloon design to create installations that are sophisticated, elegant,
+                    and perfectly tailored to each celebration.
+                </p>
+                <p>
+                    Every project we undertake is approached with meticulous attention to detail, from the initial
+                    consultation to the final installation. We believe that balloon artistry is more than
+                    decoration—it's
+                    about creating an atmosphere, setting a mood, and making memories that last long after the balloons
+                    come down.
+                </p>
+                <p>
+                    Our commitment to quality, professionalism, and customer satisfaction has made us the trusted choice
+                    for weddings, corporate events, milestone birthdays, and everything in between. We pride ourselves
+                    on delivering not just beautiful balloons, but exceptional service and peace of mind.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualifications Section -->
+    <section class="py-20 px-6 bg-white/80 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 section-reveal">
+                <p class="text-xs tracking-[0.3em] mb-3 font-light" style="color: #8a9490;">PROFESSIONAL CREDENTIALS</p>
+                <h2 class="heading-font text-5xl md:text-6xl font-light text-gray-800 mb-4">
+                    Qualified, Certified & Trusted
+                </h2>
+                <p class="text-gray-700 font-light max-w-2xl mx-auto">
+                    Your event deserves the highest standards of professionalism, safety, and artistry.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- NABAS Membership -->
+                <div class="qual-card bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg section-reveal">
+                    <div class="icon-circle w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                        style="background: linear-gradient(135deg, #a8b5a8, #8a9490);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-2xl font-medium text-gray-800 mb-3 text-center">NABAS Member</h3>
+                    <p class="text-gray-600 font-light text-center leading-relaxed">
+                        Proud member of the National Association of Balloon Artists & Suppliers, upholding industry best
+                        practices and standards.
+                    </p>
+                </div>
+
+                <!-- Experience -->
+                <div class="qual-card bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg section-reveal">
+                    <div class="icon-circle w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                        style="background: linear-gradient(135deg, #a8b5a8, #8a9490);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-2xl font-medium text-gray-800 mb-3 text-center">5+ Years Experience
+                    </h3>
+                    <p class="text-gray-600 font-light text-center leading-relaxed">
+                        Over five years of creating stunning balloon displays for hundreds of events across the region.
+                    </p>
+                </div>
+
+                <!-- Events Completed -->
+                <div class="qual-card bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg section-reveal">
+                    <div class="icon-circle w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                        style="background: linear-gradient(135deg, #a8b5a8, #8a9490);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-2xl font-medium text-gray-800 mb-3 text-center">100s of Events</h3>
+                    <p class="text-gray-600 font-light text-center leading-relaxed">
+                        Trusted by hundreds of clients for weddings, corporate functions, birthdays, and special
+                        occasions.
+                    </p>
+                </div>
+
+                <!-- Fully Qualified -->
+                <div class="qual-card bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg section-reveal">
+                    <div class="icon-circle w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                        style="background: linear-gradient(135deg, #a8b5a8, #8a9490);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-2xl font-medium text-gray-800 mb-3 text-center">Fully Qualified</h3>
+                    <p class="text-gray-600 font-light text-center leading-relaxed">
+                        Certified balloon artist with comprehensive training in design, installation, and safety
+                        procedures.
+                    </p>
+                </div>
+
+                <!-- Specialist Insurance -->
+                <div class="qual-card bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg section-reveal">
+                    <div class="icon-circle w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                        style="background: linear-gradient(135deg, #a8b5a8, #8a9490);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-2xl font-medium text-gray-800 mb-3 text-center">Specialist Insured</h3>
+                    <p class="text-gray-600 font-light text-center leading-relaxed">
+                        Fully insured with specialist event and public liability coverage for complete peace of mind.
+                    </p>
+                </div>
+
+                <!-- Health & Safety -->
+                <div class="qual-card bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-lg section-reveal">
+                    <div class="icon-circle w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center"
+                        style="background: linear-gradient(135deg, #a8b5a8, #8a9490);">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="heading-font text-2xl font-medium text-gray-800 mb-3 text-center">Health & Safety
+                        Certified</h3>
+                    <p class="text-gray-600 font-light text-center leading-relaxed">
+                        Health and safety certified with comprehensive risk assessment and safe working practices.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quality Standards -->
+            <div class="mt-16 section-reveal">
+                <div class="bg-white/90 backdrop-blur-sm p-8 md:p-12 rounded-2xl shadow-lg">
+                    <div class="text-center mb-8">
+                        <h3 class="heading-font text-3xl font-light text-gray-800 mb-4">Our Quality Commitment</h3>
+                        <p class="text-gray-600 font-light">Every installation meets the highest standards</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6 text-gray-700 font-light">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: #8a9490;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p>Professional-grade helium for maximum float time and balloon longevity</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: #8a9490;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p>CE-tested, traceable balloons meeting all UK safety standards</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: #8a9490;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p>Expert installation with structural integrity and stability guaranteed</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-6 h-6 flex-shrink-0 mt-1" style="color: #8a9490;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <p>Flexible service including late-night collection and last-minute availability</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <h3 class="heading-font text-3xl font-bold mb-4" style="color: #b0a8a0;">Kandy Krush</h3>
+                    <p class="text-gray-400 font-light text-sm">Luxury balloon artistry for unforgettable celebrations.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">SERVICES</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="index.html#weddings" class="transition-colors hover:text-[#b0a8a0]">Weddings</a>
+                        </li>
+                        <li><a href="index.html#corporate" class="transition-colors hover:text-[#b0a8a0]">Corporate
+                                Events</a></li>
+                        <li><a href="index.html#birthdays" class="transition-colors hover:text-[#b0a8a0]">Birthday
+                                Parties</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">COMPANY</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li><a href="about.html" class="transition-colors hover:text-[#b0a8a0]">About Us</a></li>
+                        <li><a href="gallery.html" class="transition-colors hover:text-[#b0a8a0]">Gallery</a></li>
+                        <li><a href="contract.html" class="transition-colors hover:text-[#b0a8a0]">Hire Agreement</a>
+                        </li>
+                        <li><a href="index.html#contact" class="transition-colors hover:text-[#b0a8a0]">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4 tracking-wider text-sm">CONNECT</h4>
+                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                        <li>
+                            <a href="https://www.instagram.com/balloonsbykandykrush/" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/balloonsbykandyKrush" target="_blank"
+                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:info@kandykrush.com" class="transition-colors hover:text-[#b0a8a0]">
+                                Email Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm font-light text-gray-500">
+                <p>© 2024 Kandy Krush. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.getElementById('hamburgerIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('invisible');
+
+            if (isOpen) {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('opacity-0', 'invisible');
+                hamburgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('opacity-0', 'invisible');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
