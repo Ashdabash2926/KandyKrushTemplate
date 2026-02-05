@@ -68,6 +68,13 @@
             }
         }
 
+        /* Hero Parallax Wrapper */
+        .hero-parallax-wrapper {
+            position: absolute;
+            inset: 0;
+            will-change: transform;
+        }
+
         /* Hero Background Animation */
         .hero-background {
             position: absolute;
@@ -96,7 +103,14 @@
             }
         }
 
-        /* Gallery Hero Background */
+        /* Gallery Parallax Wrapper */
+        .gallery-parallax-wrapper {
+            position: absolute;
+            inset: 0;
+            will-change: transform;
+        }
+
+        /* Gallery Hero Background with Parallax */
         .gallery-hero-background {
             position: absolute;
             inset: 0;
@@ -104,6 +118,7 @@
             background-size: cover;
             background-position: center;
             animation: galleryKenBurns 25s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+            transform-origin: center center;
         }
 
         @keyframes galleryKenBurns {
@@ -1046,8 +1061,11 @@
 
     <!-- Hero Section -->
     <section class="h-screen flex items-center justify-center relative overflow-hidden" id="heroSection">
-        <!-- Animated Background -->
-        <div class="hero-background"></div>
+        <!-- Parallax Wrapper -->
+        <div class="hero-parallax-wrapper">
+            <!-- Animated Background -->
+            <div class="hero-background"></div>
+        </div>
 
         <!-- Animated Gradient Overlay -->
         <div class="absolute inset-0">
@@ -1269,8 +1287,11 @@
 
     <!-- Gallery Hero Section -->
     <section id="gallery" class="relative overflow-hidden" style="min-height: 85vh;">
-        <!-- Animated Background Image -->
-        <div class="gallery-hero-background"></div>
+        <!-- Parallax Wrapper -->
+        <div class="gallery-parallax-wrapper">
+            <!-- Animated Background Image -->
+            <div class="gallery-hero-background"></div>
+        </div>
 
         <!-- Gradient Overlay for Text Readability -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
@@ -1468,8 +1489,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/cdn-cgi/l/email-protection#036a6d656c4368626d677a687176706b2d606c6e"
-                                class="transition-colors hover:text-[#b0a8a0]">
+                            <a href="mailto:info@kandykrush.com" class="transition-colors hover:text-[#b0a8a0]">
                                 Email Us
                             </a>
                         </li>
@@ -1482,8 +1502,6 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // ========================================
         // MOBILE MENU TOGGLE
@@ -1601,20 +1619,53 @@
         // ========================================
         const heroSection = document.getElementById('heroSection');
         const heroContent = document.getElementById('heroContent');
+        const heroParallaxWrapper = document.querySelector('.hero-parallax-wrapper');
         let scrollY = 0;
 
         window.addEventListener('scroll', () => {
             scrollY = window.scrollY;
 
             if (scrollY < window.innerHeight) {
+                // Text parallax
                 const elements = heroContent.querySelectorAll('[data-speed]');
                 elements.forEach(element => {
                     const speed = parseFloat(element.dataset.speed);
                     const yPos = -(scrollY * speed);
                     element.style.transform = `translateY(${yPos}px)`;
                 });
+
+                // Background parallax
+                if (heroParallaxWrapper) {
+                    const bgParallaxOffset = scrollY * 0.5;
+                    heroParallaxWrapper.style.transform = `translateY(${bgParallaxOffset}px)`;
+                }
             }
         });
+
+        // ========================================
+        // GALLERY PARALLAX EFFECT
+        // ========================================
+        const gallerySection = document.getElementById('gallery');
+        const galleryParallaxWrapper = document.querySelector('.gallery-parallax-wrapper');
+
+        function updateGalleryParallax() {
+            if (!gallerySection || !galleryParallaxWrapper) return;
+
+            const sectionTop = gallerySection.offsetTop;
+            const sectionHeight = gallerySection.offsetHeight;
+            const scrollPosition = window.scrollY;
+
+            // Only apply parallax when gallery section is in view
+            if (scrollPosition + window.innerHeight > sectionTop &&
+                scrollPosition < sectionTop + sectionHeight) {
+
+                const parallaxOffset = (scrollPosition - sectionTop) * 0.4;
+                galleryParallaxWrapper.style.transform = `translateY(${parallaxOffset}px)`;
+            }
+        }
+
+        window.addEventListener('scroll', updateGalleryParallax);
+        window.addEventListener('resize', updateGalleryParallax);
 
         // ========================================
         // INTERSECTION OBSERVER
