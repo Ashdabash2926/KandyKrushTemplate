@@ -64,6 +64,27 @@
             width: 100%;
         }
 
+        /* Samsung Fold 7 cover screen (~374px) and narrow device support */
+        @media (max-width: 400px) {
+            nav .flex.justify-between .flex.items-center img {
+                height: 2.5rem;
+            }
+
+            nav .flex.justify-between .flex.items-center .heading-font {
+                font-size: 1.25rem;
+            }
+
+            nav .flex.justify-between {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            nav .w-full {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+
         .form-input {
             transition: all 0.3s ease;
         }
@@ -95,7 +116,7 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 backdrop-blur-md shadow-sm" style="background: rgba(168, 181, 168, 0.95);">
+    <nav class="fixed w-full z-50 shadow-sm" style="background: #a8b5a8;">
         <div class="w-full px-8 lg:px-12">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
@@ -137,8 +158,8 @@
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobileMenu"
-            class="md:hidden fixed top-20 left-0 w-full backdrop-blur-md shadow-lg opacity-0 invisible transition-all duration-300"
-            style="background: rgba(168, 181, 168, 0.98);">
+            class="md:hidden fixed top-20 left-0 w-full shadow-lg opacity-0 invisible transition-all duration-300"
+            style="background: #a8b5a8;">
             <div class="flex flex-col space-y-1 px-8 py-6">
                 <a href="index.html"
                     class="mobile-nav-link text-white hover:text-white/80 py-3 text-sm font-light tracking-wider border-b border-white/10 transition-colors">HOME</a>
@@ -316,59 +337,59 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16 px-6 mt-20">
+    <footer class="text-white py-16 px-6 mt-20" style="background: rgba(144, 152, 134, 1);">
         <div class="max-w-7xl mx-auto">
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <h3 class="heading-font text-3xl font-bold mb-4" style="color: #b0a8a0;">Kandy Krush</h3>
-                    <p class="text-gray-400 font-light text-sm">Luxury balloon artistry for unforgettable celebrations.
+                    <h3 class="heading-font text-3xl font-bold mb-4 text-white">Kandy Krush</h3>
+                    <p class="text-white/70 font-light text-sm">Luxury balloon artistry for unforgettable celebrations.
                     </p>
                 </div>
                 <div>
                     <h4 class="font-medium mb-4 tracking-wider text-sm">SERVICES</h4>
-                    <ul class="space-y-2 text-sm font-light text-gray-400">
-                        <li><a href="index.html#weddings" class="transition-colors hover:text-[#b0a8a0]">Weddings</a>
+                    <ul class="space-y-2 text-sm font-light text-white/70">
+                        <li><a href="index.html#weddings" class="transition-colors hover:text-white">Weddings</a>
                         </li>
-                        <li><a href="index.html#corporate" class="transition-colors hover:text-[#b0a8a0]">Corporate
+                        <li><a href="index.html#corporate" class="transition-colors hover:text-white">Corporate
                                 Events</a></li>
-                        <li><a href="index.html#birthdays" class="transition-colors hover:text-[#b0a8a0]">Birthday
+                        <li><a href="index.html#birthdays" class="transition-colors hover:text-white">Birthday
                                 Parties</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-medium mb-4 tracking-wider text-sm">COMPANY</h4>
-                    <ul class="space-y-2 text-sm font-light text-gray-400">
-                        <li><a href="about.html" class="transition-colors hover:text-[#b0a8a0]">About Us</a></li>
-                        <li><a href="gallery.html" class="transition-colors hover:text-[#b0a8a0]">Gallery</a></li>
-                        <li><a href="contract.html" class="transition-colors hover:text-[#b0a8a0]">Hire Agreement</a>
+                    <ul class="space-y-2 text-sm font-light text-white/70">
+                        <li><a href="about.html" class="transition-colors hover:text-white">About Us</a></li>
+                        <li><a href="gallery.html" class="transition-colors hover:text-white">Gallery</a></li>
+                        <li><a href="contract.html" class="transition-colors hover:text-white">Hire Agreement</a>
                         </li>
-                        <li><a href="index.html#contact" class="transition-colors hover:text-[#b0a8a0]">Contact</a></li>
+                        <li><a href="index.html#contact" class="transition-colors hover:text-white">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-medium mb-4 tracking-wider text-sm">CONNECT</h4>
-                    <ul class="space-y-2 text-sm font-light text-gray-400">
+                    <ul class="space-y-2 text-sm font-light text-white/70">
                         <li>
                             <a href="https://www.instagram.com/balloonsbykandykrush/" target="_blank"
-                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                rel="noopener noreferrer" class="transition-colors hover:text-white">
                                 Instagram
                             </a>
                         </li>
                         <li>
                             <a href="https://www.facebook.com/balloonsbykandyKrush" target="_blank"
-                                rel="noopener noreferrer" class="transition-colors hover:text-[#b0a8a0]">
+                                rel="noopener noreferrer" class="transition-colors hover:text-white">
                                 Facebook
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:info@kandykrush.com" class="transition-colors hover:text-[#b0a8a0]">
+                            <a href="mailto:info@kandykrush.com" class="transition-colors hover:text-white">
                                 Email Us
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-sm font-light text-gray-500">
+            <div class="border-t border-white/20 pt-8 text-center text-sm font-light text-white/60">
                 <p>© 2024 Kandy Krush. All rights reserved.</p>
             </div>
         </div>
