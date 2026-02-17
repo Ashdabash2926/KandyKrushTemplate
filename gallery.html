@@ -63,246 +63,112 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        /* Carousel Container */
-        .carousel-container {
+        /* Gallery background */
+        .gallery-bg {
+            background-color: #e6ede6;
+        }
+
+        /* Album Grid Cards */
+        .album-card {
             position: relative;
-            height: 100vh;
-            width: 100%;
+            border-radius: 12px;
             overflow: hidden;
-        }
-
-        .carousel-track {
-            display: flex;
-            height: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            height: 100%;
-            position: relative;
             cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 4 / 5;
         }
 
-        .carousel-image {
+        .album-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .album-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
         }
 
-        .carousel-overlay {
+        .album-card-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
+            justify-content: flex-end;
+            padding: 1.5rem;
         }
 
-        .carousel-title {
-            font-size: 4rem;
+        .album-card-title {
+            font-size: 1.5rem;
             font-weight: 300;
             color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 0.5rem;
         }
 
-        .carousel-count {
+        .album-card-count {
             display: inline-block;
             background: rgba(168, 181, 168, 0.85);
             color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.875rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 300;
             letter-spacing: 1px;
+            width: fit-content;
         }
 
-        /* Navigation Arrows */
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .carousel-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-arrow.left {
-            left: 40px;
-        }
-
-        .carousel-arrow.right {
-            right: 40px;
-        }
-
-        .carousel-arrow svg {
-            width: 28px;
-            height: 28px;
-            stroke: white;
-        }
-
-        /* Dot Indicators */
-        .carousel-dots {
-            position: absolute;
-            bottom: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            z-index: 10;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: white;
-            width: 40px;
-            border-radius: 6px;
-        }
-
-        .dot:hover {
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Thumbnail Navigation */
-        .thumbnail-nav {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem 2rem;
-            background: rgba(245, 237, 235, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
-
-        .thumbnail-track {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(168, 181, 168, 0.4) transparent;
-            padding: 0.5rem 0;
-        }
-
-        .thumbnail-track::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .thumbnail-track::-webkit-scrollbar-track {
-            background: rgba(168, 181, 168, 0.15);
-            border-radius: 10px;
-        }
-
-        .thumbnail-track::-webkit-scrollbar-thumb {
-            background: rgba(168, 181, 168, 0.4);
-            border-radius: 10px;
-        }
-
-        .thumbnail-item {
-            position: relative;
-            min-width: 150px;
-            height: 100px;
+        /* Photo Grid */
+        .photo-thumb {
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            aspect-ratio: 1;
         }
 
-        .thumbnail-item:hover {
-            transform: translateY(-4px);
-            border-color: rgba(168, 181, 168, 0.4);
+        .photo-thumb:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
         }
 
-        .thumbnail-item.active {
-            border-color: #a8b5a8;
-            box-shadow: 0 0 20px rgba(168, 181, 168, 0.3);
-        }
-
-        .thumbnail-image {
+        .photo-thumb img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .thumbnail-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(168, 181, 168, 0.75), transparent);
-            display: flex;
-            align-items: flex-end;
-            padding: 0.75rem;
-        }
-
-        .thumbnail-title {
-            font-size: 0.75rem;
-            color: white;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        /* Touch/Swipe Support */
-        .carousel-track {
-            touch-action: pan-y;
-        }
-
-        /* Album Modal */
-        .album-modal {
+        /* Lightbox */
+        .lightbox {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.95);
             z-index: 9999;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .album-modal.active {
+        .lightbox.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .modal-header {
-            padding: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .lightbox-image {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .modal-close {
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -315,30 +181,13 @@
             transition: all 0.3s ease;
         }
 
-        .modal-close:hover {
+        .lightbox-close:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.5);
             transform: rotate(90deg);
         }
 
-        .modal-gallery {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .modal-image {
-            max-width: 90%;
-            max-height: 70vh;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-nav-btn {
+        .lightbox-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -354,68 +203,60 @@
             transition: all 0.3s ease;
         }
 
-        .modal-nav-btn:hover {
+        .lightbox-nav:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-50%) scale(1.1);
         }
 
-        .modal-nav-btn.prev {
-            left: 40px;
+        .lightbox-nav.prev {
+            left: 1.5rem;
         }
 
-        .modal-nav-btn.next {
-            right: 40px;
+        .lightbox-nav.next {
+            right: 1.5rem;
         }
 
-        .modal-nav-btn svg {
+        .lightbox-nav svg {
             width: 28px;
             height: 28px;
             stroke: white;
         }
 
-        .modal-thumbnails {
-            padding: 1rem 2rem 2rem;
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(168, 181, 168, 0.4) transparent;
+        .lightbox-counter {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 300;
+            opacity: 0.7;
         }
 
-        .modal-thumbnails::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .modal-thumbnails::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        .modal-thumbnails::-webkit-scrollbar-thumb {
-            background: rgba(168, 181, 168, 0.4);
-            border-radius: 10px;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
+        /* Back button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7b6b;
+            font-size: 0.875rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            opacity: 0.5;
             transition: all 0.3s ease;
-            flex-shrink: 0;
-            border: 2px solid transparent;
+            border: none;
+            background: none;
+            padding: 0;
         }
 
-        .thumbnail:hover {
-            opacity: 0.8;
+        .back-btn:hover {
+            color: #4a5a4a;
         }
 
-        .thumbnail.active {
-            opacity: 1;
-            border-color: #a8b5a8;
+        .back-btn svg {
+            width: 18px;
+            height: 18px;
         }
 
         /* Samsung Fold 7 cover screen (~374px) and narrow device support */
@@ -437,54 +278,27 @@
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
+
+            .album-card-title {
+                font-size: 1.2rem;
+            }
         }
 
         @media (max-width: 768px) {
-            .carousel-title {
-                font-size: 2.5rem;
-            }
-
-            .carousel-arrow {
+            .lightbox-nav {
                 width: 45px;
                 height: 45px;
             }
 
-            .carousel-arrow.left {
-                left: 15px;
+            .lightbox-nav.prev {
+                left: 0.75rem;
             }
 
-            .carousel-arrow.right {
-                right: 15px;
+            .lightbox-nav.next {
+                right: 0.75rem;
             }
 
-            .carousel-arrow svg {
-                width: 20px;
-                height: 20px;
-            }
-
-            .carousel-dots {
-                bottom: 140px;
-            }
-
-            .thumbnail-item {
-                min-width: 120px;
-                height: 80px;
-            }
-
-            .modal-nav-btn {
-                width: 45px;
-                height: 45px;
-            }
-
-            .modal-nav-btn.prev {
-                left: 10px;
-            }
-
-            .modal-nav-btn.next {
-                right: 10px;
-            }
-
-            .modal-nav-btn svg {
+            .lightbox-nav svg {
                 width: 20px;
                 height: 20px;
             }
@@ -561,161 +375,57 @@
         </div>
     </nav>
 
-
-    <!-- Carousel Hero Section -->
-    <div class="carousel-container">
-        <div class="carousel-track" id="carouselTrack">
-            <!-- Slide 1: Weddings -->
-            <div class="carousel-slide" data-album="1">
-                <img src="Images/weddings/20230304_125226.jpg" alt="Weddings" class="carousel-image">
-                <div class="carousel-overlay">
-                    <h2 class="carousel-title heading-font">Weddings</h2>
-                    <span class="carousel-count">29 PHOTOS</span>
-                </div>
+    <!-- Album Grid View -->
+    <section id="albumGrid" class="gallery-bg pt-28 pb-16 px-6 min-h-screen">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="heading-font text-5xl font-light text-gray-800 mb-3">Our Gallery</h1>
+                <p class="text-gray-500 font-light text-sm tracking-wider">BROWSE OUR COLLECTIONS</p>
             </div>
-
-            <!-- Slide 2: Corporate Events -->
-            <div class="carousel-slide" data-album="2">
-                <img src="Images/Corporate/Screenshot 2026-01-21 at 13.08.10.jpg" alt="Corporate Events"
-                    class="carousel-image">
-                <div class="carousel-overlay">
-                    <h2 class="carousel-title heading-font">Corporate Events</h2>
-                    <span class="carousel-count">20 PHOTOS</span>
-                </div>
-            </div>
-
-            <!-- Slide 3: Birthday Celebrations -->
-            <div class="carousel-slide" data-album="3">
-                <img src="Images/Childrens/file_000000009b54720aabb4802b65cbfe55.png" alt="Birthday Celebrations"
-                    class="carousel-image">
-                <div class="carousel-overlay">
-                    <h2 class="carousel-title heading-font">Birthday Celebrations</h2>
-                    <span class="carousel-count">34 PHOTOS</span>
-                </div>
-            </div>
-
-            <!-- Slide 4: Easel Hire -->
-            <div class="carousel-slide" data-album="4">
-                <img src="Images/easel-hire/20250518_094559.jpg" alt="Easel Hire" class="carousel-image">
-                <div class="carousel-overlay">
-                    <h2 class="carousel-title heading-font">Easel Hire</h2>
-                    <span class="carousel-count">11 PHOTOS</span>
-                </div>
-            </div>
-
-            <!-- Slide 5: Baby Showers & Christenings -->
-            <div class="carousel-slide" data-album="5">
-                <img src="Images/Newborn.jpg" alt="Baby Showers & Christenings" class="carousel-image">
-                <div class="carousel-overlay">
-                    <h2 class="carousel-title heading-font">Baby Showers & Christenings</h2>
-                    <span class="carousel-count">2 PHOTOS</span>
-                </div>
-            </div>
-
-            <!-- Slide 6: ORBZ Balloons Events -->
-            <div class="carousel-slide" data-album="6">
-                <img src="Images/ORBZ Balloons/20240818_091057.jpg" alt="ORBZ Balloons" class="carousel-image">
-                <div class="carousel-overlay">
-                    <h2 class="carousel-title heading-font">ORBZ Balloons</h2>
-                    <span class="carousel-count">30 PHOTOS</span>
-                </div>
+            <div id="albumCards" class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                <!-- Album cards generated by JS -->
             </div>
         </div>
+    </section>
 
-        <!-- Navigation Arrows -->
-        <button class="carousel-arrow left" onclick="moveCarousel(-1)" aria-label="Previous album">
+    <!-- Photo Grid View (hidden by default) -->
+    <section id="photoGrid" class="pt-28 pb-16 px-6 min-h-screen hidden">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-8">
+                <button class="back-btn" onclick="showAlbumGrid()">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    ALL ALBUMS
+                </button>
+                <h2 id="photoGridTitle" class="heading-font text-4xl font-light text-gray-800 mt-4"></h2>
+                <p id="photoGridCount" class="text-gray-500 font-light text-sm tracking-wider mt-1"></p>
+            </div>
+            <div id="photoThumbs" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                <!-- Photo thumbnails generated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6" style="stroke: white;">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <button class="lightbox-nav prev" onclick="navigateLightbox(-1)" aria-label="Previous image">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
         </button>
-        <button class="carousel-arrow right" onclick="moveCarousel(1)" aria-label="Next album">
+        <img id="lightboxImage" class="lightbox-image" src="" alt="Gallery image">
+        <button class="lightbox-nav next" onclick="navigateLightbox(1)" aria-label="Next image">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
         </button>
-
-        <!-- Dot Indicators -->
-        <div class="carousel-dots" id="carouselDots">
-            <!-- Dots will be generated by JavaScript -->
-        </div>
-
-        <!-- Thumbnail Navigation -->
-        <div class="thumbnail-nav">
-            <div class="thumbnail-track" id="thumbnailTrack">
-                <div class="thumbnail-item active" data-index="0">
-                    <img src="Images/weddings/20230304_125226.jpg" alt="Weddings" class="thumbnail-image">
-                    <div class="thumbnail-overlay">
-                        <span class="thumbnail-title heading-font">Weddings</span>
-                    </div>
-                </div>
-                <div class="thumbnail-item" data-index="1">
-                    <img src="Images/Corporate/Screenshot 2026-01-21 at 13.08.10.jpg" alt="Corporate Events"
-                        class="thumbnail-image">
-                    <div class="thumbnail-overlay">
-                        <span class="thumbnail-title heading-font">Corporate Events</span>
-                    </div>
-                </div>
-                <div class="thumbnail-item" data-index="2">
-                    <img src="Images/Childrens/file_000000009b54720aabb4802b65cbfe55.png" alt="Birthday Celebrations"
-                        class="thumbnail-image">
-                    <div class="thumbnail-overlay">
-                        <span class="thumbnail-title heading-font">Birthday Celebrations</span>
-                    </div>
-                </div>
-                <div class="thumbnail-item" data-index="3">
-                    <img src="Images/easel-hire/20250518_094559.jpg" alt="Easel Hire" class="thumbnail-image">
-                    <div class="thumbnail-overlay">
-                        <span class="thumbnail-title heading-font">Easel Hire</span>
-                    </div>
-                </div>
-                <div class="thumbnail-item" data-index="4">
-                    <img src="Images/Newborn.jpg" alt="Baby Showers" class="thumbnail-image">
-                    <div class="thumbnail-overlay">
-                        <span class="thumbnail-title heading-font">Baby Showers</span>
-                    </div>
-                </div>
-                <div class="thumbnail-item" data-index="5">
-                    <img src="Images/ORBZ Balloons/20240818_091057.jpg" alt="ORBZ Balloons" class="thumbnail-image">
-                    <div class="thumbnail-overlay">
-                        <span class="thumbnail-title heading-font">ORBZ Balloons</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Album Modal -->
-    <div class="album-modal" id="albumModal">
-        <div class="modal-header">
-            <div>
-                <h2 class="heading-font text-3xl font-light text-white" id="modalTitle">Album Title</h2>
-                <p class="text-white text-sm mt-1 opacity-70"><span id="modalCounter">1 / 10</span></p>
-            </div>
-            <button class="modal-close" onclick="closeAlbum()" aria-label="Close album">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-        </div>
-
-        <div class="modal-gallery">
-            <img id="modalImage" class="modal-image" src="" alt="Gallery image">
-            <button class="modal-nav-btn prev" onclick="navigateAlbum(-1)" aria-label="Previous image">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
-            <button class="modal-nav-btn next" onclick="navigateAlbum(1)" aria-label="Next image">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-        </div>
-
-        <div class="modal-thumbnails" id="modalThumbnails">
-            <!-- Thumbnails will be inserted here -->
-        </div>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
     </div>
 
     <!-- Footer -->
@@ -774,7 +484,7 @@
                 </div>
             </div>
             <div class="border-t border-white/20 pt-8 text-center text-sm font-light text-white/60">
-                <p>© 2024 Kandy Krush. All rights reserved.</p>
+                <p>&copy; 2024 Kandy Krush. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -794,19 +504,16 @@
             const isOpen = !mobileMenu.classList.contains('invisible');
 
             if (isOpen) {
-                // Close menu
                 mobileMenu.classList.add('opacity-0', 'invisible');
                 hamburgerIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
             } else {
-                // Open menu
                 mobileMenu.classList.remove('opacity-0', 'invisible');
                 hamburgerIcon.classList.add('hidden');
                 closeIcon.classList.remove('hidden');
             }
         });
 
-        // Close mobile menu when clicking a link
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('opacity-0', 'invisible');
@@ -821,6 +528,7 @@
         const albums = {
             1: {
                 title: 'Weddings',
+                cover: 'Images/weddings/20230304_125226.jpg',
                 images: [
                     'Images/weddings/20230304_125226.jpg',
                     'Images/weddings/20230304_125235.jpg',
@@ -855,6 +563,7 @@
             },
             2: {
                 title: 'Corporate Events',
+                cover: 'Images/Corporate/Screenshot 2026-01-21 at 13.08.10.jpg',
                 images: [
                     'images/Corporate/20230804_161113.jpg',
                     'images/Corporate/20230907_094141.jpg',
@@ -880,6 +589,7 @@
             },
             3: {
                 title: 'Birthday Celebrations',
+                cover: 'Images/Childrens/file_000000009b54720aabb4802b65cbfe55.png',
                 images: [
                     'Images/Childrens/1766425704575.png',
                     'Images/Childrens/1768824488271.png',
@@ -1001,6 +711,7 @@
             },
             4: {
                 title: 'Easel Hire',
+                cover: 'Images/easel-hire/20250518_094559.jpg',
                 images: [
                     'Images/easel-hire/20250518_094559.jpg',
                     'Images/easel-hire/20250518_094747.jpg',
@@ -1017,6 +728,7 @@
             },
             5: {
                 title: 'Baby Showers & Christenings',
+                cover: 'Images/Newborn.jpg',
                 images: [
                     'Images/Newborn.jpg',
                     'Images/Christening.jpg'
@@ -1024,6 +736,7 @@
             },
             6: {
                 title: 'ORBZ Balloons',
+                cover: 'images/ORBZ Balloons/20240818_091057.jpg',
                 images: [
                     'images/ORBZ Balloons/2023_05_02_10_20_25_689.jpg',
                     'images/ORBZ Balloons/20230309_122428.jpg',
@@ -1109,16 +822,11 @@
             }
         };
 
-        let currentCarouselIndex = 0;
-        let currentAlbum = null;
-        let currentImageIndex = 0;
-        const totalSlides = 6;
-
         // ========================================
         // SHUFFLE FUNCTION (Fisher-Yates Algorithm)
         // ========================================
         function shuffleArray(array) {
-            const shuffled = [...array]; // Create a copy to avoid mutating original
+            const shuffled = [...array];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -1126,231 +834,137 @@
             return shuffled;
         }
 
-        // Randomize images in each album
+        // Shuffle images in each album on load
         Object.keys(albums).forEach(albumId => {
             albums[albumId].images = shuffleArray(albums[albumId].images);
         });
 
         // ========================================
-        // TOUCH/SWIPE SUPPORT
+        // STATE
         // ========================================
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        const carouselTrack = document.getElementById('carouselTrack');
-
-        carouselTrack.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        carouselTrack.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    // Swipe left - next
-                    moveCarousel(1);
-                } else {
-                    // Swipe right - prev
-                    moveCarousel(-1);
-                }
-            }
-        }
+        let currentAlbumId = null;
+        let currentPhotos = [];
+        let lightboxIndex = 0;
+        let lightboxOpen = false;
 
         // ========================================
-        // CAROUSEL CONTROLS
+        // ALBUM GRID
         // ========================================
-        function initDots() {
-            const dotsContainer = document.getElementById('carouselDots');
-            for (let i = 0; i < totalSlides; i++) {
-                const dot = document.createElement('div');
-                dot.className = `dot ${i === 0 ? 'active' : ''}`;
-                dot.onclick = () => goToSlide(i);
-                dotsContainer.appendChild(dot);
-            }
-        }
+        function buildAlbumGrid() {
+            const container = document.getElementById('albumCards');
+            container.innerHTML = '';
 
-        function moveCarousel(direction) {
-            currentCarouselIndex = (currentCarouselIndex + direction + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentCarouselIndex = index;
-            updateCarousel();
-        }
-
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            track.style.transform = `translateX(-${currentCarouselIndex * 100}%)`;
-
-            // Update dots
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentCarouselIndex);
+            Object.keys(albums).forEach(id => {
+                const album = albums[id];
+                const card = document.createElement('div');
+                card.className = 'album-card';
+                card.onclick = () => openAlbum(id);
+                card.innerHTML = `
+                    <img src="${album.cover}" alt="${album.title}" loading="lazy">
+                    <div class="album-card-overlay">
+                        <h3 class="album-card-title heading-font">${album.title}</h3>
+                        <span class="album-card-count">${album.images.length} PHOTOS</span>
+                    </div>
+                `;
+                container.appendChild(card);
             });
+        }
 
-            // Update thumbnails
-            document.querySelectorAll('.thumbnail-item').forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentCarouselIndex);
-            });
-
-            // Scroll active thumbnail into view
-            const activeThumbnail = document.querySelector('.thumbnail-item.active');
-            if (activeThumbnail) {
-                activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
+        function showAlbumGrid() {
+            document.getElementById('albumGrid').classList.remove('hidden');
+            document.getElementById('photoGrid').classList.add('hidden');
+            currentAlbumId = null;
+            currentPhotos = [];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // ========================================
-        // THUMBNAIL CLICK HANDLERS
-        // ========================================
-        document.querySelectorAll('.thumbnail-item').forEach((thumb) => {
-            thumb.addEventListener('click', () => {
-                const index = parseInt(thumb.dataset.index);
-                goToSlide(index);
-            });
-        });
-
-        // ========================================
-        // CAROUSEL SLIDE CLICK - OPEN ALBUM
-        // ========================================
-        document.querySelectorAll('.carousel-slide').forEach((slide) => {
-            slide.addEventListener('click', () => {
-                const albumId = parseInt(slide.dataset.album);
-                openAlbum(albumId);
-            });
-        });
-
-        // ========================================
-        // ALBUM MODAL FUNCTIONS
+        // ALBUM PHOTO GRID
         // ========================================
         function openAlbum(albumId) {
-            currentAlbum = albumId;
-            currentImageIndex = 0;
-
+            currentAlbumId = albumId;
             const album = albums[albumId];
-            const modal = document.getElementById('albumModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalImage = document.getElementById('modalImage');
-            const thumbnailsContainer = document.getElementById('modalThumbnails');
+            currentPhotos = album.images;
 
-            modalTitle.textContent = album.title;
-            modalImage.src = album.images[0];
+            document.getElementById('photoGridTitle').textContent = album.title;
+            document.getElementById('photoGridCount').textContent = `${album.images.length} PHOTOS`;
 
-            // Generate thumbnails
-            thumbnailsContainer.innerHTML = '';
-            album.images.forEach((image, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = image;
-                thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-                thumb.onclick = () => goToImage(index);
-                thumbnailsContainer.appendChild(thumb);
+            const container = document.getElementById('photoThumbs');
+            container.innerHTML = '';
+
+            album.images.forEach((src, index) => {
+                const thumb = document.createElement('div');
+                thumb.className = 'photo-thumb';
+                thumb.onclick = () => openLightbox(index);
+                thumb.innerHTML = `<img src="${src}" alt="${album.title}" loading="lazy">`;
+                container.appendChild(thumb);
             });
 
-            updateCounter();
-            modal.classList.add('active');
+            document.getElementById('albumGrid').classList.add('hidden');
+            document.getElementById('photoGrid').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ========================================
+        // LIGHTBOX
+        // ========================================
+        function openLightbox(index) {
+            lightboxIndex = index;
+            lightboxOpen = true;
+            const lightbox = document.getElementById('lightbox');
+            document.getElementById('lightboxImage').src = currentPhotos[index];
+            updateLightboxCounter();
+            lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeAlbum() {
-            const modal = document.getElementById('albumModal');
-            modal.classList.remove('active');
+        function closeLightbox() {
+            lightboxOpen = false;
+            document.getElementById('lightbox').classList.remove('active');
             document.body.style.overflow = '';
-            currentAlbum = null;
-            currentImageIndex = 0;
         }
 
-        function navigateAlbum(direction) {
-            if (!currentAlbum) return;
+        function navigateLightbox(direction) {
+            lightboxIndex = (lightboxIndex + direction + currentPhotos.length) % currentPhotos.length;
+            document.getElementById('lightboxImage').src = currentPhotos[lightboxIndex];
+            updateLightboxCounter();
+        }
 
-            const album = albums[currentAlbum];
-            currentImageIndex = (currentImageIndex + direction + album.images.length) % album.images.length;
+        function updateLightboxCounter() {
+            document.getElementById('lightboxCounter').textContent =
+                `${lightboxIndex + 1} / ${currentPhotos.length}`;
+        }
 
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = album.images[currentImageIndex];
-
-            document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
-                thumb.classList.toggle('active', index === currentImageIndex);
-            });
-
-            const activeThumbnail = document.querySelector('.thumbnail.active');
-            if (activeThumbnail) {
-                activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
             }
-
-            updateCounter();
-        }
-
-        function goToImage(index) {
-            currentImageIndex = index;
-            const album = albums[currentAlbum];
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = album.images[currentImageIndex];
-
-            document.querySelectorAll('.thumbnail').forEach((thumb, idx) => {
-                thumb.classList.toggle('active', idx === currentImageIndex);
-            });
-
-            updateCounter();
-        }
-
-        function updateCounter() {
-            if (!currentAlbum) return;
-            const album = albums[currentAlbum];
-            const counter = document.getElementById('modalCounter');
-            counter.textContent = `${currentImageIndex + 1} / ${album.images.length}`;
-        }
+        });
 
         // ========================================
         // KEYBOARD NAVIGATION
         // ========================================
         document.addEventListener('keydown', (e) => {
-            // Modal navigation
-            if (currentAlbum) {
+            if (lightboxOpen) {
                 switch (e.key) {
                     case 'Escape':
-                        closeAlbum();
+                        closeLightbox();
                         break;
                     case 'ArrowLeft':
-                        navigateAlbum(-1);
+                        navigateLightbox(-1);
                         break;
                     case 'ArrowRight':
-                        navigateAlbum(1);
-                        break;
-                }
-            }
-            // Carousel navigation (when modal is closed)
-            else {
-                switch (e.key) {
-                    case 'ArrowLeft':
-                        moveCarousel(-1);
-                        break;
-                    case 'ArrowRight':
-                        moveCarousel(1);
+                        navigateLightbox(1);
                         break;
                 }
             }
         });
 
-        // Close modal when clicking outside image
-        document.getElementById('albumModal').addEventListener('click', (e) => {
-            if (e.target.id === 'albumModal') {
-                closeAlbum();
-            }
-        });
-
         // ========================================
-        // INITIALIZE ON PAGE LOAD
+        // INITIALIZE
         // ========================================
-        document.addEventListener('DOMContentLoaded', () => {
-            initDots();
-        });
+        buildAlbumGrid();
     </script>
 </body>
 
