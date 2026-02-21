@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kandy Krush - Luxury Balloon Artistry</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="tw-output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="preload" as="image" href="Images/Screenshot 2026-01-21 at 13.08.10.jpg">
+    <link rel="preload" as="image" href="Images/Screenshot 2026-01-21 at 13.08.28.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"
         rel="stylesheet">
@@ -1026,7 +1028,7 @@
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center space-x-3">
                     <img src="Images/WhatsApp Image 2026-01-15 at 19.29.51.jpeg" alt="Kandy Krush Logo"
-                        class="h-16 w-auto">
+                        class="h-16 w-auto" fetchpriority="high">
                     <div class="heading-font text-3xl font-bold text-white">Kandy Krush</div>
                 </div>
 
@@ -1204,7 +1206,7 @@
                 <!-- Left Image -->
                 <div class="lg:col-span-4 section-reveal flex items-center justify-center h-full">
                     <img src="Images/Birthday/1.png" alt="Birthday Balloon Numbers"
-                        class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105">
+                        class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105" loading="lazy">
                 </div>
 
                 <!-- Center Text Content -->
@@ -1233,7 +1235,7 @@
                 <!-- Right Image -->
                 <div class="lg:col-span-4 section-reveal flex items-center justify-center h-full">
                     <img src="Images/Birthday/2.png" alt="Birthday Balloon Display"
-                        class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105">
+                        class="w-full h-full max-h-[500px] object-contain drop-shadow-2xl transition-transform duration-500 hover:scale-105" loading="lazy">
                 </div>
 
             </div>

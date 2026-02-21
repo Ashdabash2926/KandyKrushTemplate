@@ -1,0 +1,25 @@
+{
+  "name": "kandykrush.2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hello.js",
+  "scripts": {
+    "build": "tailwindcss -i tw-input.css -o tw-output.css --minify",
+    "watch": "tailwindcss -i tw-input.css -o tw-output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashdabash2926/KandyKrushTemplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ashdabash2926/KandyKrushTemplate/issues"
+  },
+  "homepage": "https://github.com/Ashdabash2926/KandyKrushTemplate#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}
