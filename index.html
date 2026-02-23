@@ -8,13 +8,19 @@
     <link rel="stylesheet" href="tw-output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="styles.css" />
     <link rel="preload" as="image" href="Images/Screenshot 2026-01-21 at 13.08.10.webp" type="image/webp">
     <link rel="preload" as="image" href="Images/Screenshot 2026-01-21 at 13.08.28.webp" type="image/webp">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"></noscript>
     <style>
+        @font-face {
+            font-family: "Gistesy";
+            src: url("./Fonts/Gistesy.ttf") format("truetype");
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        .gistesy-font { font-family: "Gistesy", cursive !important; }
         @font-face {
             font-family: 'Ghisella';
             src: url('Fonts/Ghisella.otf') format('opentype'),
