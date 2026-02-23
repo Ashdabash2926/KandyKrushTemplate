@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /Contract.html
 
-Sitemap: https://www.kandykrush.com/sitemap.xml
+Sitemap: https://www.kandykrush.org/sitemap.xml
