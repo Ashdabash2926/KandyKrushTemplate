@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Contract.html
+
+Sitemap: https://www.kandykrush.com/sitemap.xml
