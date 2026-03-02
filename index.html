@@ -59,8 +59,7 @@
     <link rel="stylesheet" href="tw-output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="Images/20230515_153713-mobile.webp" type="image/webp" media="(max-width: 767px)">
-    <link rel="preload" as="image" href="Images/20230515_153713.webp" type="image/webp" media="(min-width: 768px)">
+    <link rel="preload" as="image" href="Images/20230515_153713.webp" type="image/webp">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap"></noscript>
     <style>
@@ -138,15 +137,10 @@
         .hero-background {
             position: absolute;
             inset: 0;
-            background-image: url('Images/20230515_153713-mobile.webp');
+            background-image: url('Images/20230515_153713.webp');
             background-size: cover;
             background-position: center;
             animation: kenBurns 20s cubic-bezier(0.6, 0, 0.4, 1) infinite alternate;
-        }
-        @media (min-width: 768px) {
-            .hero-background {
-                background-image: url('Images/20230515_153713.webp');
-            }
         }
 
         @keyframes kenBurns {
@@ -1770,17 +1764,18 @@
             }, (duration + delay) * 1000);
         }
 
-        // Create initial burst for main hero
-        for (let i = 0; i < 100; i++) {
-            setTimeout(() => createSparkle(true), i * 20);
-        }
-
-        // Create ongoing sparkles for main hero
-        setInterval(() => createSparkle(false), 500);
-
-        for (let i = 0; i < 15; i++) {
-            setTimeout(() => createSparkle(false), i * 200);
-        }
+        // Defer sparkle burst until after page load to avoid blocking LCP
+        window.addEventListener('load', () => {
+            requestIdleCallback(() => {
+                for (let i = 0; i < 100; i++) {
+                    setTimeout(() => createSparkle(true), i * 20);
+                }
+                setInterval(() => createSparkle(false), 500);
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => createSparkle(false), i * 200);
+                }
+            });
+        });
 
         // ========================================
         // GALLERY HERO SPARKLES
@@ -1811,12 +1806,15 @@
             }, (duration + delay) * 1000);
         }
 
-        // Create ongoing sparkles for gallery hero
-        setInterval(() => createGallerySparkle(), 600);
-
-        for (let i = 0; i < 20; i++) {
-            setTimeout(() => createGallerySparkle(), i * 250);
-        }
+        // Defer gallery sparkles until after load
+        window.addEventListener('load', () => {
+            requestIdleCallback(() => {
+                setInterval(() => createGallerySparkle(), 600);
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => createGallerySparkle(), i * 250);
+                }
+            });
+        });
 
         // ========================================
         // PARALLAX TEXT EFFECT (MAIN HERO)
