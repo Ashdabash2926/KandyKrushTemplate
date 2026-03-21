@@ -1,4 +1,34 @@
-# KandyKrush.2 — Review 2026-03-21
+# KandyKrush.2 — Review 2026-03-21 — session 2
+
+## Done today (2026-03-21) — session 2
+
+### Image rotation tooling
+- Built `Python Scripts/image_rotator.py` — GUI tool for rotating .webp images locally
+  - Folder picker (remembers last location between sessions)
+  - Thumbnail grid with click-to-select and Ctrl+click multi-select
+  - CW / CCW rotate buttons + left/right arrow key shortcuts
+  - Smooth macOS trackpad scrolling (`yscrollincrement=1`, raw delta)
+  - Submit & Save overwrites files with EXIF orientation reset to 1 (prevents browser double-rotation)
+  - Delete Duplicates: scans by MD5 hash, shows pairs side-by-side, click to choose which to delete, Confirm deletes permanently
+- Built `rotate.js` (Node/Sharp) — quick CLI rotate for single images
+
+### Gallery image fixes
+- Rotated images corrected locally using image_rotator.py
+- Pushed rotated `.webp` files (not `.jpg`) for:
+  - `Images/weddings/` — 13 images
+  - `Images/Baby christening/` — 3 images
+  - `Images/Corporate/` — 3 images
+  - `Images/Garlands/` — 2 images
+  - `Images/Halo Hoop Hire/` — 36 images
+  - `Images/ORBZ Balloons/` — 73 images
+  - `Images/Sequin Shimmer walls/` — 11 images
+  - `Images/easel-hire/` — 1 image
+- `Images/Childrens/` (Kids Celebrations) — no rotations needed, already correct
+- Browser cache issue: use incognito or DevTools → right-click refresh → "Empty Cache and Hard Reload" to verify new images
+
+---
+
+# KandyKrush.2 — Review 2026-03-21 — session 1
 
 > **Standing instruction:** Always commit and push changes to GitHub after every edit. Cloudflare auto-deploys on push.
 
