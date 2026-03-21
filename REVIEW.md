@@ -1,3 +1,16 @@
+# KandyKrush.2 — Review 2026-03-21
+
+> **Standing instruction:** Always commit and push changes to GitHub after every edit. Cloudflare auto-deploys on push.
+
+## Done today (2026-03-21)
+
+- Reverted `Contract.html` to pre-session-2 version (removed banner image, restored original header)
+- `GENERATE CONTRACT` button on `about.html` reverted to link to `https://forms2-nu.vercel.app/kandykrush`
+- Agreed workflow: form submissions → pdf-lib generates PDF → Resend emails to client. Blocked on `kandykrush.org` DNS move from Wix → Cloudflare
+- Once DNS is sorted: verify domain in Resend, update `RESEND_FROM` env var in Vercel to `noreply@kandykrush.org`
+
+---
+
 # KandyKrush.2 — Review 2026-03-20
 
 ## Done today (2026-03-20) — session 2
