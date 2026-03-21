@@ -1,3 +1,35 @@
+# KandyKrush.2 — Review 2026-03-21 — session 3
+
+## Done today (2026-03-21) — session 3
+
+### Forms & email
+- Vercel hire form (`forms2-nu.vercel.app/kandykrush`) restyled: banner image header, green (#8a9490) replacing hot pink, black input text
+- `GENERATE CONTRACT` button on `about.html` points to Vercel form
+- Contact form on `index.html` wired to Web3Forms (key: `c86c02c1-80b6-4e3b-a03d-f9b16f2ac944`) — emails `lewisashley.t@outlook.com` for testing
+  - **To switch to client email:** get new access key at web3forms.com with client's email, swap key in `index.html` hidden input
+- Hire form Resend error fixed: hardcoded `onboarding@resend.dev` as sender, notification email set to `lewisashleybutterfield@googlemail.com`
+  - **Still blocked on real client email delivery until `kandykrush.org` DNS moves from Wix → Cloudflare**
+
+### DNS move checklist (when ready)
+- Screenshot all existing Wix DNS records before touching anything (especially MX records)
+- Add domain to Cloudflare — it auto-scans existing records, review carefully
+- Add Resend DNS records for domain verification
+- Point Cloudflare to Kandykrush.2 Pages site
+- Change nameservers at registrar to Cloudflare's NS records
+- **First: confirm where `kandykrush.org` is actually registered** (Wix, or external registrar?)
+- Don't delete Wix account — leave site unpublished as a rollback option
+
+### Samsung Fold 7 — about.html bug
+- Mobile menu was rendering visible without CSS (Tailwind `opacity-0 invisible` not applying)
+- Fixed: added `style="display:none"` to mobile menu + updated JS to toggle `display` property
+- SVG icons were stretching to full screen without CSS — fixed with explicit `width="40" height="40"` attributes
+- **Outstanding:** CSS (`/tw-output.css`) not loading at all on Fold 7 for `about.html` but fine on `index.html`
+  - Root-relative path is correct for Cloudflare clean URLs
+  - **Test in incognito on Fold 7** — if it looks fine, it's a stale device cache, will clear itself
+  - If still broken in incognito, investigate further
+
+---
+
 # KandyKrush.2 — Review 2026-03-21 — session 2
 
 ## Done today (2026-03-21) — session 2
