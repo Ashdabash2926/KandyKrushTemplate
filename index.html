@@ -1495,8 +1495,10 @@
             </div>
 
             <div class="section-reveal">
-                <form class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12"
+                <form id="contactForm" class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12"
                     style="border: 2px solid #c8bdb5;">
+                    <input type="hidden" name="access_key" value="c86c02c1-80b6-4e3b-a03d-f9b16f2ac944">
+                    <input type="hidden" name="subject" value="New Enquiry — Kandy Krush">
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label for="firstName"
@@ -1844,31 +1846,51 @@
         // ========================================
         // FORM SUBMISSION
         // ========================================
-        const contactForm = document.querySelector('form');
+        const contactForm = document.getElementById('contactForm');
         if (contactForm) {
-            contactForm.addEventListener('submit', function (e) {
+            contactForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'SENDING...';
 
                 const formData = new FormData(this);
                 const data = Object.fromEntries(formData);
 
-                const formContainer = this.parentElement;
-                formContainer.innerHTML = `
-                    <div class="text-center py-16">
-                        <div class="mb-6">
-                            <svg class="w-20 h-20 mx-auto" style="color: #a8b5a8;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="heading-font text-4xl font-light text-gray-800 mb-4">Thank You!</h3>
-                        <p class="text-lg text-gray-600 font-light mb-8">We've received your inquiry and will be in touch soon.</p>
-                        <button onclick="location.reload()" class="text-white px-8 py-3 rounded-full text-sm font-medium tracking-widest transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
-                            SEND ANOTHER INQUIRY
-                        </button>
-                    </div>
-                `;
+                try {
+                    const res = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await res.json();
 
-                console.log('Form submitted:', data);
+                    if (result.success) {
+                        const formContainer = this.parentElement;
+                        formContainer.innerHTML = `
+                            <div class="text-center py-16">
+                                <div class="mb-6">
+                                    <svg class="w-20 h-20 mx-auto" style="color: #a8b5a8;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="heading-font text-4xl font-light text-gray-800 mb-4">Thank You!</h3>
+                                <p class="text-lg text-gray-600 font-light mb-8">We've received your enquiry and will be in touch soon.</p>
+                                <button onclick="location.reload()" class="text-white px-8 py-3 rounded-full text-sm font-medium tracking-widest transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(to right, #b0a8a0, #a8b5a8);">
+                                    SEND ANOTHER INQUIRY
+                                </button>
+                            </div>
+                        `;
+                    } else {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'SEND INQUIRY';
+                        alert('Something went wrong. Please try again.');
+                    }
+                } catch {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND INQUIRY';
+                    alert('Something went wrong. Please try again.');
+                }
             });
         }
 
