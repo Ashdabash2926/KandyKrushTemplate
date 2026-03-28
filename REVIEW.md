@@ -1,3 +1,49 @@
+# KandyKrush.2 — Review 2026-03-28 — session 4
+
+## Outstanding — waiting on DNS propagation
+
+- **Cloudflare nameservers for `kandykrush.co.uk`** — 123reg updated to `kai.ns.cloudflare.com` / `melody.ns.cloudflare.com`. Cloudflare is actively checking. Can take up to 24hrs.
+- **Once Cloudflare activates:**
+  - Add `kandykrush.co.uk` and `www.kandykrush.co.uk` as custom domains in Cloudflare Pages (kandykrushtemplate project)
+  - Resend will auto-verify `kandykrush.co.uk` DNS (records already added in Cloudflare)
+  - Update `RESEND_FROM` in Vercel from `Contact_Form <onboarding@resend.dev>` → `Kandy Krush <hello@kandykrush.co.uk>`
+  - Test hire agreement form end-to-end (PDF + email to `balloonsbykandykrush@gmail.com`)
+- **OG image** — update URL domain from `kandykrush.org` → `kandykrush.co.uk` and encode spaces as `%20` (file: `index.html` line 18)
+- **Cancel Wix Premium** — once `kandykrush.co.uk` is confirmed live. Domain `kandykrush.org` renews Feb 2027 — client can let it lapse or keep for redirect.
+
+## Done today (2026-03-28)
+
+### Domain
+- Bought `kandykrush.co.uk` on 123reg (£4/yr, auto-renew on)
+- Changed nameservers at 123reg to Cloudflare (`kai` / `melody`)
+- Added `kandykrush.co.uk` zone to Cloudflare (free plan)
+- Added DNS records in Cloudflare:
+  - `CNAME @ → kandykrushtemplate.pages.dev` (proxied)
+  - `CNAME www → kandykrushtemplate.pages.dev` (proxied)
+  - `TXT resend._domainkey` — DKIM for Resend
+  - `MX send → feedback-smtp.eu-west-1.amazonses.com` (priority 10)
+  - `TXT send → v=spf1 include:amazonses.com ~all`
+  - `TXT _dmarc → v=DMARC1; p=none;`
+- `www.kandykrush.org` active on Cloudflare Pages (CNAME via Wix DNS) — interim until `.co.uk` is live
+- Abandoned `kandykrush.org` DNS move (Wix locks NS records, Resend blocks MX subdomains on Wix)
+
+### Forms / email
+- Hire agreement notification email switched to `balloonsbykandykrush@gmail.com` (was Ash's test email)
+- Web3Forms key swapped to client's account (`894b5cbe-a22b-4311-8f49-862235413cbf`) — contact form enquiries now go to `balloonsbykandykrush@gmail.com`
+- Resend domain `kandykrush.co.uk` added (replaced `kandykrush.org` which was on free plan limit)
+- `RESEND_FROM` temporarily set to `Kandy Krush <hello@kandykrush.co.uk>` — **will fail until domain verified**, revert to `Contact_Form <onboarding@resend.dev>` if needed
+
+### PDF hire agreement
+- Fixed text cut-off (was using `substring(0, 80)` — replaced with proper `wrapText` helper)
+- Added multi-page support
+- Full T&Cs now rendered in PDF (15 sections, formatted with bold headers)
+- Fixed duplicate "Signature" heading
+
+### Site
+- Copyright updated 2024 → 2026
+
+---
+
 # KandyKrush.2 — Review 2026-03-21 — session 3
 
 ## Done today (2026-03-21) — session 3
