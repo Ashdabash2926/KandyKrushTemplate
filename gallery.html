@@ -866,6 +866,8 @@
             7: {
                 title: 'Halo Hoop Hire',
                 cover: 'Images/Halo Hoop Hire/20240307_180739.webp',
+                coverZoom: 1.15,
+                coverZoomOrigin: 'center bottom',
                 images: [
                     'Images/Halo Hoop Hire/20230506_202415.webp',
                     'Images/Halo Hoop Hire/20230527_160229.webp',
@@ -1142,7 +1144,7 @@
                 card.className = 'album-card';
                 card.onclick = () => openAlbum(id);
                 card.innerHTML = `
-                    <img src="${album.cover}" alt="${album.title}" loading="lazy" ${album.coverZoom ? `style="transform:scale(${album.coverZoom})"` : ''}>
+                    <img src="${album.cover}" alt="${album.title}" loading="lazy" ${album.coverZoom ? `style="transform:scale(${album.coverZoom});transform-origin:${album.coverZoomOrigin || 'center center'}"` : ''}>
                     <div class="album-card-overlay">
                         <h3 class="album-card-title heading-font">${album.title}</h3>
                         <span class="album-card-count">${album.images.length} PHOTOS</span>
