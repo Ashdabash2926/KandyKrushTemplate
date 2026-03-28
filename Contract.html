@@ -309,8 +309,7 @@
                     <label class="flex items-start space-x-3">
                         <input type="checkbox" id="termsAccept" required class="mt-1">
                         <span class="text-sm text-gray-700 font-light leading-relaxed">
-                            I acknowledge that I have read and agree to the terms and conditions outlined in this hire
-                            agreement, including the cancellation policy, payment terms, and liability clauses. *
+                            I have read and agree to the full <a href="terms-and-conditions.html" target="_blank" class="underline font-medium" style="color:#8a9490;">Terms and Conditions</a> of Balloons by Kandy Krush Ltd, including the cancellation policy, payment terms, equipment hire and liability clauses. *
                         </span>
                     </label>
                 </div>
@@ -590,84 +589,324 @@
                 yPos = 20;
             }
 
-            // Terms & Conditions
+            // ── FULL TERMS & CONDITIONS PAGES ──────────────────────────
+            const pw = doc.internal.pageSize.getWidth();
+            const ph = doc.internal.pageSize.getHeight();
+
+            function tcNewPage() {
+                doc.addPage();
+                yPos = 22;
+                doc.setFontSize(7.5);
+                doc.setFont('helvetica', 'italic');
+                doc.setTextColor(160, 160, 160);
+                doc.text('Balloons by Kandy Krush Ltd  \u2014  Customer Terms and Conditions', margin, 11);
+                doc.setLineWidth(0.2);
+                doc.setDrawColor(200, 200, 200);
+                doc.line(margin, 13, pw - margin, 13);
+            }
+
+            function checkY(needed) {
+                if (yPos + needed > ph - 18) tcNewPage();
+            }
+
+            function secTitle(text) {
+                checkY(14);
+                doc.setFontSize(9.5);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(138, 148, 144);
+                doc.text(text, margin, yPos);
+                yPos += 1.5;
+                doc.setLineWidth(0.3);
+                doc.setDrawColor(210, 210, 210);
+                doc.line(margin, yPos, pw - margin, yPos);
+                yPos += 6;
+            }
+
+            function tcClause(num, text) {
+                const lines = doc.splitTextToSize(text, contentWidth - 12);
+                checkY(lines.length * 4.5 + 3);
+                doc.setFontSize(8.5);
+                doc.setFont('helvetica', 'bold');
+                doc.setTextColor(110, 110, 110);
+                doc.text(num, margin, yPos);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(55, 55, 55);
+                doc.text(lines, margin + 12, yPos);
+                yPos += lines.length * 4.5 + 3;
+            }
+
+            function defn(term, text) {
+                const full = doc.splitTextToSize('\u201C' + term + '\u201D ' + text, contentWidth - 8);
+                checkY(full.length * 4.5 + 2);
+                doc.setFontSize(8.5);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(55, 55, 55);
+                doc.text(full, margin + 8, yPos);
+                yPos += full.length * 4.5 + 2;
+            }
+
+            function tcBullet(text) {
+                const lines = doc.splitTextToSize(text, contentWidth - 16);
+                checkY(lines.length * 4.5 + 2);
+                doc.setFontSize(8.5);
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(55, 55, 55);
+                doc.text('\u2013', margin + 8, yPos);
+                doc.text(lines, margin + 14, yPos);
+                yPos += lines.length * 4.5 + 2;
+            }
+
+            // T&C title page
+            tcNewPage();
+            doc.setFontSize(13);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(55, 55, 55);
+            doc.text('Customer Terms and Conditions', margin, yPos);
+            yPos += 5;
+            doc.setFontSize(8.5);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(80, 80, 80);
+            const tcIntro = doc.splitTextToSize('Please read these Terms and Conditions carefully. By signing this hire agreement you agree to be bound by these Terms and Conditions.', contentWidth);
+            doc.text(tcIntro, margin, yPos);
+            yPos += tcIntro.length * 4.5 + 8;
+
+            // 1. Definitions
+            secTitle('1. Definitions');
+            defn('Agreement', 'is a reference to these Terms and Conditions and our Booking Form;');
+            defn('Booking Form', 'means the form which has been completed either by you or us and signed by you detailing the Goods you wish to purchase, the Services you have ordered and/or the Equipment which you wish to hire and the dates;');
+            defn('Equipment', 'means the party related equipment which we may hire to you as detailed on the Booking Form and which shall be provided in accordance with these Terms and Conditions;');
+            defn('Goods', 'is a reference to any balloons and party related goods which we may offer for sale from time to time;');
+            defn('Services', 'is a reference to the balloon or party related services that we may arrange to provide you including the hire of Equipment;');
+            defn('you, your and yours', 'are references to you the person ordering Goods or Services or hiring Equipment from us;');
+            defn('we, us and our', 'are references to us, the business providing the Goods, Equipment or Services and which is named at the beginning of this document.');
+            yPos += 2;
+
+            // 2. Booking
+            secTitle('2. Booking');
+            tcClause('2.1', 'Any contract for the supply of Goods or Services from us is between you and us. You agree to take particular care when providing us with your details and warrant that these details are accurate and complete at the time of ordering.');
+            tcClause('2.2', 'All reservations made with us are provisional until the completed signed Booking Form is returned by you with your deposit or payment, as specified on the Booking Form.');
+            tcClause('2.3', 'The numbers for which the event has been booked are set out in the Booking Form. Any variation of these numbers must be notified to us as soon as possible prior to the event date.');
+            tcClause('2.4', 'Where stated on the Booking Form, a non-refundable deposit may be required in order to secure a booking. This should be accompanied with a completed signed Booking Form.');
+            tcClause('2.5', 'The Booking Form will detail all of the Goods or Services to be supplied by us including the Equipment to be hired by you and the event date. Please check this to ensure that it is accurate and that it reflects your requirements. You must notify us immediately if you spot any errors or if the order does not reflect your requirements.');
+            yPos += 2;
+
+            // 3. Prices and Payment
+            secTitle('3. Prices and Payment');
+            tcClause('3.1', 'All prices quoted to you are correct at the time of quotation and are valid for 7 days and we reserve the right to alter our prices after this time. Prices are inclusive of value added tax, if applicable.');
+            tcClause('3.2', 'All invoices must be paid in full by the date specified on the invoice (normally 1 week before the event).');
+            tcClause('3.3', 'Cancelled bookings may be subject to cancellation charges which will be set out in the Booking Form.');
+            tcClause('3.4', 'Please note that any changes to bookings must be made in writing and we will use our reasonable endeavours to accommodate these changes however we cannot guarantee that we will be able to accept the alteration. Where the change results in an increase in the overall cost a revised Booking Form will be issued to you.');
+            tcClause('3.5', 'Payment must be made by one of the methods accepted by us as notified to you.');
+            tcClause('3.6', 'Failure to pay on time may result in late payment charges which shall be calculated in accordance with The Late Payment of Commercial Debts (Interest) Act 1998 (as amended) from the date the payment was originally due until the date of actual payment.');
+            tcClause('3.7', 'We reserve the right to charge an administration fee for any late payment notices which we send to you in the event of your late payment. We also reserve the right to cancel any discount that we may have offered to you, to alter your payment terms and/or to suspend or cancel future deliveries in the case of late payment.');
+            tcClause('3.8', 'If we are not paid we may instruct a debt collection agency or law firm to collect our payment (including any interest and/or late payment charges) on our behalf. In such circumstances you will be liable to pay an additional sum to us which will not exceed the reasonable costs that we may have to pay the debt collection agency or law firm, who will add the sum to your outstanding debt on our behalf.');
+            tcClause('3.9', 'In the unlikely event that we have to cancel a booking due to reasons beyond our control, we will do so in writing or by email providing you with as much notice as possible, returning any deposits paid and where possible recommend another reputable company.');
+            tcClause('3.10', 'We reserve the right to alter our pricing on our literature and website at any time without prior warning.');
+            yPos += 2;
+
+            // 4. Equipment Hire
+            secTitle('4. Equipment Hire');
+            tcClause('4.1', 'The hire period for the Equipment is for the period specified on the Booking Form. The hire of the Equipment is not covered by the Consumer Credit Act, 1974 as the hire period is less than 3 months.');
+            tcClause('4.2', 'The hire period shall commence and end on the dates specified on the Booking Form. No extension to the hire period is permitted without our express written consent and receipt by us of the appropriate charge.');
+            tcClause('4.3', 'Full ownership in the Equipment shall remain fully vested in us at all times. You have no right, title or interest in the Equipment other than that you are entitled to hire the Equipment for the hire period.');
+            tcClause('4.4', 'You are responsible for the Equipment from the time we deliver the Equipment until the time you return the Equipment to us. Full risk in the Equipment shall lie with you during this time.');
+            tcClause('4.5', 'You are not permitted to hire, sub-let, sell, lend, move or part with possession of the Equipment at any time.');
+            tcClause('4.6', 'Please ensure that the venue has in place adequate insurance to cover the Equipment against fire, theft, loss or damage at all times during the hire period.');
+            tcClause('4.7', 'You hereby indemnify us against any losses, costs, damages or expenses that we may reasonably incur as a result of your breach of any of these Terms and Conditions.');
+            yPos += 2;
+
+            // 5. Loss or Damage
+            secTitle('5. Loss of or Damage to the Equipment');
+            tcClause('5.1', 'If the Equipment is returned to us in bad repair, damaged, unclean or defective in any way then we are entitled to retain any security deposit which may have been paid by you to repair and/or replace the Equipment. You are liable for any additional costs that we may incur in repairing, cleaning or replacing the Equipment.');
+            tcClause('5.2', 'In the event that any item of Equipment is lost, stolen or damaged beyond economical repair you are liable to pay us the cost of the replacement items as new. You will not be entitled to a refund of the security deposit in these circumstances.');
+            tcClause('5.3', 'All covers and draping fabrics are laundered prior to fitting and any minor accidental staining is acceptable such as food, drink and shoe marks from guests on the bottom of the fabric. However, any damage which we reasonably consider to be caused outside of the above such as staining foodstuffs, standing on covers, tears, rips, ink stains (drawing), burns, candle wax etc. may result in additional charges for laundering, repair or replacement.');
+            tcClause('5.4', 'In the event of loss or damage, the security deposit will be retained by us and we will notify you in writing of the reasons. If the cost of replacement due to missing Equipment or damage is in excess of the security deposit, an invoice will be issued to you to cover the cost of the damaged/missing property which must be paid in accordance with the terms stated on the invoice. If the cost of replacement is less than the security deposit, the balance will be returned to you within 14 working days of the date of our assessment.');
+            yPos += 2;
+
+            // 6. Cancellation
+            secTitle('6. Cancellation Rights for Consumers');
+            tcClause('6.1', 'Cancellations (for customers who are purchasing the Goods or Services not in the course of a business and who are based within the UK only):');
+            tcBullet('If you ordered the Goods or Services off-premises then you have the right to cancel your order within 7 days without giving any reason. The cancellation period will expire 7 days after the day you placed your order provided that you have not asked us to perform the Services or deliver the Goods before this date.');
+            tcBullet('To exercise your right to cancel you must notify us immediately, preferably by email.');
+            tcBullet('You must provide us with a clear statement of your decision to cancel an order.');
+            tcBullet('Please note that you have no right to cancel an order for balloons or hire Equipment once these have been delivered.');
+            yPos += 2;
+            tcClause('6.2', 'Effects of Cancellation under clause 6.1:');
+            tcBullet('If you cancel this contract, we will reimburse to you all payments received from you, including the costs of delivery (except for the supplementary costs arising if you chose a type of delivery other than the least expensive type of standard delivery offered by us) but not the non-refundable deposit to secure the order.');
+            tcBullet('We will make the reimbursement without delay and not later than 14 days after the day on which we are informed about your decision to cancel this contract.');
+            tcBullet('We will make this reimbursement using the same means of payment as you used for the initial transaction, unless you have expressly agreed otherwise; in any event you will not incur any fees as a result of the reimbursement.');
+            tcBullet('If you requested to begin the performance of Services during the cancellation period, you shall pay us an amount which is in proportion to what has been performed until you have communicated to us your cancellation from this contract, in comparison with the full coverage of the contract.');
+            yPos += 2;
+
+            // 7. Delivery / Collection
+            secTitle('7. Delivery / Collection');
+            tcClause('7.1', 'The Goods or Equipment will be delivered by us to you on the agreed date and at the event location specified by you.');
+            tcClause('7.2', 'You must ensure that at the time of agreed delivery of the Goods or Equipment adequate arrangements, including labour and access where necessary, are in place. We cannot be held liable for any damage, cost or expense incurred to the Goods, Equipment or premises where this arises as a result of a failure to provide adequate access or arrangements for delivery. An extra charge may be made by us where we spend additional time due to delays with access to the venue.');
+            tcClause('7.3', 'Collection times: you may be charged an out of hours collection fee if collection is needed after 10pm and before 9am after delivery has been made. Please let us know collection times which are available before any booking is made; failure to make us aware may incur an additional fee.');
+            yPos += 2;
+
+            // 8. Balloon Displays
+            secTitle('8. Balloon Displays & Decoration');
+            tcClause('8.1', 'Most balloon inflation takes place at the venue. Please ensure that there is sufficient time allocated for this at the venue and for subsequent decoration to take place. We will not be held responsible for balloon damage due to rare atmospheric conditions. All balloon decorations and weights become your property and responsibility upon completion of the set-up with the exception of decorations that use a balloon frame of any type.');
+            tcClause('8.2', 'Whilst the choice of colours and types of balloon for balloon displays is your responsibility, we reserve the right to make substitutions in an emergency such as in the case of a faulty batch of balloons supplied from the manufacturer.');
+            tcClause('8.3', 'Care must be exercised to ensure that all decoration items are safely and securely disposed. On no account should helium balloons be inhaled or released into the atmosphere.');
+            tcClause('8.4', 'Please note that the Goods supplied are not toys and are not suitable for children to use unsupervised. Ribbons tied to balloons may cause choking if used incorrectly. It is your responsibility to ensure that all children are appropriately supervised when handling these items.');
+            tcClause('8.5', 'Once we leave the venue, whether by delivery by us or collection by you, the responsibility is yours to ensure the balloons are kept safe as we cannot be held liable once left.');
+            yPos += 2;
+
+            // 9. Title
+            secTitle('9. Title');
+            tcClause('9.1', 'Full title in all Goods supplied by us shall remain fully vested in us until we receive payment in full for all monies owed to us. We shall be entitled to re-take possession of the Goods in the event of non-payment and you hereby grant us a non-revocable licence to enter your premises for the purposes of recovering the Goods.');
+            tcClause('9.2', 'Until such time as the property in the Goods passes to you, you shall hold all Goods supplied to you as our fiduciary agent and bailee, and shall keep all of the Goods properly stored, protected and insured (against the risks for which a prudent owner would insure them and hold the policy on trust for us) and clearly identified as our property. You hereby grant us permission to enter any premises where the Goods may be stored at any time to inspect them.');
+            tcClause('9.3', 'Until such time as the property in the Goods passes to you, we shall be entitled at any time to require you to return the Goods to us at your cost, and if you fail to do so forthwith, to enter upon any of your premises or any third party premises where the Goods are stored and repossess the Goods using reasonable force if necessary.');
+            tcClause('9.4', 'You shall not be entitled to pledge or in any way charge by way of security for any indebtedness any of the Goods which remain our property, but if you do so all moneys owing by you to us shall (without prejudice to any other right or remedy we may have) forthwith become due and payable.');
+            tcClause('9.5', 'Until such time as you have paid us all monies owing to us, if you become bankrupt or insolvent, enter into any arrangement with your creditors, or being a company, go into liquidation or are wound-up, or being a partnership, are dissolved or if, in our reasonable opinion, one of the aforementioned events is likely to occur and we notify you of such belief in writing you will no longer be entitled to use and sell any of our Goods and these must be returned to us immediately at your cost or we shall be entitled to re-take possession in accordance with Clause 9.3.');
+            yPos += 2;
+
+            // 10. Limitation of Liability
+            secTitle('10. Limitation of Liability');
+            tcClause('10.1', 'If we are found liable for any loss or damage to you such liability is limited to the amount you have paid for the relevant Services. We exclude liability for losses that were not foreseeable to both parties when the contract was formed and losses that were not caused by any breach on our part. This limitation of liability does not apply to personal injury or death arising as a direct result of our negligence.');
+            tcClause('10.2', 'We do not accept any liability for any delays, failures, errors or omissions or loss of transmitted information, viruses or other contamination or destructive properties transmitted to you or your computer system via our website except where this has been caused by our negligence.');
+            tcClause('10.3', 'We shall not be held liable for any failure or delay in performing Services where such failure arises as a result of any act or omission which is outside our reasonable control such as an act of God or those of third parties.');
+            tcClause('10.4', 'We cannot accept any liability for any loss, damage or expense, including any direct or indirect loss such as loss of profits, to you howsoever arising. This limitation of liability does not apply to personal injury or death arising as a direct result of our negligence.');
+            tcClause('10.5', 'We do not accept liability for any indirect loss, consequential loss, loss of data, loss of income or profit, loss of damage to property and/or loss from claims of third parties arising from the Goods, Equipment or Services purchased from us.');
+            tcClause('10.6', 'We shall not be held liable for any failure or delay in delivering Goods, Equipment or Services where such failure arises as a result of any act or omission which is outside our reasonable control such as an act of God or those of third parties.');
+            tcClause('10.7', 'We shall not be liable for any misrepresentations other than fraudulent misrepresentations.');
+            yPos += 2;
+
+            // 11. General
+            secTitle('11. General');
+            tcClause('11.1', 'We may subcontract any part or parts of the Goods or Services that we provide to you from time to time and we may assign or novate any part or parts of our rights under these Terms and Conditions without your consent or any requirement to notify you.');
+            tcClause('11.2', 'We may alter or vary the Terms and Conditions at any time without notice to you.');
+            tcClause('11.3', 'The Terms and Conditions together with the Booking Form and payment instructions constitute the entire agreement between you and us. No other terms whether expressed or implied shall form part of this Agreement. In the event of any conflict between these Terms and Conditions and any other term or provision on the Website, these Terms and Conditions shall prevail.');
+            tcClause('11.4', 'If any term or condition of our Agreement shall be deemed invalid, illegal or unenforceable, the parties hereby agree that such term or condition shall be deemed to be deleted and the remainder of the Agreement shall continue in force without such term or condition.');
+            tcClause('11.5', 'These Terms and Conditions and our Agreement shall be governed by and construed in accordance with the laws of England and Wales. The parties hereto submit to the exclusive jurisdiction of the courts of England and Wales.');
+            tcClause('11.6', 'No delay or failure on our part to enforce our rights or remedies under the Agreement shall constitute a waiver on our part of such rights or remedies unless such waiver is confirmed in writing.');
+            tcClause('11.7', 'It is not intended that the undertakings and obligations of the parties set out in this Agreement shall be for the benefit of and capable of being enforced by any other person by virtue of the Contracts (Rights of Third Parties) Act 1999.');
+            yPos += 2;
+
+            // 12. Balloon Float Times
+            secTitle('12. Guidelines of Balloon Float Times');
+            const floatData = [
+                ['Latex balloons with standard helium', '12"', '5\u20136 hours'],
+                ['Latex with Hi-Float', '12"', '12\u201318 hours'],
+                ['Supershape foil', '18" upwards', '4\u20135 days'],
+                ['Cubes & Orbs', '18" upwards', '6\u20137 days'],
+                ['Bubble balloons', '20" upwards', '7 days'],
+            ];
+            checkY(8 + floatData.length * 7 + 20);
+            const c1 = margin, c2 = margin + 85, c3 = margin + 125;
+            doc.setFillColor(138, 148, 144);
+            doc.rect(c1, yPos - 4, contentWidth, 8, 'F');
+            doc.setFontSize(8.5);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(255, 255, 255);
+            doc.text('Balloon Type', c1 + 2, yPos);
+            doc.text('Size', c2 + 2, yPos);
+            doc.text('Inflation Time', c3 + 2, yPos);
+            yPos += 6;
+            floatData.forEach(function(row, i) {
+                if (i % 2 === 1) { doc.setFillColor(247, 247, 245); doc.rect(c1, yPos - 4, contentWidth, 7, 'F'); }
+                doc.setFont('helvetica', 'normal');
+                doc.setTextColor(55, 55, 55);
+                doc.text(row[0], c1 + 2, yPos);
+                doc.text(row[1], c2 + 2, yPos);
+                doc.text(row[2], c3 + 2, yPos);
+                yPos += 7;
+            });
+            yPos += 4;
+            tcBullet('Inflation times are only a rough guide and may last a lot longer than given or less depending on environment.');
+            tcBullet('Hi Float is a special solution which we use to coat the inside of our latex balloons to prevent the helium/air escaping. All our latex balloons are treated in this way. For a standard 11" latex balloon you can expect a float time to increase. The large 36" giant latex balloons will float between 3 to 10 days when treated with Hi Float.');
+            yPos += 2;
+
+            // 13. Photos / Social Media
+            secTitle('13. Photos / Social Media');
+            tcClause('13.1', 'The client hereby authorises Balloons by Kandy Krush to utilise their logo and associated trademark / copyright (if any) as well as any media, photos, or footage from the event. The client also authorises us, its assigns and transferees to copyright, use and publish the same in print and/or electronically. It is agreed that we may use such photographs with or without name, in illustrations, advertising, and web content.');
+            tcClause('13.2', 'You must notify us if you do not wish us to use any photos in the above way. This must be agreed prior to confirmed bookings.');
+            yPos += 2;
+
+            // 14. Care of Balloons
+            secTitle('14. Care of Your Balloons');
+            const careLines = doc.splitTextToSize('To keep your balloons looking good for as long as possible, please follow the guidance below.', contentWidth);
+            checkY(careLines.length * 4.5 + 4);
+            doc.setFontSize(8.5);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(55, 55, 55);
+            doc.text(careLines, margin, yPos);
+            yPos += careLines.length * 4.5 + 4;
+            tcClause('14.1', 'Temperatures affect balloons. When moved from a room temperature environment into the cold, the foil will deflate slightly. Once back indoors the foil should return to fully inflated. Heat may expand the balloon and possibly cause it to burst.');
+            tcClause('14.2', 'Do not keep your balloons in the car or garage as temperature cannot be controlled.');
+            tcClause('14.3', 'Keep balloons away from direct sunlight and warm places. Helium expands in warm temperatures so balloons can burst if left in front of windows, in conservatories, cars etc.');
+            tcClause('14.4', 'Avoid very low temperatures as they can affect the float time of the balloon. Balloons prefer comfortable room temperatures.');
+            tcClause('14.5', 'Keep the balloons away from open windows, doors and breezy spots as they can be blown against sharp objects and will burst.');
+            tcClause('14.6', 'Please handle balloons with extreme care as they are delicate. It is best to keep little fingers away from the balloons as they are not built to be played with (at least until the party is over!).');
+            tcClause('14.7', 'Make sure balloons are not near any sharp objects. Check there are no nails in walls or sharp corners/edges close to where you are displaying the balloon(s) as they will puncture if they brush against them.');
+            yPos += 2;
+
+            // 15. Vinyl Printing
+            secTitle('15. Vinyl Printing (Personalised Balloons)');
+            tcClause('15.1', "We offer free personalisation on all balloons but after a few days you will notice that the personalisation will start to wrinkle slightly as the balloon slowly reduces in size. This is part of the balloon's natural ageing process and unfortunately we cannot do anything about this. If you are careful you can lift and smooth the vinyl to keep them looking their best for longer.");
+
+            // ── SIGNATURE PAGE ───────────────────────────────────────────
+            doc.addPage();
+            yPos = 20;
+
             doc.setFontSize(12);
             doc.setFont('helvetica', 'bold');
             doc.setTextColor(138, 148, 144);
-            doc.text('TERMS & CONDITIONS', margin, yPos);
-            yPos += 6;
+            doc.text('AGREEMENT & SIGNATURES', margin, yPos);
+            yPos += 3;
+            doc.setLineWidth(0.5);
+            doc.setDrawColor(168, 181, 168);
+            doc.line(margin, yPos, pw - margin, yPos);
+            yPos += 10;
 
             doc.setFontSize(9);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(60, 60, 60);
-
-            const terms = [
-                '1. PAYMENT TERMS: A non-refundable deposit is required to secure your booking. The remaining balance must be paid 7 days before the event date.',
-                '',
-                '2. CANCELLATIONS: Cancellations made more than 14 days before the event will receive a refund minus the deposit. Cancellations within 14 days are non-refundable.',
-                '',
-                '3. CHANGES: Any changes to the booking must be requested at least 7 days before the event date and are subject to availability.',
-                '',
-                '4. SETUP & ACCESS: Client must ensure suitable access to the venue for delivery and setup. Kandy Krush must be informed of any access restrictions.',
-                '',
-                '5. DAMAGE & LOSS: Client is responsible for the care of hired items. Any damage or loss will be charged at replacement cost.',
-                '',
-                '6. LIABILITY: Kandy Krush is fully insured. We are not liable for damage caused by third parties or weather conditions after installation.',
-                '',
-                '7. HELIUM BALLOONS: Float time varies by balloon type and environmental conditions. We guarantee appropriate float time for your event.',
-                '',
-                '8. COLLECTION: If collection is arranged, balloons must be collected within 24 hours unless otherwise agreed.'
-            ];
-
-            terms.forEach(term => {
-                if (yPos > 270) {
-                    doc.addPage();
-                    yPos = 20;
-                }
-                const termLines = doc.splitTextToSize(term, contentWidth);
-                doc.text(termLines, margin, yPos);
-                yPos += (termLines.length * 5);
-            });
-
-            // Add new page for signatures
-            doc.addPage();
-            yPos = 20;
-
-            // Signature Section
-            doc.setFontSize(12);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor(138, 148, 144);
-            doc.text('SIGNATURES', margin, yPos);
-            yPos += 15;
-
-            doc.setFontSize(10);
-            doc.setFont('helvetica', 'normal');
-            doc.setTextColor(60, 60, 60);
+            const sigIntro = doc.splitTextToSize('By signing below, the client confirms they have read, understood and agreed to the Terms and Conditions of Balloons by Kandy Krush Ltd as set out in this document.', contentWidth);
+            doc.text(sigIntro, margin, yPos);
+            yPos += sigIntro.length * 5 + 12;
 
             // Client Signature
-            doc.text('Client Signature:', margin, yPos);
-            yPos += 2;
-            doc.line(margin + 40, yPos, margin + 120, yPos);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(80, 80, 80);
+            doc.text('Client', margin, yPos);
             yPos += 8;
-            doc.text(`Print Name: ${data.clientName}`, margin, yPos);
-            yPos += 8;
-            doc.text('Date: _________________', margin, yPos);
-            yPos += 20;
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            doc.setFontSize(9);
+            doc.text('Signature:', margin, yPos);
+            doc.setLineWidth(0.4);
+            doc.setDrawColor(180, 180, 180);
+            doc.line(margin + 28, yPos, margin + 120, yPos);
+            yPos += 10;
+            doc.text('Print Name: ' + data.clientName, margin, yPos);
+            yPos += 10;
+            doc.text('Date: _______________________', margin, yPos);
+            yPos += 22;
 
             // Kandy Krush Signature
-            doc.text('Kandy Krush Representative:', margin, yPos);
-            yPos += 2;
-            doc.line(margin + 60, yPos, margin + 140, yPos);
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(80, 80, 80);
+            doc.text('Balloons by Kandy Krush Ltd', margin, yPos);
             yPos += 8;
-            doc.text('Date: _________________', margin, yPos);
-            yPos += 15;
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(60, 60, 60);
+            doc.setFontSize(9);
+            doc.text('Signature:', margin, yPos);
+            doc.line(margin + 28, yPos, margin + 120, yPos);
+            yPos += 10;
+            doc.text('Date: _______________________', margin, yPos);
+            yPos += 20;
 
-            // Footer
             doc.setFontSize(8);
             doc.setTextColor(120, 120, 120);
-            doc.text('Please sign both copies of this agreement. Return one signed copy to Kandy Krush.', margin, yPos);
+            doc.text('Contact: 07845 288 496  |  info@kandykrush.org  |  www.kandykrush.org', margin, yPos);
             yPos += 5;
-            doc.text('Contact: 07845 288 496 | info@kandykrush.org | www.kandykrush.org', margin, yPos);
+            doc.text('Balloons by Kandy Krush Ltd, Rosebud Way, Catterick, DL9 4RY', margin, yPos);
 
             // Save PDF
             doc.save(`Kandy_Krush_Contract_${data.clientName.replace(/\s+/g, '_')}.pdf`);
