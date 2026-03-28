@@ -949,7 +949,8 @@
             },
             8: {
                 title: 'Sequin Shimmer Walls',
-                cover: 'Images/Sequin Shimmer walls/20230318_165110.webp',
+                cover: 'Images/Sequin Shimmer walls/20251101_171955.webp',
+                coverZoom: 1.2,
                 images: [
                     'Images/Sequin Shimmer walls/20230318_165110.webp',
                     'Images/Sequin Shimmer walls/20230617_115606.webp',
@@ -1140,7 +1141,7 @@
                 card.className = 'album-card';
                 card.onclick = () => openAlbum(id);
                 card.innerHTML = `
-                    <img src="${album.cover}" alt="${album.title}" loading="lazy">
+                    <img src="${album.cover}" alt="${album.title}" loading="lazy" ${album.coverZoom ? `style="transform:scale(${album.coverZoom})"` : ''}>
                     <div class="album-card-overlay">
                         <h3 class="album-card-title heading-font">${album.title}</h3>
                         <span class="album-card-count">${album.images.length} PHOTOS</span>
